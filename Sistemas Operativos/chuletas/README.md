@@ -11,5 +11,9 @@ Referencias rápidas, escaneables, nivel chuleta.
 | [FHS y montajes](fhs-montajes.md) | FHS, mount/findmnt, df/du/lsblk |
 | [Procesos y señales](procesos-senales.md) | ps/top, kill, nice/renice, jobs |
 | [SSH admin](ssh-admin.md) | config, claves, agent, endurecimiento habitual |
+| [Paquetes (apt/dnf)](paquetes.md) | consulta, instalar, actualizar, buscar |
+| [Logs clásicos](logs-clasicos.md) | `/var/log`, qué mirar, rotación |
+| [Disco y LVM](disco-lvm.md) | particiones, lsblk, PV/VG/LV |
+| [Entorno y PATH](entorno-path.md) | variables de entorno y PATH |
 
 Relacionado: [aliases de shell](../shell/README.md).
