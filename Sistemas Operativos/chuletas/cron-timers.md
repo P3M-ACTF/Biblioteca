@@ -1,10 +1,10 @@
-# Chuleta: cron frente a systemd timers
+# Chuleta: cron, systemd timers y Programador de tareas
 
-Cuándo usar `crontab` y cuándo un `.timer` de systemd.
+Cuándo usar `crontab`, un `.timer` de systemd o el **Programador de tareas** de Windows.
 
 ---
 
-## 1. Comparación rápida
+## 1. Comparación rápida (Linux)
 
 | | **cron** | **systemd timer** |
 |--|----------|-------------------|
@@ -81,15 +81,43 @@ OnUnitActiveSec=1h
 
 ---
 
-## 5. Checklist
+## 5. Programador de tareas (Windows)
 
-| Objetivo | cron | timer |
-|----------|------|-------|
-| Listar | `crontab -l` | `systemctl list-timers` |
-| Logs | syslog / mail | `journalctl -u nombre.service` |
-| Probar | ejecutar el comando a mano | `systemctl start nombre.service` |
-| Rutas | absolutas | absolutas en `ExecStart=` |
+UI: `taskschd.msc`. Equivalente conceptual a cron/timers: disparadores (tiempo, logon, evento) + acción (programa/script).
+
+```powershell
+Get-ScheduledTask
+Get-ScheduledTask -TaskName "Nombre" | Get-ScheduledTaskInfo
+# Exportar definición (lectura/backup de config):
+# Export-ScheduledTask -TaskName "Nombre" -TaskPath "\" 
+```
+
+| Pieza | Significado |
+|-------|-------------|
+| Trigger | Cuándo corre (diario, al inicio, en evento…) |
+| Action | Qué ejecuta |
+| Principal | Con qué cuenta (evitar admin innecesario) |
+| Conditions / Settings | AC, red, reintentos, “run if missed” |
+
+Logs: Visor de eventos → *Applications and Services Logs → Microsoft → Windows → TaskScheduler* (y Operational). Ver [windows-servicios-eventos](windows-servicios-eventos.md).
+
+| Elige Programador si… | Prefiere cron/timer si… |
+|-----------------------|-------------------------|
+| Host Windows / Server | Host Linux |
+| Integración con eventos de Windows | journal + units systemd |
+| Cuentas de servicio de dominio | scripts POSIX portables |
 
 ---
 
-*Biblioteca — Sistemas Operativos · cron / timers*
+## 6. Checklist
+
+| Objetivo | cron | timer | Programador (Windows) |
+|----------|------|-------|------------------------|
+| Listar | `crontab -l` | `systemctl list-timers` | `Get-ScheduledTask` / `taskschd.msc` |
+| Logs | syslog / mail | `journalctl -u …` | TaskScheduler Operational |
+| Probar | comando a mano | `systemctl start …service` | Run en la consola |
+| Cuenta/rutas | absolutas | `ExecStart=` absoluto | Principal + path absolutos |
+
+---
+
+*Biblioteca — Sistemas Operativos · cron / timers / Programador*

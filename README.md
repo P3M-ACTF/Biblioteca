@@ -27,11 +27,15 @@ En este repositorio puedes encontrar material útil para el aprendizaje y recurs
 | [Logs clásicos](Sistemas%20Operativos/chuletas/logs-clasicos.md) | `/var/log` y rotación |
 | [Disco y LVM](Sistemas%20Operativos/chuletas/disco-lvm.md) | Particiones y LVM |
 | [Entorno y PATH](Sistemas%20Operativos/chuletas/entorno-path.md) | Variables de entorno |
+| [Firewall Linux](Sistemas%20Operativos/chuletas/firewall-linux.md) | firewalld, nftables, ufw, perímetro |
 | [Windows: usuarios y grupos](Sistemas%20Operativos/chuletas/windows-usuarios-grupos.md) | net user, UAC |
 | [Windows: servicios y eventos](Sistemas%20Operativos/chuletas/windows-servicios-eventos.md) | Servicios y Event Viewer |
+| [Windows: roles y actualizaciones](Sistemas%20Operativos/chuletas/windows-roles-actualizaciones.md) | Server Manager, Update |
+| [Windows: firewall y acceso](Sistemas%20Operativos/chuletas/windows-firewall-acceso.md) | Firewall, RDP, WinRM |
+| [Active Directory](Sistemas%20Operativos/chuletas/active-directory.md) | Dominio, OU, GPO |
 | [SELinux / AppArmor](Sistemas%20Operativos/chuletas/selinux-apparmor.md) | MAC: modos y denegados |
 | [Git diario](Sistemas%20Operativos/chuletas/git-diario.md) | Flujo diario de Git |
-| [Cron y timers](Sistemas%20Operativos/chuletas/cron-timers.md) | crontab vs systemd timers |
+| [Cron, timers y Programador](Sistemas%20Operativos/chuletas/cron-timers.md) | Linux + Task Scheduler |
 
 ### Redes
 
@@ -41,7 +45,7 @@ En este repositorio puedes encontrar material útil para el aprendizaje y recurs
 | [Modelo y puertos](Redes/chuletas/modelo-puertos.md) | OSI/TCP-IP, puertos, estados TCP |
 | [Direccionamiento](Redes/chuletas/direccionamiento.md) | IPv4/IPv6, CIDR, gateway |
 | [DNS](Redes/chuletas/dns.md) | Registros, dig, caché |
-| [Diagnóstico](Redes/chuletas/diagnostico.md) | ip, ping, mtr, curl |
+| [Diagnóstico](Redes/chuletas/diagnostico.md) | Linux y Windows (Test-NetConnection…) |
 | [HTTP](Redes/chuletas/http.md) | Métodos, códigos, cabeceras |
 | [NAT y enrutado](Redes/chuletas/nat-enrutado.md) | NAT y tablas de rutas |
 | [Captura (lectura)](Redes/chuletas/captura.md) | tcpdump/Wireshark (lectura) |
@@ -53,7 +57,8 @@ En este repositorio puedes encontrar material útil para el aprendizaje y recurs
 | [Índice de chuletas Ciberseguridad](Ciberseguridad/chuletas/README.md) | Todas las chuletas de ciberseguridad |
 | [Autenticación y autorización](Ciberseguridad/chuletas/autenticacion-autorizacion.md) | Factores, hashes, mínimo privilegio |
 | [Cifrado, hash y firma](Ciberseguridad/chuletas/cifrado-hash-firma.md) | Cuándo usar cada mecanismo |
-| [Bastionado Linux](Ciberseguridad/chuletas/bastionado-linux.md) | Endurecimiento de host |
+| [Bastionado Linux](Ciberseguridad/chuletas/bastionado-linux.md) | Endurecimiento de host Linux |
+| [Bastionado Windows](Ciberseguridad/chuletas/bastionado-windows.md) | Endurecimiento de host Windows |
 | [Respuesta a incidentes](Ciberseguridad/chuletas/respuesta-incidentes.md) | Fases IR y registro |
 | [TLS](Ciberseguridad/chuletas/tls.md) | Handshake y certificados |
 | [OWASP Top 10](Ciberseguridad/chuletas/owasp-top10.md) | Nombre e impacto |

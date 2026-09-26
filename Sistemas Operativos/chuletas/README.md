@@ -15,10 +15,14 @@ Referencias rápidas, escaneables, nivel chuleta.
 | [Logs clásicos](logs-clasicos.md) | `/var/log`, qué mirar, rotación |
 | [Disco y LVM](disco-lvm.md) | particiones, lsblk, PV/VG/LV |
 | [Entorno y PATH](entorno-path.md) | variables de entorno y PATH |
+| [Firewall Linux](firewall-linux.md) | perímetro vs host; firewalld, nftables, ufw, iptables |
 | [Windows: usuarios y grupos](windows-usuarios-grupos.md) | net user, grupos, UAC |
 | [Windows: servicios y eventos](windows-servicios-eventos.md) | services, Visor de eventos, Get-WinEvent |
+| [Windows: roles y actualizaciones](windows-roles-actualizaciones.md) | Server Manager, Windows Update |
+| [Windows: firewall y acceso](windows-firewall-acceso.md) | Firewall, RDP, WinRM |
+| [Active Directory](active-directory.md) | dominio, OU, GPO (alto nivel) |
 | [SELinux / AppArmor](selinux-apparmor.md) | modos y lectura de denegados |
 | [Git diario](git-diario.md) | clone, status, commit, branch, pull/push, stash |
-| [Cron y timers](cron-timers.md) | crontab frente a systemd timers |
+| [Cron, timers y Programador](cron-timers.md) | crontab, systemd timers, Task Scheduler |
 
 Relacionado: [aliases de shell](../shell/README.md) · [runbooks](../runbooks/README.md) · [plantillas](../plantillas/README.md).
