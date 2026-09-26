@@ -53,6 +53,14 @@ En este repositorio puedes encontrar material útil para el aprendizaje y recurs
 | [Copias de seguridad](Ciberseguridad/chuletas/copias-seguridad.md) | 3-2-1 y conceptos |
 | [Secretos](Ciberseguridad/chuletas/secretos.md) | Gestión de secretos |
 
+### Inteligencia Artificial
+
+| Recurso | Descripción |
+|---------|-------------|
+| [Preferencias para agentes de IA (ES)](Inteligencia%20Artificial/AI-PREFERENCES.es.md) | Preferencias generales de trabajo en castellano |
+| [Preferencias para agentes de IA (EN)](Inteligencia%20Artificial/AI-PREFERENCES.en.md) | Traducción equivalente al inglés |
+| [Guía de uso y adaptación](Inteligencia%20Artificial/GUIA-DE-USO-AI-PREFERENCES.md) | Cómo aplicar las preferencias en Codex, Cursor, OpenCode y otros entornos |
+
 ### Temas
 
 - [Sistemas Operativos](Sistemas%20Operativos/)
@@ -60,6 +68,7 @@ En este repositorio puedes encontrar material útil para el aprendizaje y recurs
 - [Ciberseguridad](Ciberseguridad/)
 - [Programación](Programación/)
 - [Electrónica](Electrónica/)
+- [Inteligencia Artificial](Inteligencia%20Artificial/)
 
 [^1]: Puedes colaborar en la construcción del repositorio creando un [Issue](../issues) adjuntando la dirección __URL del archivo__ que quieres añadir o tus __sugerencias__ para mejorar el repositorio ❤️.
 
