@@ -41,7 +41,7 @@ Opciones útiles:
 | `-r` | Leer pcap |
 | `-c N` | Parar tras N paquetes |
 | `-v` / `-vv` | Más detalle |
-| `-A` / `-X` | ASCII / hex+ASCII del payload |
+| `-A` / `-X` | ASCII / hex+ASCII del contenido del paquete |
 
 ### Filtros de captura (BPF) — ejemplos de lectura
 
@@ -112,7 +112,7 @@ En Wireshark: menú contextual → **Follow → TCP Stream** (o HTTP/TLS según 
 | Handshake SYN / SYN-ACK / ACK | Conexión establecida |
 | Retransmisiones / dup ACK | pérdida o congestión |
 | RST | cierre abrupto / rechazo |
-| TLS Client Hello + certs | inicio HTTPS (payload cifrado después) |
+| TLS Client Hello + certs | inicio HTTPS (aplicación cifrada después) |
 
 Tráfico TLS: ver metadatos (SNI, certs en handshake); el cuerpo de aplicación va cifrado.
 
