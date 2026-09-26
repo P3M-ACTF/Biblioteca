@@ -14,6 +14,8 @@ En este repositorio puedes encontrar material útil para el aprendizaje y recurs
 |---------|-------------|
 | [Aliases bash / zsh / sh](Sistemas%20Operativos/shell/README.md) | Aliases de admin + one-liner de instalación |
 | [Índice de chuletas SO](Sistemas%20Operativos/chuletas/README.md) | Todas las chuletas de sistemas |
+| [Runbooks SO](Sistemas%20Operativos/runbooks/README.md) | Máquina nueva, disco lleno, servicio caído |
+| [Plantillas SO](Sistemas%20Operativos/plantillas/README.md) | sshd, sudoers.d, nftables base |
 | [Permisos POSIX](Sistemas%20Operativos/chuletas/permisos-posix.md) | rwx, octal, bits especiales, ACLs |
 | [Permisos NTFS](Sistemas%20Operativos/chuletas/permisos-ntfs.md) | ACL Windows, herencia, `icacls` |
 | [systemd / journalctl](Sistemas%20Operativos/chuletas/systemd-journalctl.md) | Unidades, timers, journal |
@@ -25,6 +27,11 @@ En este repositorio puedes encontrar material útil para el aprendizaje y recurs
 | [Logs clásicos](Sistemas%20Operativos/chuletas/logs-clasicos.md) | `/var/log` y rotación |
 | [Disco y LVM](Sistemas%20Operativos/chuletas/disco-lvm.md) | Particiones y LVM |
 | [Entorno y PATH](Sistemas%20Operativos/chuletas/entorno-path.md) | Variables de entorno |
+| [Windows: usuarios y grupos](Sistemas%20Operativos/chuletas/windows-usuarios-grupos.md) | net user, UAC |
+| [Windows: servicios y eventos](Sistemas%20Operativos/chuletas/windows-servicios-eventos.md) | Servicios y Event Viewer |
+| [SELinux / AppArmor](Sistemas%20Operativos/chuletas/selinux-apparmor.md) | MAC: modos y denegados |
+| [Git diario](Sistemas%20Operativos/chuletas/git-diario.md) | Flujo diario de Git |
+| [Cron y timers](Sistemas%20Operativos/chuletas/cron-timers.md) | crontab vs systemd timers |
 
 ### Redes
 
@@ -60,6 +67,10 @@ En este repositorio puedes encontrar material útil para el aprendizaje y recurs
 | [Preferencias para agentes de IA (ES)](Inteligencia%20Artificial/AI-PREFERENCES.es.md) | Preferencias generales de trabajo en castellano |
 | [Preferencias para agentes de IA (EN)](Inteligencia%20Artificial/AI-PREFERENCES.en.md) | Traducción equivalente al inglés |
 | [Guía de uso y adaptación](Inteligencia%20Artificial/GUIA-DE-USO-AI-PREFERENCES.md) | Cómo aplicar las preferencias en Codex, Cursor, OpenCode y otros entornos |
+
+### Wiki
+
+Guías narrativas: [Biblioteca Wiki](https://github.com/P3M-ACTF/Biblioteca/wiki)
 
 ### Temas
 

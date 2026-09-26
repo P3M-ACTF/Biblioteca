@@ -1,0 +1,49 @@
+# Ejemplo de opciones sshd (admin) — revisar antes de aplicar
+# Ubicación típica: /etc/ssh/sshd_config o drop-in en sshd_config.d/
+# Validar: sudo sshd -t && sudo systemctl reload ssh
+#
+# Mantén una sesión SSH abierta al probar.
+
+Port 22
+AddressFamily any
+ListenAddress 0.0.0.0
+# ListenAddress ::
+
+Protocol 2
+
+# Autenticación
+PermitRootLogin prohibit-password
+PubkeyAuthentication yes
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+PermitEmptyPasswords no
+ChallengeResponseAuthentication no
+UsePAM yes
+
+# Limitar quién entra (ajusta a tu entorno)
+# AllowUsers ana admin
+# AllowGroups ssh-users
+
+MaxAuthTries 4
+LoginGraceTime 30
+MaxSessions 10
+
+# Reenvíos (desactiva si no los necesitas)
+X11Forwarding no
+AllowTcpForwarding no
+PermitTunnel no
+GatewayPorts no
+
+# Entorno y banners
+PrintMotd no
+DebianBanner no
+
+# Keepalive (cliente/servidor según necesidad)
+ClientAliveInterval 60
+ClientAliveCountMax 3
+
+# Cifrado: deja los defaults modernos de la distro salvo requisito
+# HostKey /etc/ssh/ssh_host_ed25519_key
+# HostKey /etc/ssh/ssh_host_rsa_key
+
+Subsystem sftp /usr/lib/openssh/sftp-server

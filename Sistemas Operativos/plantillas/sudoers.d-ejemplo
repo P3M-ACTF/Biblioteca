@@ -1,0 +1,18 @@
+# Ejemplo para /etc/sudoers.d/ana
+# Instalar con: sudo visudo -f /etc/sudoers.d/ana
+# Permisos del fichero: 0440, propietario root:root
+# Comprobar: sudo visudo -c && sudo -U ana -l
+#
+# Sintaxis: usuario|%grupo  hosts=(runas)  etiquetas: comandos
+
+# Miembro del grupo sudo (Debian/Ubuntu) — suele bastar con la regla del sistema:
+# %sudo ALL=(ALL:ALL) ALL
+
+# Usuario concreto con privilegios completos (preferible grupo + membresía):
+ana ALL=(ALL:ALL) ALL
+
+# Ejemplo acotado: reiniciar solo nginx sin contraseña
+# Cmnd_Alias NGINX_RESTART = /bin/systemctl restart nginx, /bin/systemctl status nginx
+# ana ALL=(root) NOPASSWD: NGINX_RESTART
+
+# Evitar: NOPASSWD: ALL salvo break-glass documentado
