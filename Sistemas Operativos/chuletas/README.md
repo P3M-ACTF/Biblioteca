@@ -15,5 +15,10 @@ Referencias rápidas, escaneables, nivel chuleta.
 | [Logs clásicos](logs-clasicos.md) | `/var/log`, qué mirar, rotación |
 | [Disco y LVM](disco-lvm.md) | particiones, lsblk, PV/VG/LV |
 | [Entorno y PATH](entorno-path.md) | variables de entorno y PATH |
+| [Windows: usuarios y grupos](windows-usuarios-grupos.md) | net user, grupos, UAC |
+| [Windows: servicios y eventos](windows-servicios-eventos.md) | services, Visor de eventos, Get-WinEvent |
+| [SELinux / AppArmor](selinux-apparmor.md) | modos y lectura de denegados |
+| [Git diario](git-diario.md) | clone, status, commit, branch, pull/push, stash |
+| [Cron y timers](cron-timers.md) | crontab frente a systemd timers |
 
-Relacionado: [aliases de shell](../shell/README.md).
+Relacionado: [aliases de shell](../shell/README.md) · [runbooks](../runbooks/README.md) · [plantillas](../plantillas/README.md).

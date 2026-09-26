@@ -1,0 +1,44 @@
+#!/usr/sbin/nft -f
+# Política base de ejemplo (host IPv4/IPv6) — adaptar antes de cargar
+# Comprobar sintaxis: sudo nft -c -f este-fichero
+# Aplicar solo con acceso alternativo (consola/IPMI) disponible
+#
+# Objetivo: input restrictivo, output/forward según rol.
+# No es un playbook ofensivo ni un bypass de controles.
+
+flush ruleset
+
+table inet filter {
+  chain input {
+    type filter hook input priority filter; policy drop;
+
+    # Loopback
+    iif "lo" accept
+
+    # Estado establecido / relacionado
+    ct state established,related accept
+
+    # ICMP / ICMPv6 básicos (diagnóstico; reduce si tu política lo exige)
+    ip protocol icmp accept
+    ip6 nexthdr icmpv6 accept
+
+    # SSH — acota a tu red de administración cuando puedas
+    # tcp dport 22 ip saddr 192.0.2.0/24 accept
+    tcp dport 22 accept
+
+    # HTTP/HTTPS solo si este host es servidor web público
+    # tcp dport { 80, 443 } accept
+
+    # Contador de drops (opcional, depuración)
+    # counter drop
+  }
+
+  chain forward {
+    type filter hook forward priority filter; policy drop;
+    # Solo aceptar forward si este host enruta de verdad
+  }
+
+  chain output {
+    type filter hook output priority filter; policy accept;
+  }
+}
