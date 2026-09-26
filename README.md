@@ -9,6 +9,8 @@ En este repositorio puedes encontrar material útil para el aprendizaje y recurs
 - **Procedimientos** para resolver tareas paso a paso.
 - **Ejemplos y plantillas reutilizables** para adaptar a otros entornos y proyectos.
 
+Este repositorio forma parte de [**Tecnoteca**](https://github.com/users/P3M-ACTF/projects/3), el proyecto paraguas que organiza ambos recursos. **Biblioteca** reúne material de consulta y aprendizaje, documentación, apuntes, guías, chuletas y recursos propios; para un catálogo curado de recursos, plataformas, proyectos y referencias externas, consulta [Awesome-ASIR](https://github.com/P3M-ACTF/Awesome-ASIR).
+
 > [!NOTE]
 > Este es un repositorio colaborativo [^1]
 
