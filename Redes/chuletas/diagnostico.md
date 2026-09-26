@@ -93,18 +93,48 @@ Códigos útiles: `401` auth, `403` permiso, `404` path, `502`/`503` backend.
 
 ## 6. Matriz síntoma → herramienta
 
-| Fallo percibido | Comandos |
-|-----------------|----------|
-| “No hay red” | `ip -br link`, `ip -br addr`, `ip route` |
-| “No hay Internet” | `ping gateway`, `ping 1.1.1.1`, `ip route` |
-| “No carga la web” (nombre) | `dig`, `ping IP`, `curl -vI` |
-| “Va lento / a ratos” | `mtr`, `ss -s`, mirar pérdida/latencia |
-| “Puerto inaccesible” | `ss -tlnp` (local), `curl -v` / cliente al puerto |
-| DNS dudoso | `resolvectl query`, `dig @8.8.8.8` vs DNS interno |
+| Fallo percibido | Linux | Windows |
+|-----------------|-------|---------|
+| “No hay red” | `ip -br link/addr`, `ip route` | `Get-NetIPAddress`, `Get-NetRoute` |
+| “No hay Internet” | ping gateway / `1.1.1.1` | `Test-NetConnection 1.1.1.1` |
+| “No carga la web” (nombre) | `dig`, `curl -vI` | `Resolve-DnsName`, `Test-NetConnection -Port 443` |
+| “Va lento / a ratos” | `mtr`, `ss -s` | `Test-NetConnection` + contadores / ruta |
+| “Puerto inaccesible” | `ss -tlnp`, cliente al puerto | `Get-NetTCPConnection -State Listen` |
+| DNS dudoso | `resolvectl` / `dig @…` | `Resolve-DnsName` / DNS del cliente |
 
 ---
 
-## 7. Checklist corto
+## 7. Equivalentes en Windows (PowerShell)
+
+Mismo orden mental: interfaz → gateway → DNS → puerto/app.
+
+```powershell
+Get-NetIPAddress -AddressFamily IPv4
+Get-NetRoute -DestinationPrefix '0.0.0.0/0'
+Get-DnsClientServerAddress
+Resolve-DnsName ejemplo.org
+Test-NetConnection -ComputerName 1.1.1.1 -InformationLevel Detailed
+Test-NetConnection -ComputerName ejemplo.org -Port 443
+# Ping clásico:
+Test-Connection -ComputerName 192.168.1.1 -Count 4
+```
+
+| Linux | Windows (orientativo) |
+|-------|------------------------|
+| `ip -br addr` | `Get-NetIPAddress` |
+| `ip route` | `Get-NetRoute` |
+| `dig` / `resolvectl` | `Resolve-DnsName` |
+| `ping` | `Test-Connection` / `Test-NetConnection` |
+| `curl` a un puerto | `Test-NetConnection -Port` |
+| `ss -tlnp` | `Get-NetTCPConnection -State Listen` |
+
+`Test-NetConnection` resume ping, DNS y puerto TCP en un solo comando útil para triage.
+
+---
+
+## 8. Checklist corto
+
+**Linux**
 
 ```bash
 ip -br link && ip -br addr && ip route
@@ -112,6 +142,15 @@ ping -c 3 "$(ip route | awk '/default/ {print $3; exit}')"
 ping -c 3 1.1.1.1
 dig +short ejemplo.org
 curl -vI https://ejemplo.org
+```
+
+**Windows**
+
+```powershell
+Get-NetIPAddress -AddressFamily IPv4
+Get-NetRoute -DestinationPrefix '0.0.0.0/0'
+Resolve-DnsName ejemplo.org
+Test-NetConnection ejemplo.org -Port 443
 ```
 
 ---
