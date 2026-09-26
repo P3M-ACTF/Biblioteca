@@ -21,6 +21,10 @@ En este repositorio puedes encontrar material útil para el aprendizaje y recurs
 | [FHS y montajes](Sistemas%20Operativos/chuletas/fhs-montajes.md) | Jerarquía, discos, espacio |
 | [Procesos y señales](Sistemas%20Operativos/chuletas/procesos-senales.md) | ps, kill, nice, jobs |
 | [SSH admin](Sistemas%20Operativos/chuletas/ssh-admin.md) | Cliente, claves, endurecimiento |
+| [Paquetes (apt/dnf)](Sistemas%20Operativos/chuletas/paquetes.md) | Consulta, instalar, actualizar |
+| [Logs clásicos](Sistemas%20Operativos/chuletas/logs-clasicos.md) | `/var/log` y rotación |
+| [Disco y LVM](Sistemas%20Operativos/chuletas/disco-lvm.md) | Particiones y LVM |
+| [Entorno y PATH](Sistemas%20Operativos/chuletas/entorno-path.md) | Variables de entorno |
 
 ### Redes
 
@@ -31,6 +35,9 @@ En este repositorio puedes encontrar material útil para el aprendizaje y recurs
 | [Direccionamiento](Redes/chuletas/direccionamiento.md) | IPv4/IPv6, CIDR, gateway |
 | [DNS](Redes/chuletas/dns.md) | Registros, dig, caché |
 | [Diagnóstico](Redes/chuletas/diagnostico.md) | ip, ping, mtr, curl |
+| [HTTP](Redes/chuletas/http.md) | Métodos, códigos, cabeceras |
+| [NAT y enrutado](Redes/chuletas/nat-enrutado.md) | NAT y tablas de rutas |
+| [Captura (lectura)](Redes/chuletas/captura.md) | tcpdump/Wireshark (lectura) |
 
 ### Ciberseguridad
 
@@ -41,6 +48,10 @@ En este repositorio puedes encontrar material útil para el aprendizaje y recurs
 | [Cifrado, hash y firma](Ciberseguridad/chuletas/cifrado-hash-firma.md) | Cuándo usar cada mecanismo |
 | [Bastionado Linux](Ciberseguridad/chuletas/bastionado-linux.md) | Endurecimiento de host |
 | [Respuesta a incidentes](Ciberseguridad/chuletas/respuesta-incidentes.md) | Fases IR y registro |
+| [TLS](Ciberseguridad/chuletas/tls.md) | Handshake y certificados |
+| [OWASP Top 10](Ciberseguridad/chuletas/owasp-top10.md) | Nombre e impacto |
+| [Copias de seguridad](Ciberseguridad/chuletas/copias-seguridad.md) | 3-2-1 y conceptos |
+| [Secretos](Ciberseguridad/chuletas/secretos.md) | Gestión de secretos |
 
 ### Temas
 
