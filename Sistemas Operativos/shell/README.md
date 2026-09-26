@@ -12,44 +12,44 @@ Silenciar el mensaje al cargar: `export BIBLIOTECA_ALIASES_QUIET=1`.
 
 ## Instalación en una línea
 
-Las URLs apuntan a la rama `dev`. Tras fusionar a `main`, sustituye esa rama por `main` en la URL.
+URLs raw de la rama `main`:
 
-Base raw: `https://raw.githubusercontent.com/P3M-ACTF/Biblioteca/<RAMA>/Sistemas%20Operativos/shell/`
+Base: `https://raw.githubusercontent.com/P3M-ACTF/Biblioteca/main/Sistemas%20Operativos/shell/`
 
 ### bash (curl)
 
 ```bash
-curl -fsSL "https://raw.githubusercontent.com/P3M-ACTF/Biblioteca/dev/Sistemas%20Operativos/shell/aliases.bash" -o ~/.biblioteca-aliases.bash && grep -q 'biblioteca-aliases.bash' ~/.bashrc 2>/dev/null || echo '[ -f ~/.biblioteca-aliases.bash ] && . ~/.biblioteca-aliases.bash' >> ~/.bashrc && . ~/.biblioteca-aliases.bash
+curl -fsSL "https://raw.githubusercontent.com/P3M-ACTF/Biblioteca/main/Sistemas%20Operativos/shell/aliases.bash" -o ~/.biblioteca-aliases.bash && grep -q 'biblioteca-aliases.bash' ~/.bashrc 2>/dev/null || echo '[ -f ~/.biblioteca-aliases.bash ] && . ~/.biblioteca-aliases.bash' >> ~/.bashrc && . ~/.biblioteca-aliases.bash
 ```
 
 ### bash (wget)
 
 ```bash
-wget -qO ~/.biblioteca-aliases.bash "https://raw.githubusercontent.com/P3M-ACTF/Biblioteca/dev/Sistemas%20Operativos/shell/aliases.bash" && grep -q 'biblioteca-aliases.bash' ~/.bashrc 2>/dev/null || echo '[ -f ~/.biblioteca-aliases.bash ] && . ~/.biblioteca-aliases.bash' >> ~/.bashrc && . ~/.biblioteca-aliases.bash
+wget -qO ~/.biblioteca-aliases.bash "https://raw.githubusercontent.com/P3M-ACTF/Biblioteca/main/Sistemas%20Operativos/shell/aliases.bash" && grep -q 'biblioteca-aliases.bash' ~/.bashrc 2>/dev/null || echo '[ -f ~/.biblioteca-aliases.bash ] && . ~/.biblioteca-aliases.bash' >> ~/.bashrc && . ~/.biblioteca-aliases.bash
 ```
 
 ### zsh (curl)
 
 ```bash
-curl -fsSL "https://raw.githubusercontent.com/P3M-ACTF/Biblioteca/dev/Sistemas%20Operativos/shell/aliases.zsh" -o ~/.biblioteca-aliases.zsh && grep -q 'biblioteca-aliases.zsh' ~/.zshrc 2>/dev/null || echo '[ -f ~/.biblioteca-aliases.zsh ] && . ~/.biblioteca-aliases.zsh' >> ~/.zshrc && . ~/.biblioteca-aliases.zsh
+curl -fsSL "https://raw.githubusercontent.com/P3M-ACTF/Biblioteca/main/Sistemas%20Operativos/shell/aliases.zsh" -o ~/.biblioteca-aliases.zsh && grep -q 'biblioteca-aliases.zsh' ~/.zshrc 2>/dev/null || echo '[ -f ~/.biblioteca-aliases.zsh ] && . ~/.biblioteca-aliases.zsh' >> ~/.zshrc && . ~/.biblioteca-aliases.zsh
 ```
 
 ### zsh (wget)
 
 ```bash
-wget -qO ~/.biblioteca-aliases.zsh "https://raw.githubusercontent.com/P3M-ACTF/Biblioteca/dev/Sistemas%20Operativos/shell/aliases.zsh" && grep -q 'biblioteca-aliases.zsh' ~/.zshrc 2>/dev/null || echo '[ -f ~/.biblioteca-aliases.zsh ] && . ~/.biblioteca-aliases.zsh' >> ~/.zshrc && . ~/.biblioteca-aliases.zsh
+wget -qO ~/.biblioteca-aliases.zsh "https://raw.githubusercontent.com/P3M-ACTF/Biblioteca/main/Sistemas%20Operativos/shell/aliases.zsh" && grep -q 'biblioteca-aliases.zsh' ~/.zshrc 2>/dev/null || echo '[ -f ~/.biblioteca-aliases.zsh ] && . ~/.biblioteca-aliases.zsh' >> ~/.zshrc && . ~/.biblioteca-aliases.zsh
 ```
 
 ### sh (curl)
 
 ```sh
-curl -fsSL "https://raw.githubusercontent.com/P3M-ACTF/Biblioteca/dev/Sistemas%20Operativos/shell/aliases.sh" -o ~/.biblioteca-aliases.sh && touch ~/.shrc && grep -q 'biblioteca-aliases.sh' ~/.shrc 2>/dev/null || echo '[ -f ~/.biblioteca-aliases.sh ] && . ~/.biblioteca-aliases.sh' >> ~/.shrc && . ~/.biblioteca-aliases.sh
+curl -fsSL "https://raw.githubusercontent.com/P3M-ACTF/Biblioteca/main/Sistemas%20Operativos/shell/aliases.sh" -o ~/.biblioteca-aliases.sh && touch ~/.shrc && grep -q 'biblioteca-aliases.sh' ~/.shrc 2>/dev/null || echo '[ -f ~/.biblioteca-aliases.sh ] && . ~/.biblioteca-aliases.sh' >> ~/.shrc && . ~/.biblioteca-aliases.sh
 ```
 
 ### sh (wget)
 
 ```sh
-wget -qO ~/.biblioteca-aliases.sh "https://raw.githubusercontent.com/P3M-ACTF/Biblioteca/dev/Sistemas%20Operativos/shell/aliases.sh" && touch ~/.shrc && grep -q 'biblioteca-aliases.sh' ~/.shrc 2>/dev/null || echo '[ -f ~/.biblioteca-aliases.sh ] && . ~/.biblioteca-aliases.sh' >> ~/.shrc && . ~/.biblioteca-aliases.sh
+wget -qO ~/.biblioteca-aliases.sh "https://raw.githubusercontent.com/P3M-ACTF/Biblioteca/main/Sistemas%20Operativos/shell/aliases.sh" && touch ~/.shrc && grep -q 'biblioteca-aliases.sh' ~/.shrc 2>/dev/null || echo '[ -f ~/.biblioteca-aliases.sh ] && . ~/.biblioteca-aliases.sh' >> ~/.shrc && . ~/.biblioteca-aliases.sh
 ```
 
 > En algunos sistemas `sh` solo lee `~/.profile`. Si `~/.shrc` no se carga solo, añade también:  
