@@ -10,3 +10,5 @@ Ejemplos **copiables** para administración. No son instaladores ni one-liners: 
 
 > [!NOTE]
 > Prueba cambios de SSH y firewall con una sesión alternativa abierta. Usa `visudo` / `sshd -t` / `nft -c` según corresponda.
+
+Los `.reg` de Windows (rotación Intel, inicio rápido, Explorador y menú contextual) viven junto a su receta en [notas](../notas/README.md).

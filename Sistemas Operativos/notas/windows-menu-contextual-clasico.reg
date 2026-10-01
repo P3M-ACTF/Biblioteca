@@ -1,0 +1,6 @@
+Windows Registry Editor Version 5.00
+
+; Menu contextual clasico de Windows 11 para el usuario actual.
+; Reinicia el Explorador despues de importar.
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32]
+@=""

@@ -1,0 +1,19 @@
+Windows Registry Editor Version 5.00
+
+; Desactiva el giro de pantalla con Ctrl+Alt+flechas en graficas Intel.
+; HKLM pide administrador. Reinicia despues de importar.
+
+; Panel clasico de Intel (igfxcui).
+[HKEY_LOCAL_MACHINE\SOFTWARE\Intel\Display\igfxcui\HotKeys]
+"Enable"=dword:00000000
+
+[HKEY_CURRENT_USER\Software\Intel\Display\igfxcui\HotKeys]
+"Enable"=dword:00000000
+
+; Clase de adaptadores de video. 0000 y 0001: primer y segundo dispositivo.
+; Si DriverDesc de Intel esta en otra entrada (0002, ...), duplica el bloque.
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000]
+"EnableRotation"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0001]
+"EnableRotation"=dword:00000000

@@ -25,4 +25,4 @@ Referencias rápidas, escaneables, nivel chuleta.
 | [Git diario](git-diario.md) | clone, status, commit, branch, pull/push, stash |
 | [Cron, timers y Programador](cron-timers.md) | crontab, systemd timers, Task Scheduler |
 
-Relacionado: [aliases de shell](../shell/README.md) · [runbooks](../runbooks/README.md) · [plantillas](../plantillas/README.md).
+Relacionado: [notas sueltas](../notas/README.md) · [aliases de shell](../shell/README.md) · [runbooks](../runbooks/README.md) · [plantillas](../plantillas/README.md).

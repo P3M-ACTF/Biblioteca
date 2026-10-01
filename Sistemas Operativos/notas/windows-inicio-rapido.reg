@@ -1,0 +1,6 @@
+Windows Registry Editor Version 5.00
+
+; Apaga el inicio rapido. La hibernacion sigue disponible.
+; HKLM pide administrador. Reinicia despues de importar.
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Power]
+"HiberbootEnabled"=dword:00000000
