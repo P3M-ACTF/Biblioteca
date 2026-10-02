@@ -20,7 +20,7 @@ Este repositorio forma parte de [**Tecnoteca**](https://github.com/users/P3M-ACT
 
 | Área | Qué encontrarás |
 | --- | --- |
-| [Sistemas Operativos](Sistemas%20Operativos/) | Referencias de Linux y Windows, aliases de shell, procedimientos de diagnóstico y plantillas de configuración. |
+| [Sistemas Operativos](Sistemas%20Operativos/) | Referencias de Linux y Windows, notas sueltas, aliases de shell, procedimientos de diagnóstico y plantillas de configuración. |
 | [Redes](Redes/) | Protocolos, direccionamiento, DNS, diagnóstico y captura de tráfico. |
 | [Ciberseguridad](Ciberseguridad/) | Referencias con enfoque defensivo: autenticación, cifrado, bastionado y respuesta a incidentes. |
 | [Inteligencia Artificial](Inteligencia%20Artificial/) | Preferencias de trabajo para agentes de IA y una guía para adaptarlas a distintos entornos. |
@@ -38,6 +38,7 @@ Los índices de cada área reúnen el catálogo completo de chuletas. Estos son 
 | [Aliases de bash, zsh y sh](Sistemas%20Operativos/shell/README.md) | Revisar y utilizar atajos para tareas de administración desde la terminal. |
 | [Runbooks de Sistemas Operativos](Sistemas%20Operativos/runbooks/README.md) | Seguir procedimientos para preparar una máquina, diagnosticar un disco lleno o revisar un servicio que no arranca. |
 | [Plantillas de Sistemas Operativos](Sistemas%20Operativos/plantillas/README.md) | Adaptar ejemplos de `sshd_config`, `sudoers.d` y `nftables` al entorno de trabajo. |
+| [Notas de Sistemas Operativos](Sistemas%20Operativos/notas/README.md) | Seguir recetas sueltas: Guest Additions, nano, ajustes de Windows en `.reg`, journal y swap. |
 | [Chuletas de Redes](Redes/chuletas/README.md) | Repasar TCP/IP, puertos, IPv4/IPv6, DNS, HTTP, NAT y herramientas de diagnóstico. |
 | [Chuletas de Ciberseguridad](Ciberseguridad/chuletas/README.md) | Consultar medidas de protección, TLS, copias de seguridad y gestión de secretos. |
 | [Preferencias para agentes de IA](Inteligencia%20Artificial/AI-PREFERENCES.es.md) | Reutilizar criterios de comunicación, código, seguridad y verificación. También disponibles [en inglés](Inteligencia%20Artificial/AI-PREFERENCES.en.md), con [guía de uso](Inteligencia%20Artificial/GUIA-DE-USO-AI-PREFERENCES.md). |
@@ -46,7 +47,7 @@ Los índices de cada área reúnen el catálogo completo de chuletas. Estos son 
 ## Cómo usar esta biblioteca
 
 1. **Elige un tema** en la tabla anterior o abre uno de los índices destacados.
-2. **Consulta el formato que necesites:** las chuletas son referencias rápidas; los runbooks describen procedimientos; las plantillas ofrecen ejemplos para adaptar.
+2. **Consulta el formato que necesites:** las chuletas son referencias rápidas; las notas sueltas resuelven una tarea concreta; los runbooks describen procedimientos; las plantillas ofrecen ejemplos para adaptar.
 3. **Busca un concepto o comando** con la búsqueda del repositorio en GitHub o con la búsqueda de tu editor en una copia local.
 
 Puedes leer los documentos directamente en GitHub, sin instalar nada. Para disponer de una copia local, utiliza **Code → Download ZIP** o clona el repositorio si tienes Git instalado:
