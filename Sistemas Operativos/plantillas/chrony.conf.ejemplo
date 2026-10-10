@@ -1,0 +1,22 @@
+# Ejemplo de chrony — revisar antes de aplicar
+# Ubicación habitual: /etc/chrony/chrony.conf (Debian/Ubuntu) o /etc/chrony.conf (RHEL)
+# Aplicar: sudo systemctl restart chronyd && chronyc sources
+
+# Servidores de hora. pool reparte entre varios; server fija uno concreto.
+# Usa los de tu organización si existen, y deja estos como respaldo.
+pool ntp.ubuntu.com iburst
+server hora.empresa.local iburst
+
+# iburst acelera la primera sincronización enviando varias consultas seguidas.
+
+# Permite corregir de golpe si la diferencia es grande, pero solo en las
+# tres primeras actualizaciones (típico al arrancar una máquina virtual).
+makestep 1.0 3
+
+# Dónde guarda el ajuste para que el siguiente arranque empiece cerca.
+driftfile /var/lib/chrony/drift
+
+# Zona horaria no se configura aquí: timedatectl set-timezone Europe/Madrid
+
+# Descomenta solo si esta máquina debe servir hora a su red.
+# allow 10.1.0.0/16

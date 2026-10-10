@@ -1,0 +1,23 @@
+# Ejemplo de rotación para un log propio — revisar antes de aplicar
+# Ubicación: /etc/logrotate.d/miapp
+# Probar sin hacer nada: sudo logrotate -d /etc/logrotate.d/miapp
+# Forzar una rotación:   sudo logrotate -f /etc/logrotate.d/miapp
+
+/var/log/miapp/*.log {
+    # Rota a diario. Alternativas: weekly, monthly, o size 100M.
+    daily
+    # Conserva 14 rotaciones y borra las más antiguas.
+    rotate 14
+    # No se queja si un día no hay ningún log.
+    missingok
+    # No rota si el fichero está vacío.
+    notifempty
+    # Comprime las rotaciones anteriores, no la de hoy.
+    compress
+    delaycompress
+    # Los ficheros rotados pertenecen a quien escribe el log.
+    create 0640 miapp adm
+    # Copia y trunca en lugar de renombrar, para los servicios que no saben
+    # reabrir el fichero y se quedarían escribiendo en el ya rotado.
+    copytruncate
+}

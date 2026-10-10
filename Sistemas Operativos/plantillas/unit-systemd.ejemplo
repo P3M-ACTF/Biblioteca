@@ -1,0 +1,42 @@
+# Ejemplo de unidad systemd — revisar antes de aplicar
+# Servicio: /etc/systemd/system/miapp.service
+# Timer:    /etc/systemd/system/miapp.timer
+# Activar:  sudo systemctl daemon-reload && sudo systemctl enable --now miapp.timer
+# Probar ya: sudo systemctl start miapp.service && journalctl -u miapp.service -n 30 --no-pager
+
+[Unit]
+Description=Tarea de ejemplo de miapp
+# No arranques hasta que la red esté operativa.
+After=network-online.target
+
+[Service]
+Type=oneshot
+# oneshot: la tarea hace su trabajo y termina. systemd la considera correcta
+# si el comando devuelve 0. Para un demonio permanente sería Type=simple.
+User=miapp
+Group=miapp
+# Ruta absoluta. systemd no busca en el PATH como lo hace tu shell.
+ExecStart=/usr/local/bin/miapp --una-vez
+# Directorio desde el que arranca. Tiene que existir.
+WorkingDirectory=/var/lib/miapp
+# Si falla, reintenta dos veces con diez segundos de separación y se rinde.
+Restart=on-failure
+RestartSec=10
+# Qué parte del sistema de ficheros puede escribir.
+ProtectSystem=strict
+ReadWritePaths=/var/lib/miapp
+
+[Install]
+WantedBy=multi-user.target
+
+# --- timer aparte, mismo nombre -------------------------------------------
+# [Unit]
+# Description=Lanza miapp cada día a las 03:15
+#
+# [Timer]
+# OnCalendar=*-*-* 03:15:00
+# Si la máquina estaba apagada a esa hora, ejecuta la tarea al arrancar.
+# Persistent=true
+#
+# [Install]
+# WantedBy=timers.target
