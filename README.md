@@ -1,4 +1,4 @@
-# 🏛️ Biblioteca
+# Biblioteca
 
 **Biblioteca de Libros, Documentación y Apuntes** relacionados con Informática, Redes Informáticas, Programación, Ciberseguridad y Tecnología en general.
 
@@ -12,9 +12,9 @@ En este repositorio puedes encontrar material útil para el aprendizaje y recurs
 Este repositorio forma parte de [**Tecnoteca**](https://github.com/users/P3M-ACTF/projects/3), el proyecto paraguas que organiza ambos recursos. **Biblioteca** reúne material de consulta y aprendizaje, documentación, apuntes, guías, chuletas y recursos propios; para un catálogo curado de recursos, plataformas, proyectos y referencias externas, consulta [Awesome-ASIR](https://github.com/P3M-ACTF/Awesome-ASIR).
 
 > [!NOTE]
-> Este es un repositorio colaborativo [^1]
+> Este es un repositorio colaborativo
 
-[Explorar temas](#temas) · [Contenido destacado](#contenido-destacado) · [Cómo usarla](#cómo-usar-esta-biblioteca) · [Colaborar](CONTRIBUTIONS.md) · [Licencia](#licencia)
+[Explorar temas](#temas) · [Contenido destacado](#contenido-destacado) · [Cómo usarla](#cómo-usar-esta-biblioteca) · [Colaborar](CONTRIBUTING.md) · [Licencia](#licencia)
 
 ## Temas
 
@@ -25,8 +25,8 @@ Este repositorio forma parte de [**Tecnoteca**](https://github.com/users/P3M-ACT
 | [Ciberseguridad](Ciberseguridad/) | Referencias con enfoque defensivo: autenticación, cifrado, bastionado y respuesta a incidentes. |
 | [Inteligencia Artificial](Inteligencia%20Artificial/) | Preferencias de trabajo para agentes de IA y una guía para adaptarlas a distintos entornos. |
 | [Documentaciones](Documentaciones/plantillas/readme/README.md) | Plantilla reutilizable de README y guía para adaptarla a otros proyectos. |
-| [Programación](Programaci%C3%B3n/) | Sección preparada para futuros apuntes; todavía sin contenido desarrollado. |
-| [Electrónica](Electr%C3%B3nica/) | Sección preparada para futuros apuntes; todavía sin contenido desarrollado. |
+| [Programación](Programaci%C3%B3n/) | Previsto: todavía sin apuntes. |
+| [Electrónica](Electr%C3%B3nica/) | Previsto: todavía sin apuntes. |
 
 ## Contenido destacado
 
@@ -65,5 +65,3 @@ Las guías narrativas enlazadas desde el proyecto se encuentran en la [Wiki de B
 ## Licencia
 
 El repositorio incluye la licencia **GNU GPL v3**, disponible en [LICENSE](LICENSE). Consulta también los avisos de autoría y licencia que acompañen a cada recurso o material externo.
-
-[^1]: Puedes colaborar en la construcción del repositorio creando una [issue](https://github.com/P3M-ACTF/Biblioteca/issues) con la **URL del archivo** que quieres añadir o tus **sugerencias** para mejorar el repositorio ❤️. Encontrarás más opciones en [CONTRIBUTIONS.md](CONTRIBUTIONS.md).
