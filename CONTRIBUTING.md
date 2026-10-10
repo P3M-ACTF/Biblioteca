@@ -16,6 +16,18 @@ Estas orientaciones pueden ayudarte a preparar el cambio:
 - Añade la fuente del material y conserva sus atribuciones. Para recursos de terceros, puedes compartir el enlace de origen; si incorporas el archivo, comprueba que se permite redistribuirlo.
 - Revisa los enlaces y la vista previa Markdown. Si aportas comandos o configuraciones, indica el entorno en el que los has probado, cuando sea posible.
 
+## Cómo se escribe una chuleta
+
+Una chuleta sirve para recordar, pero también tiene que servir para entender. Quien la abre por primera vez no conoce el tema; quien la abre por décima vez busca el comando. Las dos lecturas tienen que funcionar.
+
+- Cada sección empieza con un párrafo que explica qué es la cosa, para qué sirve y cuándo se usa. La tabla o el bloque de comandos viene después, no en lugar del párrafo.
+- En las tablas, la columna de explicación lleva una frase completa, no una palabra. «Cambia origen» no explica nada; «Reescribe la dirección de origen del paquete para que la respuesta vuelva al router y no al host privado» sí.
+- Cada bloque de comandos va seguido de un apartado «Qué estás viendo» que lee la salida típica línea a línea: qué significa cada campo y cuál es el valor que indica un problema.
+- Cada chuleta termina con un apartado «Error típico»: una situación real, por qué ocurre, cómo se ve en pantalla y cómo se arregla, escrito en prosa.
+- La estructura sigue siendo escaneable: cabeceras numeradas, tablas, comandos en bloques. Pero la longitud habitual de una chuleta está entre 7 y 10 KB, no en 3.
+
+Los runbooks siguen la misma idea: cada paso explica por qué se hace y qué salida se espera. Las notas sueltas son más cortas porque resuelven una sola tarea, pero también explican el porqué de cada comando.
+
 Si tienes dudas sobre dónde encaja una aportación, puedes plantearlas en la propia issue o pull request.
 
 [Volver a Biblioteca](README.md)
