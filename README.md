@@ -36,11 +36,11 @@ Los índices de cada área reúnen el catálogo completo de chuletas. Estos son 
 | --- | --- |
 | [Chuletas de Sistemas Operativos](Sistemas%20Operativos/chuletas/README.md) | Consultar permisos POSIX y NTFS, servicios, discos, SSH, firewall, Active Directory y otras tareas habituales. |
 | [Aliases de bash, zsh y sh](Sistemas%20Operativos/shell/README.md) | Revisar y utilizar atajos para tareas de administración desde la terminal. |
-| [Runbooks de Sistemas Operativos](Sistemas%20Operativos/runbooks/README.md) | Seguir procedimientos para preparar una máquina, diagnosticar un disco lleno o revisar un servicio que no arranca. |
-| [Plantillas de Sistemas Operativos](Sistemas%20Operativos/plantillas/README.md) | Adaptar ejemplos de `sshd_config`, `sudoers.d` y `nftables` al entorno de trabajo. |
-| [Notas de Sistemas Operativos](Sistemas%20Operativos/notas/README.md) | Seguir recetas sueltas: Guest Additions, nano, ajustes de Windows en `.reg`, journal y swap. |
-| [Chuletas de Redes](Redes/chuletas/README.md) | Repasar TCP/IP, puertos, IPv4/IPv6, DNS, HTTP, NAT y herramientas de diagnóstico. |
-| [Chuletas de Ciberseguridad](Ciberseguridad/chuletas/README.md) | Consultar medidas de protección, TLS, copias de seguridad y gestión de secretos. |
+| [Runbooks de Sistemas Operativos](Sistemas%20Operativos/runbooks/README.md) | Seguir procedimientos: máquina nueva, disco lleno, servicio caído, certificado caducado, cuenta bloqueada y servidor Windows nuevo. |
+| [Plantillas de Sistemas Operativos](Sistemas%20Operativos/plantillas/README.md) | Adaptar ejemplos de `sshd_config`, `sudoers.d`, `nftables`, unidades systemd, logrotate y chrony. |
+| [Notas de Sistemas Operativos](Sistemas%20Operativos/notas/README.md) | Seguir recetas sueltas: claves SSH, hora y NTP, winget, SFC, certificado de laboratorio, VirtualBox y ajustes de Windows en `.reg`. |
+| [Chuletas de Redes](Redes/chuletas/README.md) | Repasar TCP/IP, puertos, IPv4/IPv6, DNS, HTTP, NAT, VLAN, VPN y herramientas de diagnóstico. |
+| [Chuletas de Ciberseguridad](Ciberseguridad/chuletas/README.md) | Consultar autenticación, TLS, bastionado, auditoría, parches, copias de seguridad y respuesta a incidentes. |
 | [Preferencias para agentes de IA](Inteligencia%20Artificial/AI-PREFERENCES.es.md) | Reutilizar criterios de comunicación, código, seguridad y verificación. También disponibles [en inglés](Inteligencia%20Artificial/AI-PREFERENCES.en.md), con [guía de uso](Inteligencia%20Artificial/GUIA-DE-USO-AI-PREFERENCES.md). |
 | [Plantilla de README](Documentaciones/plantillas/readme/README.md) | Preparar la presentación y documentación inicial de un proyecto con secciones adaptables. |
 
