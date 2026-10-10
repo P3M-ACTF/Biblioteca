@@ -11,3 +11,5 @@ Referencias rápidas, escaneables, nivel chuleta.
 | [HTTP](http.md) | métodos, códigos, cabeceras |
 | [NAT y enrutado](nat-enrutado.md) | NAT, rutas, síntomas |
 | [Captura (lectura)](captura.md) | tcpdump/Wireshark, filtros de visualización |
+| [VLAN y conmutación](vlan-switching.md) | acceso y troncal, 802.1Q, VLAN desde Linux |
+| [VPN](vpn-conceptos.md) | túnel, WireGuard, OpenVPN e IPsec; rutas al conectar |

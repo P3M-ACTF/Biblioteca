@@ -13,3 +13,5 @@ Referencias rápidas, escaneables, nivel chuleta. Enfoque defensivo.
 | [OWASP Top 10](owasp-top10.md) | nombre e impacto (sin explotación) |
 | [Copias de seguridad](copias-seguridad.md) | 3-2-1 y conceptos de backup |
 | [Secretos](secretos.md) | principios de gestión de secretos |
+| [Auditoría de eventos](auditoria-eventos.md) | auditd en Linux; identificadores de evento en Windows |
+| [Vulnerabilidades y parches](vulnerabilidades-parches.md) | CVE, CVSS, ciclo de parcheo y qué hacer si no se puede parchear |

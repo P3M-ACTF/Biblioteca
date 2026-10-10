@@ -13,6 +13,12 @@ Recetas cortas e independientes. Cada una resuelve una tarea concreta; el detall
 | [Menú contextual clásico (Windows 11)](windows-menu-contextual-clasico.md) | Volver al menú de Windows 10 (`.reg`) |
 | [Journal persistente](journal-persistente.md) | `Storage=persistent` en journald |
 | [Swap en fichero](swap-fichero.md) | `mkswap`, `swapon` y `fstab` |
+| [Claves SSH la primera vez](ssh-claves-primer-uso.md) | generar una Ed25519, copiarla y usar el agente |
+| [Hora con chrony o timesyncd](hora-ntp-chrony.md) | dejar el reloj sincronizado y comprobarlo |
+| [Hora de Windows en arranque dual](windows-hora-dual-boot.md) | `RealTimeIsUniversal` para que el reloj no se desfase (`.reg`) |
+| [winget](windows-winget.md) | instalar y actualizar software desde la línea de comandos |
+| [SFC y DISM](windows-sfc-dism.md) | reparar los ficheros de sistema antes de reinstalar |
+| [Certificado autofirmado de laboratorio](certificado-autofirmado-lab.md) | generarlo con SAN e importarlo como confiable |
 
 Los `.reg` están junto a su nota. Ábrelos con el Editor del Registro o impórtalos con `regedit`.
 

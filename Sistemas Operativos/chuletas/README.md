@@ -16,6 +16,11 @@ Referencias rápidas, escaneables, nivel chuleta.
 | [Disco y LVM](disco-lvm.md) | particiones, lsblk, PV/VG/LV |
 | [Entorno y PATH](entorno-path.md) | variables de entorno y PATH |
 | [Firewall Linux](firewall-linux.md) | perímetro vs host; firewalld, nftables, ufw, iptables |
+| [Configuración de red en Linux](red-linux-configuracion.md) | nmcli, netplan e interfaces; IP estática, DNS y rutas persistentes |
+| [PowerShell básico](powershell-basico.md) | objetos, tubería, `Get-Help`, filtrado y exportación |
+| [DHCP y DNS en Windows Server](dhcp-dns-windows-server.md) | ámbitos, reservas, zonas y su relación con el dominio |
+| [Samba y NFS](compartir-samba-nfs.md) | compartir carpetas, las dos capas de permisos |
+| [Redes de máquinas virtuales](virtualizacion-redes-vm.md) | NAT, puente y solo anfitrión en KVM, Hyper-V y VirtualBox |
 | [Windows: usuarios y grupos](windows-usuarios-grupos.md) | net user, grupos, UAC |
 | [Windows: servicios y eventos](windows-servicios-eventos.md) | services, Visor de eventos, Get-WinEvent |
 | [Windows: roles y actualizaciones](windows-roles-actualizaciones.md) | Server Manager, Windows Update |
