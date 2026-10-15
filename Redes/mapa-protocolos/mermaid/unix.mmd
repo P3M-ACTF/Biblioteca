@@ -1,0 +1,9 @@
+flowchart TB
+ NFS["NFS · Archivos de red"] --> RPC["ONC RPC"]
+ NIS["NIS · Servicio de nombres"] --> RPC
+ RCP["RCP · Copia remota"] --> TCP["TCP"]
+ RPC --> TCP
+ RPC --> UDP["UDP"]
+ TCP --> IP["IP"]
+ UDP --> IP
+ IP --> ETH["Ethernet"]

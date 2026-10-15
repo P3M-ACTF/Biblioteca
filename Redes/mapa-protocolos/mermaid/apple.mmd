@@ -1,0 +1,7 @@
+flowchart TB
+ AFP["AFP · Archivos"] --> ASP["ASP · Sesión"]
+ PAP["PAP · Impresión"] --> ATP["ATP · Transacciones"]
+ ASP --> ATP
+ ATP --> DDP["DDP · Datagramas"]
+ DDP --> AARP["AARP · Direcciones"]
+ AARP --> ETH["EtherTalk / LocalTalk"]

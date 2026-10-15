@@ -19,7 +19,27 @@ Unir un equipo al dominio no «mete a los usuarios dentro». Crea una cuenta de 
 
 ---
 
-## 2. Usuarios y grupos
+## 2. LDAP, el protocolo
+
+Active Directory es el servicio. LDAP es uno de los protocolos con los que se le pregunta. Confundirlos lleva a creer que «abrir LDAP» es lo mismo que administrar el dominio, o que un cliente LDAP cualquiera puede recibir directivas de grupo. No puede.
+
+LDAP (puerto 389, y 636 si va cifrado con TLS desde el principio) lee y escribe objetos del directorio: usuarios, grupos, equipos, atributos. Una aplicación que «valida contra el dominio» casi siempre está haciendo una consulta LDAP: busca la cuenta y comprueba la contraseña, o lee los grupos. Eso no inicia sesión en Windows, no aplica GPO y no concede permisos NTFS. Esos tres dependen del inicio de sesión en el dominio (Kerberos, DNS, cuenta de equipo) y de las ACL, que son otra capa.
+
+| Pregunta | Quién la responde |
+|----------|-------------------|
+| ¿Existe esta cuenta y cuál es su correo? | LDAP. |
+| ¿La contraseña es correcta para esta aplicación? | Una operación de comprobación sobre LDAP. |
+| ¿Esta persona puede iniciar sesión en un equipo del dominio? | Kerberos, con el controlador localizado por DNS. LDAP no entrega el ticket. |
+| ¿Qué directivas se aplican? | GPO, al arrancar el equipo y al entrar la persona. |
+| ¿Puede abrir esta carpeta? | La DACL de NTFS, que guarda SIDs. LDAP no se consulta en cada apertura. |
+
+El catálogo global (puerto 3268, o 3269 con TLS) es una consulta LDAP que abarca el bosque entero, con un subconjunto de los atributos. Cuando una aplicación encuentra usuarios de su propio dominio pero no los de otro dominio del mismo bosque, a menudo está preguntando al puerto 389 en vez de al catálogo global.
+
+LDAPS no es «LDAP seguro» como producto aparte: es LDAP dentro de TLS. El nombre del certificado tiene que coincidir con el del controlador al que te conectas, igual que en cualquier otro TLS. Un programa que apunta a la IP del controlador y no al nombre falla la comprobación del certificado aunque el directorio esté perfectamente.
+
+---
+
+## 3. Usuarios y grupos
 
 Igual que en Linux, los permisos no se dan a personas sueltas sino a grupos, y las personas se meten y se sacan de los grupos. En AD el matiz es que hay grupos de distintos alcances.
 
@@ -57,7 +77,7 @@ Cada línea es una identidad con la que esta sesión cumple. Si el grupo que esp
 
 ---
 
-## 3. Unidades organizativas
+## 4. Unidades organizativas
 
 Una OU es una carpeta dentro del directorio. Sirve para dos cosas: **delegar** (el responsable de una sede puede resetear contraseñas solo de su OU) y **enlazar directivas de grupo** (una GPO vinculada a la OU de portátiles se aplica a los portátiles y no a los servidores).
 
@@ -69,7 +89,7 @@ Mover un objeto es fácil y sus consecuencias no: un servidor movido a la OU de 
 
 ---
 
-## 4. Directivas de grupo (GPO)
+## 5. Directivas de grupo (GPO)
 
 Una GPO es un conjunto de valores de configuración que el dominio aplica solo. Hay dos mitades, y se evalúan en momentos distintos:
 
@@ -113,7 +133,7 @@ Cuando una GPO no llega, las causas, en orden de frecuencia: el objeto no está 
 
 ---
 
-## 5. Cómo se relaciona con lo que ves en el equipo
+## 6. Cómo se relaciona con lo que ves en el equipo
 
 | Lo que observas en el puesto | De dónde sale en el directorio |
 |------------------------------|--------------------------------|
@@ -127,7 +147,7 @@ Por eso diagnosticar un permiso en una máquina de dominio sin mirar el director
 
 ---
 
-## 6. Checklist
+## 7. Checklist
 
 | Pregunta | Cómo responderla |
 |----------|------------------|
@@ -137,10 +157,11 @@ Por eso diagnosticar un permiso en una máquina de dominio sin mirar el director
 | ¿Qué directivas le están llegando? | `gpresult /r` y, para el detalle, `gpresult /h`. |
 | ¿Por qué no le llega una GPO? | Sección «no se aplicaron» de `gpresult`: filtrado de seguridad, vínculo deshabilitado, filtro WMI. |
 | ¿Cuándo se aplicó por última vez? | La marca de tiempo de `gpresult`. Si es de hace días, el equipo no está contactando con un controlador. |
+| ¿Una aplicación consulta el directorio? | Llega a un controlador por 389 o 636 (LDAP), no «al dominio» en abstracto. El 3268 es el catálogo global. |
 
 ---
 
-## 7. Error típico
+## 8. Error típico
 
 **Situación.** Creas la GPO «Proxy-Contabilidad», la vinculas a la OU de Contabilidad y la configuras en la mitad de **usuario** para que ponga el proxy del navegador. María, de contabilidad, reinicia su equipo, entra, y el navegador sigue saliendo directo. Sus compañeros tampoco lo tienen. La GPO aparece como aplicada... en ningún sitio.
 

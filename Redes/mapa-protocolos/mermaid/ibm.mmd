@@ -1,0 +1,7 @@
+flowchart TB
+ CICS["CICS · Transacciones"] --> APPC["APPC"]
+ MQ["IBM MQ · Colas"] --> LU["LU 6.2"]
+ APPC --> LU
+ LU --> SNA["SNA · Red IBM"]
+ SNA --> SDLC["SDLC"]
+ SDLC --> PHY["Medio físico"]

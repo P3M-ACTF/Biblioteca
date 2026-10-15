@@ -1,0 +1,6 @@
+flowchart TB
+ NDS["NDS · Directorio"] --> NCP["NCP · Core Protocol"]
+ SAP["SAP · Servicios"] --> IPX["IPX · Internetwork Packet Exchange"]
+ NCP --> SPX["SPX · Transporte"]
+ SPX --> IPX
+ IPX --> ETH["Ethernet / Token Ring"]

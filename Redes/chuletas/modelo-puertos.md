@@ -20,6 +20,8 @@ TCP/IP frente a OSI, puertos bien conocidos y estados TCP visibles con `ss`.
 
 Flujo típico al diagnosticar: **físico/enlace → IP → transporte (puerto) → aplicación**.
 
+La lista por capa y por familia (TCP/IP, Microsoft, VoIP, almacenamiento y el resto), con un grafo por familia, está en el [mapa de protocolos](../mapa-protocolos/README.md). RIP, OSPF y BGP, que viven en la capa de red, están en [enrutamiento dinámico](enrutamiento-dinamico.md).
+
 ---
 
 ## 2. TCP frente a UDP

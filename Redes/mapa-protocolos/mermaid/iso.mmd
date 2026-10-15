@@ -1,0 +1,8 @@
+flowchart TB
+ FTAM["FTAM · Transferencia de archivos"] --> ASN["ASN.1 / BER"]
+ CMIP["CMIP · Gestión"] --> ASN
+ ASN --> SES["ISO 8327 · Sesión"]
+ SES --> TP["TP0–TP4 · Transporte"]
+ TP --> CLNP["CLNP · Red"]
+ CLNP --> LAPB["LAPB / HDLC"]
+ LAPB --> PHY["Capa física"]

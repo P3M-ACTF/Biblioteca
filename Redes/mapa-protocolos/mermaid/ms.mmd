@@ -1,0 +1,11 @@
+flowchart TB
+ AD["Active Directory"] --> LDAP["LDAP"]
+ AD --> KRB["Kerberos"]
+ IIS["IIS · Web"] --> TCP["TCP"]
+ SMB["SMB/CIFS · Archivos"] --> TCP
+ LDAP --> TCP
+ KRB --> TCP
+ KRB --> UDP["UDP"]
+ TCP --> IP["IP"]
+ UDP --> IP
+ IP --> ETH["Ethernet / Wi-Fi"]
