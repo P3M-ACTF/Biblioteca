@@ -1,0 +1,13 @@
+flowchart TB
+ APP["7 · Aplicación"] --> PRES["6 · Presentación"] --> SESS["5 · Sesión"] --> TRANS["4 · Transporte"] --> NET["3 · Red"] --> LINK["2 · Enlace de datos"] --> PHY["1 · Física"]
+ HTTP["HTTP / DNS / SMTP / SSH"] --> APP
+ SERVICE["NFS / SMB / LDAP / SIP"] --> APP
+ TLS["TLS / ASN.1 / XDR"] --> PRES
+ RPC["RPC / NetBIOS / SNA"] --> SESS
+ TCP["TCP / UDP / SCTP / QUIC"] --> TRANS
+ ROUTE["IPv4 / IPv6 / ICMP / OSPF / BGP"] --> NET
+ L2["Ethernet / Wi-Fi / PPP / Frame Relay"] --> LINK
+ MEDIA["Cobre / Fibra / Radio"] --> PHY
+ classDef osi fill:#971348,color:white,stroke:#771037
+ class APP,PRES,SESS,TRANS,NET,LINK,PHY osi
+

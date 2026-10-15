@@ -1,0 +1,11 @@
+flowchart TB
+ HTTPS["HTTPS"] --> TLS["TLS 1.3"] --> TCP["TCP"]
+ SSH["SSH · Acceso remoto"] --> TCP
+ OPEN["OpenVPN"] --> UDP["UDP"]
+ WG["WireGuard"] --> UDP
+ IKE["IKEv2"] --> IPSEC["IPsec · AH / ESP"]
+ IPSEC --> IP["IPv4 / IPv6"]
+ TCP --> IP
+ UDP --> IP
+ MAC["MACsec"] --> ETH["Ethernet"]
+ IP --> ETH

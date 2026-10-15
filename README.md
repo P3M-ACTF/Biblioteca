@@ -21,7 +21,7 @@ Este repositorio forma parte de [**Tecnoteca**](https://github.com/users/P3M-ACT
 | Área | Qué encontrarás |
 | --- | --- |
 | [Sistemas Operativos](Sistemas%20Operativos/) | Referencias de Linux y Windows, notas sueltas, aliases de shell, procedimientos de diagnóstico y plantillas de configuración. |
-| [Redes](Redes/) | Protocolos, direccionamiento, DNS, diagnóstico y captura de tráfico. |
+| [Redes](Redes/) | Protocolos, direccionamiento, DNS, enrutamiento, diagnóstico, captura de tráfico y un [mapa de protocolos](Redes/mapa-protocolos/README.md). |
 | [Ciberseguridad](Ciberseguridad/) | Referencias con enfoque defensivo: autenticación, cifrado, bastionado y respuesta a incidentes. |
 | [Inteligencia Artificial](Inteligencia%20Artificial/) | Preferencias de trabajo para agentes de IA y una guía para adaptarlas a distintos entornos. |
 | [Documentaciones](Documentaciones/plantillas/readme/README.md) | Plantilla reutilizable de README y guía para adaptarla a otros proyectos. |
@@ -39,7 +39,8 @@ Los índices de cada área reúnen el catálogo completo de chuletas. Estos son 
 | [Runbooks de Sistemas Operativos](Sistemas%20Operativos/runbooks/README.md) | Seguir procedimientos: máquina nueva, disco lleno, servicio caído, certificado caducado, cuenta bloqueada y servidor Windows nuevo. |
 | [Plantillas de Sistemas Operativos](Sistemas%20Operativos/plantillas/README.md) | Adaptar ejemplos de `sshd_config`, `sudoers.d`, `nftables`, unidades systemd, logrotate y chrony. |
 | [Notas de Sistemas Operativos](Sistemas%20Operativos/notas/README.md) | Seguir recetas sueltas: claves SSH, hora y NTP, winget, SFC, certificado de laboratorio, VirtualBox y ajustes de Windows en `.reg`. |
-| [Chuletas de Redes](Redes/chuletas/README.md) | Repasar TCP/IP, puertos, IPv4/IPv6, DNS, HTTP, NAT, VLAN, VPN y herramientas de diagnóstico. |
+| [Chuletas de Redes](Redes/chuletas/README.md) | Repasar TCP/IP, puertos, IPv4/IPv6, DNS, HTTP, NAT, enrutamiento, VLAN, VPN y herramientas de diagnóstico. |
+| [Mapa de protocolos](Redes/mapa-protocolos/README.md) | Ver en qué capa vive cada familia de protocolos y abrir el grafo Mermaid. |
 | [Chuletas de Ciberseguridad](Ciberseguridad/chuletas/README.md) | Consultar autenticación, TLS, bastionado, auditoría, parches, copias de seguridad y respuesta a incidentes. |
 | [Preferencias para agentes de IA](Inteligencia%20Artificial/AI-PREFERENCES.es.md) | Reutilizar criterios de comunicación, código, seguridad y verificación. También disponibles [en inglés](Inteligencia%20Artificial/AI-PREFERENCES.en.md), con [guía de uso](Inteligencia%20Artificial/GUIA-DE-USO-AI-PREFERENCES.md). |
 | [Plantilla de README](Documentaciones/plantillas/readme/README.md) | Preparar la presentación y documentación inicial de un proyecto con secciones adaptables. |

@@ -1,0 +1,21 @@
+flowchart TB
+ HTTP["HTTP · Web"] --> TCP["TCP · Transporte fiable"]
+ FTP["FTP · Transferencia de archivos"] --> TCP
+ SMTP["SMTP · Correo"] --> TCP
+ SSH["SSH · Terminal segura"] --> TCP
+ DNS["DNS · Nombres"] --> UDP["UDP · Datagramas"]
+ DNS --> TCP
+ DHCP["DHCP · Configuración dinámica"] --> UDP
+ SNMP["SNMP · Gestión"] --> UDP
+ HTTP3["HTTP/3"] --> QUIC["QUIC"] --> UDP
+ TCP --> IP["IPv4 / IPv6"]
+ UDP --> IP
+ IP --> ETH["Ethernet / Wi-Fi"]
+ ETH --> PHY["Capa física"]
+ OSPF["OSPF / BGP / RIP"] --> IP
+ classDef app fill:#b65b24,color:#fff,stroke:#85401a
+ classDef transport fill:#c7793e,color:#fff,stroke:#85401a
+ classDef network fill:#d29a58,color:#1f2024,stroke:#85401a
+ class HTTP,FTP,SMTP,SSH,DNS,DHCP,SNMP,HTTP3 app
+ class TCP,UDP,QUIC transport
+ class IP,ETH,PHY,OSPF network

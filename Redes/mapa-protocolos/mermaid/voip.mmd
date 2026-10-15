@@ -1,0 +1,9 @@
+flowchart TB
+ SIP["SIP · Señalización"] --> SDP["SDP · Descripción de sesión"]
+ SIP --> TCP["TCP / UDP"]
+ RTP["RTP · Audio y vídeo"] --> UDP["UDP"]
+ RTCP["RTCP · Control"] --> UDP
+ OPUS["Opus / G.711 · Códecs"] --> RTP
+ UDP --> IP["IP"]
+ TCP --> IP
+ IP --> ETH["Ethernet / VLAN de voz"]
