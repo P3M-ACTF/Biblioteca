@@ -16,6 +16,10 @@ Estas orientaciones pueden ayudarte a preparar el cambio:
 - Añade la fuente del material y conserva sus atribuciones. Para recursos de terceros, puedes compartir el enlace de origen; si incorporas el archivo, comprueba que se permite redistribuirlo.
 - Revisa los enlaces y la vista previa Markdown. Si aportas comandos o configuraciones, indica el entorno en el que los has probado, cuando sea posible.
 
+## Páginas interactivas
+
+Guarda cada página HTML en una carpeta temática propia con un `index.html` y sus recursos referenciados mediante rutas relativas. Añade desde el índice un enlace a su URL de GitHub Pages y otro al código fuente. Comprueba localmente la página y sus enlaces antes de proponerla; si necesita generar CSS o JavaScript, incluye el comando de generación y los archivos finales para que Pages pueda servirlos directamente.
+
 ## Cómo se escribe una chuleta
 
 Una chuleta sirve para recordar, pero también tiene que servir para entender. Quien la abre por primera vez no conoce el tema; quien la abre por décima vez busca el comando. Las dos lecturas tienen que funcionar.
