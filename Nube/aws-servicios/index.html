@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Visual Definitiva de Servicios de AWS</title>
+    <link href="styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F8FAFC;
+            background-image:
+                radial-gradient(#CBD5E1 1px, transparent 1px),
+                linear-gradient(to right, rgba(226, 232, 240, 0.4) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(226, 232, 240, 0.4) 1px, transparent 1px);
+            background-size: 24px 24px, 96px 96px, 96px 96px;
+        }
+        .dark body {
+            background-color: #0F172A;
+            background-image:
+                radial-gradient(#334155 1px, transparent 1px),
+                linear-gradient(to right, rgba(30, 41, 59, 0.4) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(30, 41, 59, 0.4) 1px, transparent 1px);
+        }
+        .service-card {
+            transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .service-card:hover {
+            transform: translateY(-3px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 9999px;
+        }
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; }
+        }
+    </style>
+</head>
+<body class="text-slate-800 dark:text-slate-100 antialiased min-h-screen flex flex-col">
+
+    <header class="sticky top-0 z-30 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                <!-- Branding & Title -->
+                <div class="flex items-start sm:items-center gap-3.5">
+                    <div class="w-12 h-12 rounded-2xl bg-[#232F3E] flex items-center justify-center shadow-md shrink-0 border-2 border-[#FF9900]">
+                        <svg class="w-7 h-7 text-[#FF9900]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <span class="px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300 rounded-full">Infografía Interactiva Dual</span>
+                            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Servicios Esenciales de Arquitectura Cloud</span>
+                        </div>
+                        <h1 class="text-xl sm:text-2xl md:text-3xl font-black tracking-tight text-slate-900 dark:text-white mt-0.5">
+                            Guía Visual de Categorías y Servicios Clave de <span class="text-[#FF9900]">AWS</span>
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- Controls: View Switcher + Search -->
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 no-print">
+                    <!-- Search input -->
+                    <div class="relative flex-grow sm:w-64">
+                        <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                        <input
+                            id="searchInput"
+                            type="text"
+                            placeholder="Buscar servicio o sigla (ej. EC2, S3, IAM)..."
+                            class="w-full pl-10 pr-8 py-2 text-sm bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF9900] focus:bg-white dark:focus:bg-slate-900 transition"
+                        >
+                        <button id="clearSearch" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        </button>
+                    </div>
+
+                    <!-- View Mode Tabs -->
+                    <div class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                        <button id="btnViewPoster" onclick="switchView('poster')" class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition flex items-center gap-1.5 bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm">
+                            <svg class="w-4 h-4 text-[#FF9900]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+                            <span>Por Categorías</span>
+                        </button>
+                        <button id="btnViewRoadmap" onclick="switchView('roadmap')" class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition flex items-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900">
+                            <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+                            <span>Ruta de Aprendizaje (16 Pasos)</span>
+                        </button>
+                        <button id="btnViewBoth" onclick="switchView('both')" class="hidden md:flex px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition items-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900">
+                            <span>Ver Ambas</span>
+                        </button>
+                    </div>
+
+                    <!-- Dark Mode Toggle -->
+                    <button onclick="document.documentElement.classList.toggle('dark')" title="Cambiar tema claro/oscuro" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition self-end sm:self-auto">
+                        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                        <svg class="w-5 h-5 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Subtitle & Category Quick Filter Pills -->
+            <div class="mt-3 pt-3 border-t border-slate-200/70 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                    Explora de forma visual e intuitiva el ecosistema de Amazon Web Services: identifica cada servicio por su icono SVG, comprende para qué sirve sin tecnicismos innecesarios y descubre cómo aplicarlo. <span class="font-semibold text-[#FF9900]">Haz clic en cualquier tarjeta para ver su caso práctico y comando AWS CLI.</span>
+                </p>
+                <div id="searchStats" class="text-xs font-semibold text-slate-500 dark:text-slate-400 shrink-0"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-12">
+
+        <!-- ===================================================================== -->
+        <!-- SECCIÓN 1: PÓSTER VISUAL POR CATEGORÍAS DE ARQUITECTURA               -->
+        <!-- ===================================================================== -->
+        <section id="sectionPoster" class="space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-l-4 border-[#FF9900] pl-4">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                        1. Mapa Estructurado por Categorías de Arquitectura
+                    </h2>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">
+                        Agrupación funcional de los servicios esenciales de AWS con iconos SVG, siglas de referencia y explicaciones prácticas.
+                    </p>
+                </div>
+                <div class="flex flex-wrap gap-1.5 no-print" id="categoryFilterBar">
+                    <!-- Dynamic Filter Buttons injected by JS -->
+                </div>
+            </div>
+
+            <!-- Top 3 Columns: Compute, Databases, Storage -->
+            <div id="posterGridTop" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Injected dynamically via JS -->
+            </div>
+
+            <!-- Middle 2 Columns: Networking & Security -->
+            <div id="posterGridMiddle" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Injected dynamically via JS -->
+            </div>
+
+            <!-- Bottom Expanded Categories: Management, DevOps, Messaging, ML & Migration -->
+            <div class="pt-4">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="h-px bg-slate-300 dark:bg-slate-700 flex-grow"></span>
+                    <span class="text-xs font-extrabold uppercase tracking-widest px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                        Operaciones, Automatización, Mensajería e Inteligencia Artificial
+                    </span>
+                    <span class="h-px bg-slate-300 dark:bg-slate-700 flex-grow"></span>
+                </div>
+                <div id="posterGridBottom" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Injected dynamically via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- SECCIÓN 2: RUTA DE APRENDIZAJE PROGRESIVA EN 16 ETAPAS                -->
+        <!-- ===================================================================== -->
+        <section id="sectionRoadmap" class="hidden space-y-6">
+            <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+                <!-- Header Banner -->
+                <div class="bg-gradient-to-r from-slate-900 via-[#232F3E] to-slate-900 px-6 py-6 sm:px-8 border-b-4 border-emerald-500 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-3 h-14 bg-emerald-400 rounded-full shrink-0"></div>
+                        <div>
+                            <span class="text-emerald-400 text-xs font-extrabold uppercase tracking-widest">Itinerario Formativo Recomendado</span>
+                            <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                                Ruta Progresiva para Dominar AWS en 16 Pasos
+                            </h2>
+                            <p class="text-slate-300 text-xs sm:text-sm mt-1">
+                                Un recorrido pedagógico ordenado desde los cimientos de la nube hasta arquitecturas sin servidor, seguridad avanzada e Inteligencia Artificial.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 self-start md:self-center">
+                        <span class="px-3 py-1.5 rounded-xl bg-white/10 text-white text-xs font-semibold border border-white/15">
+                            16 Etapas Clave
+                        </span>
+                    </div>
+                </div>
+
+                <!-- 16-Row Interactive Matrix -->
+                <div id="roadmapContainer" class="divide-y divide-slate-200 dark:divide-slate-800">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal de Detalle del Servicio -->
+    <div id="serviceModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm animate-fadeIn">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-3xl max-w-lg w-full shadow-2xl overflow-hidden transform transition-all">
+            <div id="modalHeader" class="p-6 text-white flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <div id="modalIcon" class="w-14 h-14 rounded-2xl bg-white/15 backdrop-blur flex items-center justify-center shadow-inner border border-white/20 shrink-0"></div>
+                    <div>
+                        <span id="modalCategoryBadge" class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-black/25 text-white/95"></span>
+                        <h3 id="modalTitle" class="text-xl font-black mt-1 leading-tight"></h3>
+                        <p id="modalFullName" class="text-xs text-white/80 font-medium"></p>
+                    </div>
+                </div>
+                <button onclick="closeModal()" class="p-2 rounded-xl bg-black/20 hover:bg-black/30 text-white transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">¿Qué es y cómo te ayuda?</h4>
+                    <p id="modalFriendlyDesc" class="text-sm sm:text-base text-slate-700 dark:text-slate-200 font-medium mt-1 leading-relaxed"></p>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200/80 dark:border-slate-700">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-[#FF9900]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                        Aplicación Práctica en el Mundo Real
+                    </h4>
+                    <p id="modalUseCase" class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1 leading-relaxed"></p>
+                </div>
+                <div id="modalCliWrapper">
+                    <div class="flex items-center justify-between mb-1">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Comando de Ejemplo (AWS CLI)</h4>
+                        <button onclick="copyCliCommand()" id="copyBtn" class="text-xs font-semibold text-[#FF9900] hover:underline flex items-center gap-1">
+                            <span>Copiar</span>
+                        </button>
+                    </div>
+                    <pre id="modalCli" class="p-3 rounded-xl bg-slate-900 text-emerald-400 text-xs font-mono overflow-x-auto custom-scrollbar"></pre>
+                </div>
+            </div>
+            <div class="px-6 py-3.5 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+                <button onclick="closeModal()" class="px-4 py-2 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-bold hover:opacity-90 transition">
+                    Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+            <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#FF9900]"></span>
+                <span class="font-bold text-slate-700 dark:text-slate-200">CN - Computación en la Nube</span>
+                <span>• Guía Visual de Arquitectura y Ruta de Aprendizaje de AWS</span>
+            </div>
+            <div>
+                Diseñado con iconografía vectorial de arquitectura AWS y explicaciones didácticas.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Iconos SVG para distinguir visualmente las categorías y los servicios
+        const AWS_ICONS = {
+            ec2: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <rect x="9" y="9" width="22" height="22" rx="3" stroke-dasharray="1 0"/>
+                    <rect x="14" y="14" width="12" height="12" rx="1.5" fill="currentColor" fill-opacity="0.18"/>
+                    <path d="M13 5v4M20 5v4M27 5v4M13 31v4M20 31v4M27 31v4M5 13h4M5 20h4M5 27h4M31 13h4M31 20h4M31 27h4" stroke-linecap="round"/>
+                  </svg>`,
+            lambda: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 31L20.5 11M15 9h5.5L29 31h-4.5"/>
+                  </svg>`,
+            ecs: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round">
+                    <polygon points="20,5 33,12.5 33,27.5 20,35 7,27.5 7,12.5"/>
+                    <polygon points="20,12 27,16 27,24 20,28 13,24 13,16" fill="currentColor" fill-opacity="0.2"/>
+                  </svg>`,
+            eks: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+                    <polygon points="20,4 34,12 34,28 20,36 6,28 6,12"/>
+                    <circle cx="20" cy="20" r="6"/>
+                    <path d="M20 8v6M20 26v6M9.5 14l5.2 3M25.3 23l5.2 3M30.5 14l-5.2 3M14.7 23l-5.2 3"/>
+                  </svg>`,
+            ecr: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round">
+                    <polygon points="20,6 32,13 32,27 20,34 8,27 8,13"/>
+                    <path d="M8 13l12 7 12-7M20 20v14"/>
+                    <path d="M25 10l6 3.5v8" stroke-dasharray="2 2"/>
+                  </svg>`,
+            fargate: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round">
+                    <polygon points="20,7 31,13.5 31,26.5 20,33 9,26.5 9,13.5"/>
+                    <path d="M20 13l6 3.5v7L20 27l-6-3.5v-7L20 13z" fill="currentColor" fill-opacity="0.2"/>
+                    <path d="M5 20h4M31 20h4M20 3v4M20 33v4"/>
+                  </svg>`,
+            autoscaling: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="13" y="13" width="14" height="14" rx="2" fill="currentColor" fill-opacity="0.18"/>
+                    <path d="M20 5v6M17 8l3-3 3 3M20 35v-6M17 32l3 3 3-3M5 20h6M8 17l-3 3 3 3M35 20h-6M32 17l3 3-3 3"/>
+                  </svg>`,
+            rds: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round">
+                    <ellipse cx="20" cy="10" rx="11" ry="4.5" fill="currentColor" fill-opacity="0.2"/>
+                    <path d="M9 10v20c0 2.5 4.9 4.5 11 4.5s11-2 11-4.5V10"/>
+                    <path d="M9 17c0 2.5 4.9 4.5 11 4.5s11-2 11-4.5M9 24c0 2.5 4.9 4.5 11 4.5s11-2 11-4.5"/>
+                  </svg>`,
+            aurora: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round">
+                    <ellipse cx="18" cy="11" rx="10" ry="4"/>
+                    <path d="M8 11v18c0 2.2 4.5 4 10 4s10-1.8 10-4V11"/>
+                    <path d="M8 17c0 2.2 4.5 4 10 4s10-1.8 10-4M8 23c0 2.2 4.5 4 10 4s10-1.8 10-4"/>
+                    <path d="M31 7l1.5 3.5L36 12l-3.5 1.5L31 17l-1.5-3.5L26 12l3.5-1.5L31 7z" fill="currentColor"/>
+                  </svg>`,
+            dynamodb: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round">
+                    <ellipse cx="17" cy="10" rx="10" ry="4"/>
+                    <path d="M7 10v20c0 2.2 4.5 4 10 4 2.5 0 4.8-.4 6.5-1"/>
+                    <path d="M7 17c0 2.2 4.5 4 10 4M7 24c0 2.2 4.5 4 10 4"/>
+                    <polygon points="28,13 21,23 27,23 25,33 34,21 28,21" fill="currentColor" stroke="none"/>
+                  </svg>`,
+            elasticache: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round">
+                    <rect x="7" y="11" width="26" height="18" rx="3"/>
+                    <path d="M13 11v18M27 11v18M13 17h14M13 23h14"/>
+                    <circle cx="20" cy="20" r="3" fill="currentColor"/>
+                  </svg>`,
+            s3: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round">
+                    <ellipse cx="20" cy="11" rx="11" ry="4"/>
+                    <path d="M9 11l2.5 20c.3 2 4.2 3.5 8.5 3.5s8.2-1.5 8.5-3.5L31 11"/>
+                    <path d="M9 13c3-6 19-6 22 0" stroke-linecap="round"/>
+                  </svg>`,
+            ebs: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round">
+                    <rect x="10" y="8" width="20" height="24" rx="2.5" fill="currentColor" fill-opacity="0.15"/>
+                    <path d="M10 14h20M15 26h10"/>
+                    <circle cx="15" cy="11" r="1" fill="currentColor"/>
+                  </svg>`,
+            efs: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13 24a5 5 0 01-.5-9.9 6.5 6.5 0 0112.7-1.6A4.5 4.5 0 0127 24H13z" fill="currentColor" fill-opacity="0.18"/>
+                    <path d="M8 10H5v3M32 10h3v3M8 30H5v-3M32 30h3v-3"/>
+                  </svg>`,
+            fsx: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round">
+                    <rect x="7" y="9" width="26" height="22" rx="3"/>
+                    <text x="20" y="24" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" font-weight="800" font-family="Inter, sans-serif">FSx</text>
+                  </svg>`,
+            glacier: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round">
+                    <ellipse cx="20" cy="11" rx="11" ry="3.8"/>
+                    <path d="M9 11l2.5 20c.3 2 4.2 3.5 8.5 3.5s8.2-1.5 8.5-3.5L31 11"/>
+                    <polygon points="20,17 25,27 15,27" fill="currentColor" fill-opacity="0.3"/>
+                  </svg>`,
+            vpc: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round">
+                    <path d="M11 26a5.5 5.5 0 01-.6-10.9 7.5 7.5 0 0114.6-2 5 5 0 011 9.9H25"/>
+                    <rect x="15" y="21" width="10" height="11" rx="2" fill="currentColor" fill-opacity="0.2"/>
+                    <path d="M18 21v-2.5a2 2 0 014 0V21"/>
+                  </svg>`,
+            route53: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round">
+                    <path d="M20 5l12 4.5v9.5c0 8-5.2 13.8-12 16-6.8-2.2-12-8-12-16V9.5L20 5z" fill="currentColor" fill-opacity="0.15"/>
+                    <text x="20" y="24" text-anchor="middle" fill="currentColor" stroke="none" font-size="11.5" font-weight="900" font-family="Inter, sans-serif">53</text>
+                  </svg>`,
+            cloudfront: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+                    <circle cx="20" cy="20" r="13"/>
+                    <ellipse cx="20" cy="20" rx="6" ry="13"/>
+                    <path d="M7 20h26M10 12h20M10 28h20"/>
+                  </svg>`,
+            apigateway: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 8v24M31 8v24"/>
+                    <path d="M16 15l-4 5 4 5M24 15l4 5-4 5M21 13l-2 14"/>
+                  </svg>`,
+            transitgateway: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1">
+                    <circle cx="20" cy="20" r="13" stroke-dasharray="3 2"/>
+                    <circle cx="20" cy="20" r="4" fill="currentColor"/>
+                    <circle cx="20" cy="8" r="2.5"/><circle cx="20" cy="32" r="2.5"/>
+                    <circle cx="8" cy="20" r="2.5"/><circle cx="32" cy="20" r="2.5"/>
+                    <path d="M20 10.5v5.5M20 24v5.5M10.5 20h5.5M24 20h5.5"/>
+                  </svg>`,
+            vpcpeering: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="20" r="5"/><circle cx="29" cy="20" r="5"/>
+                    <path d="M16 20h8M19 17l-3 3 3 3M21 17l3 3-3 3"/>
+                  </svg>`,
+            directconnect: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22a5 5 0 01-.5-9.9 6.5 6.5 0 0112.7-1.6A4.5 4.5 0 0126 22H12z"/>
+                    <path d="M20 22v11M13 33h14"/>
+                    <circle cx="20" cy="33" r="2.5" fill="currentColor"/>
+                  </svg>`,
+            vpn: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round">
+                    <rect x="9" y="17" width="22" height="15" rx="3" fill="currentColor" fill-opacity="0.15"/>
+                    <path d="M14 17v-4a6 6 0 0112 0v4"/>
+                    <circle cx="20" cy="24" r="2.2" fill="currentColor"/>
+                  </svg>`,
+            elb: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round">
+                    <circle cx="10" cy="20" r="4" fill="currentColor" fill-opacity="0.25"/>
+                    <circle cx="30" cy="10" r="3"/><circle cx="30" cy="20" r="3"/><circle cx="30" cy="30" r="3"/>
+                    <path d="M14 18l13-7M14 20h13M14 22l13 7"/>
+                  </svg>`,
+            iam: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round">
+                    <rect x="6" y="10" width="28" height="20" rx="3" fill="currentColor" fill-opacity="0.14"/>
+                    <circle cx="14" cy="18" r="3"/>
+                    <path d="M9.5 26c1-2.5 2.5-3.8 4.5-3.8s3.5 1.3 4.5 3.8"/>
+                    <path d="M22 16h8M22 21h8M22 25h5" stroke-linecap="round"/>
+                  </svg>`,
+            kms: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="14" cy="16" r="5.5" fill="currentColor" fill-opacity="0.2"/>
+                    <path d="M18 20l13 13M26 28l3-3M29 31l3-3"/>
+                    <text x="14" y="33" text-anchor="middle" fill="currentColor" stroke="none" font-size="8" font-weight="800">KMS</text>
+                  </svg>`,
+            waf: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round">
+                    <circle cx="20" cy="20" r="12"/>
+                    <path d="M12 15h16M10 21h20M12 27h16M20 9v6M15 15v6M25 15v6M20 21v6"/>
+                  </svg>`,
+            shield: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round">
+                    <path d="M20 5l12 4.5v9.5c0 8.2-5.2 14-12 16.5C13.2 33 8 27.2 8 19V9.5L20 5z" fill="currentColor" fill-opacity="0.18"/>
+                    <path d="M20 5v30.5"/>
+                  </svg>`,
+            acm: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round">
+                    <rect x="6" y="8" width="28" height="20" rx="2.5"/>
+                    <path d="M6 13h28"/>
+                    <circle cx="26" cy="22" r="4" fill="currentColor" fill-opacity="0.25"/>
+                    <path d="M24 25l-1 7 3-2 3 2-1-7"/>
+                  </svg>`,
+            guardduty: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1">
+                    <circle cx="20" cy="20" r="13"/>
+                    <circle cx="20" cy="20" r="7" stroke-dasharray="3 2"/>
+                    <circle cx="20" cy="20" r="2.5" fill="currentColor"/>
+                    <path d="M20 7v4M20 29v4M7 20h4M29 20h4"/>
+                  </svg>`,
+            secrets: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1">
+                    <rect x="11" y="17" width="18" height="14" rx="2.5" fill="currentColor" fill-opacity="0.18"/>
+                    <path d="M15 17v-4a5 5 0 0110 0v4"/>
+                    <path d="M18 24h4M20 22v4" stroke-linecap="round"/>
+                  </svg>`,
+            nacl: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1">
+                    <circle cx="20" cy="20" r="13"/>
+                    <rect x="15" y="18" width="10" height="8" rx="1.5" fill="currentColor" fill-opacity="0.2"/>
+                    <path d="M17.5 18v-2.5a2.5 2.5 0 015 0V18"/>
+                  </svg>`,
+            console: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1">
+                    <rect x="6" y="8" width="28" height="24" rx="3"/>
+                    <path d="M6 14h28"/>
+                    <circle cx="20" cy="23" r="4.5"/>
+                    <path d="M13 20l3 2-3 2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>`,
+            cloudwatch: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 24a5 5 0 01-.5-9.9 6.5 6.5 0 0112.7-1.6A4.5 4.5 0 0125 24H11z"/>
+                    <circle cx="26" cy="25" r="5" fill="currentColor" fill-opacity="0.2"/>
+                    <path d="M30 29l4 4"/>
+                  </svg>`,
+            cloudtrail: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13 26a5 5 0 01-.5-9.9 6.5 6.5 0 0112.7-1.6A4.5 4.5 0 0127 26H13z"/>
+                    <path d="M6 31h18M9 35h12" stroke-dasharray="3 3"/>
+                  </svg>`,
+            config: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round">
+                    <rect x="8" y="8" width="24" height="24" rx="3"/>
+                    <path d="M14 14v12M20 14v12M26 14v12"/>
+                    <circle cx="14" cy="18" r="2" fill="currentColor"/><circle cx="20" cy="23" r="2" fill="currentColor"/><circle cx="26" cy="16" r="2" fill="currentColor"/>
+                  </svg>`,
+            xray: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1">
+                    <circle cx="20" cy="20" r="12"/>
+                    <path d="M13 25l4-7 4 4 5-8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>`,
+            cost: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 31V11M8 31h24"/>
+                    <path d="M13 26v-6M19 26V15M25 26v-9M31 26V11"/>
+                  </svg>`,
+            stepfunctions: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round">
+                    <rect x="15" y="6" width="10" height="7" rx="1.5"/>
+                    <rect x="7" y="26" width="10" height="7" rx="1.5"/>
+                    <rect x="23" y="26" width="10" height="7" rx="1.5"/>
+                    <path d="M20 13v6M12 19h16M12 19v7M28 19v7"/>
+                  </svg>`,
+            devops: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="7" y="8" width="26" height="24" rx="3"/>
+                    <path d="M15 17l-4 4 4 4M25 17l4 4-4 4M22 15l-4 12"/>
+                  </svg>`,
+            sns: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round">
+                    <circle cx="11" cy="20" r="4" fill="currentColor" fill-opacity="0.25"/>
+                    <circle cx="29" cy="11" r="2.5"/><circle cx="29" cy="20" r="2.5"/><circle cx="29" cy="29" r="2.5"/>
+                    <path d="M15 18l11-6M15 20h11M15 22l11 6"/>
+                  </svg>`,
+            sqs: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round">
+                    <rect x="6" y="13" width="28" height="14" rx="2.5"/>
+                    <rect x="11" y="16" width="5" height="8" fill="currentColor" fill-opacity="0.25"/>
+                    <rect x="18" y="16" width="5" height="8" fill="currentColor" fill-opacity="0.25"/>
+                    <path d="M26 20h5m-2-2l2 2-2 2" stroke-linecap="round"/>
+                  </svg>`,
+            migration: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 25a5 5 0 01-.5-9.9 6.5 6.5 0 0112.7-1.6A4.5 4.5 0 0126 25H12z"/>
+                    <path d="M14 31h12m-4-3l4 3-4 3"/>
+                  </svg>`,
+            ml: `<svg viewBox="0 0 40 40" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 8c-6 0-10 4-10 10 0 4 2.5 7 5 8.5V31h10v-4.5c2.5-1.5 5-4.5 5-8.5 0-6-4-10-10-10z" fill="currentColor" fill-opacity="0.18"/>
+                    <path d="M16 34h8M15 18h10M20 13v10"/>
+                  </svg>`
+        };
+
+        const SERVICES_DB = {
+            // 1. CÓMPUTO Y CONTENEDORES
+            ec2: {
+                id: 'ec2',
+                name: 'Amazon EC2',
+                sigla: 'EC2',
+                fullName: 'Amazon Elastic Compute Cloud',
+                category: 'compute',
+                icon: 'ec2',
+                desc: 'Servidores virtuales seguros y redimensionables en la nube. Te dan control total sobre el sistema operativo (Linux o Windows) y permiten aumentar o reducir la potencia en segundos.',
+                useCase: 'Desplegar servidores web o backends corporativos, ejecutar software a medida o trasladar servidores desde tu centro de datos local con control absoluto sobre la máquina.',
+                cli: 'aws ec2 run-instances --image-id ami-0c55b159cbfafe1f0 --instance-type t3.micro --key-name MiClave'
+            },
+            lambda: {
+                id: 'lambda',
+                name: 'AWS Lambda',
+                sigla: 'Lambda',
+                fullName: 'AWS Lambda (Serverless Compute)',
+                category: 'compute',
+                icon: 'lambda',
+                desc: 'Ejecuta tu código automáticamente en respuesta a eventos (subidas de archivos, clics, llamadas API) sin encender ni mantener servidores. Solo pagas por los milisegundos exactos de ejecución.',
+                useCase: 'Generar miniaturas al instante cuando un usuario sube una foto a S3, procesar pagos desde API Gateway o limpiar bases de datos mediante tareas programadas.',
+                cli: 'aws lambda invoke --function-name ProcesarPedido --payload \'{"id": 101}\' salida.json'
+            },
+            ecs: {
+                id: 'ecs',
+                name: 'Amazon ECS',
+                sigla: 'ECS',
+                fullName: 'Amazon Elastic Container Service',
+                category: 'compute',
+                icon: 'ecs',
+                desc: 'Orquestador de contenedores Docker 100% nativo de AWS. Simplifica el lanzamiento, la supervisión y el escalado de aplicaciones contenerizadas sin configuraciones complejas.',
+                useCase: 'Ejecutar arquitecturas modernas de microservicios en Docker que necesitan integrarse de forma directa y sencilla con balanceadores de carga (ALB) y permisos IAM.',
+                cli: 'aws ecs create-cluster --cluster-name mi-cluster-produccion'
+            },
+            eks: {
+                id: 'eks',
+                name: 'Amazon EKS',
+                sigla: 'EKS',
+                fullName: 'Amazon Elastic Kubernetes Service',
+                category: 'compute',
+                icon: 'eks',
+                desc: 'Servicio gestionado para ejecutar Kubernetes en AWS sin tener que instalar, operar ni mantener manualmente el plano de control del clúster.',
+                useCase: 'Organizaciones que estandarizan sus despliegues en Kubernetes para mantener portabilidad entre entornos locales y múltiples nubes con alta disponibilidad.',
+                cli: 'eksctl create cluster --name cluster-k8s --region eu-west-1 --nodes 3'
+            },
+            ecr: {
+                id: 'ecr',
+                name: 'Amazon ECR',
+                sigla: 'ECR',
+                fullName: 'Amazon Elastic Container Registry',
+                category: 'compute',
+                icon: 'ecr',
+                desc: 'Repositorio privado de contenedores donde almacenas, versionas, cifras y escaneas automáticamente tus imágenes Docker en busca de vulnerabilidades.',
+                useCase: 'Centralizar las imágenes compiladas por tu equipo de desarrollo para que Amazon ECS, EKS o Lambda las descarguen a máxima velocidad y de forma segura.',
+                cli: 'aws ecr create-repository --repository-name mi-app-backend'
+            },
+            fargate: {
+                id: 'fargate',
+                name: 'AWS Fargate',
+                sigla: 'Fargate',
+                fullName: 'AWS Fargate (Serverless Containers)',
+                category: 'compute',
+                icon: 'fargate',
+                desc: 'Motor sin servidor para contenedores (compatible con ECS y EKS). Tú solo defines cuánta CPU y memoria necesita cada contenedor y AWS gestiona toda la infraestructura subyacente.',
+                useCase: 'Olvidarte de administrar, dimensionar o parchear clústeres de servidores EC2 al ejecutar tus contenedores en producción, pagando únicamente por los recursos que solicita cada tarea.',
+                cli: 'aws ecs run-task --cluster mi-cluster --launch-type FARGATE --task-definition app:1'
+            },
+            autoscaling: {
+                id: 'autoscaling',
+                name: 'EC2 Auto Scaling',
+                sigla: 'ASG',
+                fullName: 'Amazon EC2 Auto Scaling',
+                category: 'compute',
+                icon: 'autoscaling',
+                desc: 'Vigila tus servidores virtuales y añade o retira instancias automáticamente según la demanda real, reemplazando al instante cualquier máquina que falle.',
+                useCase: 'Multiplicar la capacidad de tu plataforma durante campañas de alto tráfico (como rebajas) y reducirla al mínimo de madrugada para ahorrar costes.',
+                cli: 'aws autoscaling set-desired-capacity --auto-scaling-group-name web-asg --desired-capacity 4'
+            },
+
+            // 2. BASES DE DATOS
+            rds: {
+                id: 'rds',
+                name: 'Amazon RDS',
+                sigla: 'RDS',
+                fullName: 'Amazon Relational Database Service',
+                category: 'database',
+                icon: 'rds',
+                desc: 'Servicio gestionado para bases de datos relacionales SQL (PostgreSQL, MySQL, MariaDB, SQL Server y Oracle). Automatiza parches, copias de seguridad y recuperación ante fallos.',
+                useCase: 'Sistemas de gestión empresarial (ERP, CRM), plataformas financieras y comercio electrónico que requieren transacciones SQL ACID sólidas sin administrar el motor manualmente.',
+                cli: 'aws rds create-db-instance --db-instance-identifier mi-bd --db-instance-class db.t3.micro --engine postgres'
+            },
+            aurora: {
+                id: 'aurora',
+                name: 'Amazon Aurora',
+                sigla: 'Aurora',
+                fullName: 'Amazon Aurora Relational Database',
+                category: 'database',
+                icon: 'aurora',
+                desc: 'Base de datos relacional creada por AWS para la nube, totalmente compatible con MySQL y PostgreSQL pero hasta 5 veces más rápida y con almacenamiento autorreparable.',
+                useCase: 'Aplicaciones críticas a gran escala que exigen máxima disponibilidad con replicación automática de 6 copias en 3 Zonas de Disponibilidad y opción Serverless.',
+                cli: 'aws rds create-db-cluster --db-cluster-identifier aurora-cluster --engine aurora-postgresql'
+            },
+            dynamodb: {
+                id: 'dynamodb',
+                name: 'Amazon DynamoDB',
+                sigla: 'DynamoDB',
+                fullName: 'Amazon DynamoDB (NoSQL)',
+                category: 'database',
+                icon: 'dynamodb',
+                desc: 'Base de datos NoSQL clave-valor y documental totalmente sin servidor. Ofrece tiempos de respuesta constantes de pocos milisegundos sin importar si tienes cien o cien millones de usuarios.',
+                useCase: 'Carritos de compra de gran volumen, estados de partidas en videojuegos online, perfiles de usuario e ingesta de datos de sensores IoT en tiempo real.',
+                cli: 'aws dynamodb create-table --table-name Usuarios --KeySchema AttributeName=UserId,KeyType=HASH --billing-mode PAY_PER_REQUEST'
+            },
+            elasticache: {
+                id: 'elasticache',
+                name: 'Amazon ElastiCache',
+                sigla: 'ElastiCache',
+                fullName: 'Amazon ElastiCache (Valkey, Redis & Memcached)',
+                category: 'database',
+                icon: 'elasticache',
+                desc: 'Almacén de datos en memoria RAM ultrarrápido. Guarda en caché las consultas más repetidas para aliviar la carga de tu base de datos principal y responder en microsegundos.',
+                useCase: 'Acelerar páginas de catálogos de productos, gestionar sesiones de inicio de usuario distribuidas, marcadores en directo y colas en tiempo real.',
+                cli: 'aws elasticache create-cache-cluster --cache-cluster-id cache-redis --engine redis --cache-node-type cache.t3.micro'
+            },
+
+            // 3. ALMACENAMIENTO DE DATOS
+            s3: {
+                id: 's3',
+                name: 'Amazon S3',
+                sigla: 'S3',
+                fullName: 'Amazon Simple Storage Service',
+                category: 'storage',
+                icon: 's3',
+                desc: 'Almacenamiento de objetos infinitamente escalable con una durabilidad líder del 99,999999999% (11 nueves). Guarda cualquier tipo de archivo y accede a él desde cualquier lugar.',
+                useCase: 'Almacenar imágenes, vídeos, copias de seguridad, activos de sitios web estáticos y construir lagos de datos (Data Lakes) para analítica e Inteligencia Artificial.',
+                cli: 'aws s3 cp informe.pdf s3://mi-bucket-empresa/documentos/informe.pdf'
+            },
+            ebs: {
+                id: 'ebs',
+                name: 'Amazon EBS',
+                sigla: 'EBS',
+                fullName: 'Amazon Elastic Block Store',
+                category: 'storage',
+                icon: 'ebs',
+                desc: 'Unidades de disco duro virtual por bloques (SSD o HDD) de baja latencia que se acoplan a tus instancias EC2 igual que un disco físico conectado a un servidor.',
+                useCase: 'Alojar el sistema operativo de tus máquinas virtuales EC2 o proporcionar almacenamiento persistente y rápido para bases de datos instaladas en servidores.',
+                cli: 'aws ec2 create-volume --size 100 --volume-type gp3 --availability-zone eu-west-1a'
+            },
+            efs: {
+                id: 'efs',
+                name: 'Amazon EFS',
+                sigla: 'EFS',
+                fullName: 'Amazon Elastic File System',
+                category: 'storage',
+                icon: 'efs',
+                desc: 'Sistema de archivos en red (NFS) elástico y sin servidor que permite a decenas o cientos de instancias EC2, contenedores y funciones Lambda leer y escribir los mismos archivos a la vez.',
+                useCase: 'Directorios compartidos para gestores de contenido (como WordPress en alta disponibilidad), repositorios de código o datos compartidos entre microservicios Linux.',
+                cli: 'aws efs create-file-system --performance-mode generalPurpose --throughput-mode bursting'
+            },
+            glacier: {
+                id: 'glacier',
+                name: 'Amazon S3 Glacier',
+                sigla: 'Glacier',
+                fullName: 'Amazon S3 Glacier Storage Classes',
+                category: 'storage',
+                icon: 'glacier',
+                desc: 'Almacenamiento de archivo en frío de coste ultrabajo dentro de S3, diseñado para conservar grandes volúmenes de datos históricos que rara vez necesitan recuperarse.',
+                useCase: 'Retener historiales médicos, expedientes bancarios o grabaciones de seguridad durante 5 a 10 años por cumplimiento normativo a una fracción del coste estándar.',
+                cli: 'aws s3 cp backup-2026.zip s3://mi-bucket/archivo/ --storage-class GLACIER'
+            },
+            fsx: {
+                id: 'fsx',
+                name: 'Amazon FSx',
+                sigla: 'FSx',
+                fullName: 'Amazon FSx (Windows, Lustre, NetApp ONTAP, OpenZFS)',
+                category: 'storage',
+                icon: 'fsx',
+                desc: 'Sistemas de archivos de alto rendimiento totalmente gestionados que ofrecen compatibilidad nativa con Windows Server (SMB/NTFS), NetApp o supercomputación (Lustre).',
+                useCase: 'Migrar carpetas corporativas de Windows integradas con Active Directory sin cambiar permisos o alimentar clústeres de cálculo intensivo y entrenamiento de IA.',
+                cli: 'aws fsx create-file-system --file-system-type WINDOWS --storage-capacity 300'
+            },
+
+            // 4. REDES Y ENTREGA DE CONTENIDO
+            vpc: {
+                id: 'vpc',
+                name: 'Amazon VPC',
+                sigla: 'VPC',
+                fullName: 'Amazon Virtual Private Cloud',
+                category: 'network',
+                icon: 'vpc',
+                desc: 'Tu propio centro de datos virtual privado y aislado dentro de AWS. Te permite diseñar subredes públicas y privadas, tablas de enrutamiento y pasarelas de internet a tu medida.',
+                useCase: 'Proteger bases de datos y servidores internos en subredes privadas invisibles desde internet, exponiendo únicamente los balanceadores de carga en subredes públicas.',
+                cli: 'aws ec2 create-vpc --cidr-block 10.0.0.0/16'
+            },
+            route53: {
+                id: 'route53',
+                name: 'Amazon Route 53',
+                sigla: 'Route 53',
+                fullName: 'Amazon Route 53 Managed DNS',
+                category: 'network',
+                icon: 'route53',
+                desc: 'Servicio de DNS en la nube de alta disponibilidad. Traduce nombres de dominio legibles (como tuempresa.com) en direcciones IP y encamina a los usuarios de forma inteligente.',
+                useCase: 'Registrar dominios web, dirigir a cada visitante a la región de AWS más cercana para reducir la latencia y redirigir el tráfico automáticamente si un servidor cae.',
+                cli: 'aws route53 list-hosted-zones'
+            },
+            cloudfront: {
+                id: 'cloudfront',
+                name: 'Amazon CloudFront',
+                sigla: 'CloudFront',
+                fullName: 'Amazon CloudFront Global CDN',
+                category: 'network',
+                icon: 'cloudfront',
+                desc: 'Red global de entrega de contenido (CDN) con cientos de puntos de presencia en todo el mundo que guarda en caché tu web, vídeos y APIs cerca de los usuarios finales.',
+                useCase: 'Lograr que una web alojada en Europa cargue en milisegundos para usuarios de América o Asia, reduciendo la carga del servidor origen y protegiendo contra ataques.',
+                cli: 'aws cloudfront create-invalidation --distribution-id E123456 --paths "/*"'
+            },
+            apigateway: {
+                id: 'apigateway',
+                name: 'Amazon API Gateway',
+                sigla: 'API GW',
+                fullName: 'Amazon API Gateway',
+                category: 'network',
+                icon: 'apigateway',
+                desc: 'Puerta de enlace gestionada para crear, publicar, proteger y monitorizar APIs REST, HTTP y WebSockets a cualquier escala.',
+                useCase: 'Actuar como recepción unificada para aplicaciones móviles y webs, validando tokens de seguridad, limitando picos abusivos de peticiones y activando funciones Lambda.',
+                cli: 'aws apigateway create-rest-api --name "API-Clientes"'
+            },
+            transitgateway: {
+                id: 'transitgateway',
+                name: 'AWS Transit Gateway',
+                sigla: 'TGW',
+                fullName: 'AWS Transit Gateway',
+                category: 'network',
+                icon: 'transitgateway',
+                desc: 'Concentrador central de red (modelo Hub-and-Spoke) que interconecta decenas o cientos de redes VPC y redes locales mediante un único punto de control.',
+                useCase: 'Simplificar la arquitectura de red de una empresa con múltiples cuentas de AWS y delegaciones físicas sin tener que configurar cientos de conexiones cruzadas.',
+                cli: 'aws ec2 create-transit-gateway --description "HubRedCentral"'
+            },
+            elb: {
+                id: 'elb',
+                name: 'Elastic Load Balancing',
+                sigla: 'ELB / ALB',
+                fullName: 'Elastic Load Balancing (ALB, NLB, GLB)',
+                category: 'network',
+                icon: 'elb',
+                desc: 'Distribuye automáticamente el tráfico entrante de tus aplicaciones entre múltiples servidores o contenedores en distintas Zonas de Disponibilidad, enviando peticiones solo a los nodos sanos.',
+                useCase: 'Colocar un Application Load Balancer (ALB) delante de tus servidores web para evitar sobrecargas, gestionar certificados HTTPS y garantizar cero caídas.',
+                cli: 'aws elbv2 create-load-balancer --name mi-balanceador-web --type application'
+            },
+            vpcpeering: {
+                id: 'vpcpeering',
+                name: 'VPC Peering',
+                sigla: 'Peering',
+                fullName: 'Amazon VPC Peering Connection',
+                category: 'network',
+                icon: 'vpcpeering',
+                desc: 'Conexión directa y privada de red entre dos VPCs que les permite comunicarse usando direcciones IP privadas como si pertenecieran a la misma red local.',
+                useCase: 'Unir de forma rápida y sin coste de concentrador dos redes concretas (por ejemplo, la VPC de una aplicación con la VPC donde reside una base de datos compartida).',
+                cli: 'aws ec2 create-vpc-peering-connection --vpc-id vpc-1a --peer-vpc-id vpc-2b'
+            },
+            directconnect: {
+                id: 'directconnect',
+                name: 'AWS Direct Connect',
+                sigla: 'DX',
+                fullName: 'AWS Direct Connect',
+                category: 'network',
+                icon: 'directconnect',
+                desc: 'Enlace físico dedicado de fibra óptica que une directamente tu centro de datos corporativo u oficina con la red troncal de AWS sin pasar por el internet público.',
+                useCase: 'Entornos bancarios, audiovisuales o industriales que transfieren grandes volúmenes de datos y exigen ancho de banda garantizado, máxima privacidad y latencia constante.',
+                cli: 'aws directconnect describe-connections'
+            },
+            vpn: {
+                id: 'vpn',
+                name: 'AWS Site-to-Site VPN',
+                sigla: 'VPN',
+                fullName: 'AWS Site-to-Site VPN Connection',
+                category: 'network',
+                icon: 'vpn',
+                desc: 'Crea túneles IPsec cifrados a través de internet entre el router de tu oficina física y tu red VPC de AWS en cuestión de minutos.',
+                useCase: 'Establecer conectividad híbrida segura para oficinas remotas o disponer de una línea de respaldo automática y económica para un enlace Direct Connect.',
+                cli: 'aws ec2 create-vpn-connection --type ipsec.1 --customer-gateway-id cgw-1 --vpn-gateway-id vgw-1'
+            },
+
+            // 5. SEGURIDAD, IDENTIDAD Y CUMPLIMIENTO
+            iam: {
+                id: 'iam',
+                name: 'AWS IAM',
+                sigla: 'IAM',
+                fullName: 'AWS Identity and Access Management',
+                category: 'security',
+                icon: 'iam',
+                desc: 'El sistema central de permisos de AWS. Define con precisión quirúrgica quién está autenticado (usuarios, grupos o roles de servicio) y qué acciones tiene autorización para ejecutar.',
+                useCase: 'Aplicar el principio de mínimo privilegio, exigir autenticación multifactor (MFA) a los administradores y otorgar credenciales temporales seguras a instancias EC2 o funciones Lambda.',
+                cli: 'aws iam create-role --role-name RolLecturaS3 --assume-role-policy-document file://trust.json'
+            },
+            kms: {
+                id: 'kms',
+                name: 'AWS KMS',
+                sigla: 'KMS',
+                fullName: 'AWS Key Management Service',
+                category: 'security',
+                icon: 'kms',
+                desc: 'Servicio gestionado para crear, rotar y custodiar las claves criptográficas con las que se cifran tus datos en reposo y en tránsito dentro de AWS.',
+                useCase: 'Cifrar con un solo clic discos EBS, buckets S3 y bases de datos RDS cumpliendo normativas de privacidad y auditando cada uso de las llaves en CloudTrail.',
+                cli: 'aws kms create-key --description "Clave maestra para datos de clientes"'
+            },
+            waf: {
+                id: 'waf',
+                name: 'AWS WAF',
+                sigla: 'WAF',
+                fullName: 'AWS Web Application Firewall',
+                category: 'security',
+                icon: 'waf',
+                desc: 'Cortafuegos de capa de aplicación web que inspecciona el tráfico HTTP/HTTPS y bloquea ataques como inyecciones SQL, Cross-Site Scripting (XSS) o bots maliciosos.',
+                useCase: 'Proteger portales web y APIs publicados en CloudFront, ALB o API Gateway mediante reglas de seguridad actualizadas automáticamente y límites de peticiones por IP.',
+                cli: 'aws wafv2 list-web-acls --scope REGIONAL'
+            },
+            shield: {
+                id: 'shield',
+                name: 'AWS Shield',
+                sigla: 'Shield',
+                fullName: 'AWS Shield (Standard & Advanced DDoS Protection)',
+                category: 'security',
+                icon: 'shield',
+                desc: 'Defensa permanente y automática frente a ataques de denegación de servicio distribuido (DDoS) que intentan colapsar tus servidores inundándolos de tráfico falso.',
+                useCase: 'Mantener tu tienda online o servicio crítico siempre disponible absorbiendo ataques volumétricos de red antes de que impacten en tu infraestructura.',
+                cli: 'aws shield describe-subscription'
+            },
+            acm: {
+                id: 'acm',
+                name: 'AWS Certificate Manager',
+                sigla: 'ACM',
+                fullName: 'AWS Certificate Manager (SSL/TLS)',
+                category: 'security',
+                icon: 'acm',
+                desc: 'Emite, despliega y renueva automáticamente certificados digitales SSL/TLS públicos de forma gratuita para habilitar conexiones seguras HTTPS en tus servicios.',
+                useCase: 'Olvidarte para siempre de las caídas web por certificados caducados al integrarlo con tus balanceadores de carga (ELB), CloudFront y API Gateway.',
+                cli: 'aws acm request-certificate --domain-name "*.miempresa.es" --validation-method DNS'
+            },
+            guardduty: {
+                id: 'guardduty',
+                name: 'Amazon GuardDuty',
+                sigla: 'GuardDuty',
+                fullName: 'Amazon GuardDuty Intelligent Threat Detection',
+                category: 'security',
+                icon: 'guardduty',
+                desc: 'Sistema inteligente de detección de amenazas que analiza continuamente los registros de tu cuenta mediante Machine Learning para descubrir actividades maliciosas.',
+                useCase: 'Recibir alertas inmediatas si una credencial IAM se filtra, si un servidor EC2 intenta comunicarse con redes de mando atacante o si hay accesos anómalos a S3.',
+                cli: 'aws guardduty create-detector --enable'
+            },
+            secrets: {
+                id: 'secrets',
+                name: 'AWS Secrets Manager',
+                sigla: 'Secrets',
+                fullName: 'AWS Secrets Manager',
+                category: 'security',
+                icon: 'secrets',
+                desc: 'Bóveda segura para guardar, recuperar mediante API y rotar periódicamente contraseñas de bases de datos, tokens OAuth y claves de terceros sin exponerlas en el código fuente.',
+                useCase: 'Eliminar las contraseñas escritas en ficheros de configuración y programar que la clave de tu base de datos RDS cambie sola cada 30 días de forma transparente.',
+                cli: 'aws secretsmanager get-secret-value --secret-id prod/bd/credenciales'
+            },
+            nacl: {
+                id: 'nacl',
+                name: 'Security Groups & NACLs',
+                sigla: 'SG / NACL',
+                fullName: 'Security Groups & Network ACLs',
+                category: 'security',
+                icon: 'nacl',
+                desc: 'Doble barrera de cortafuegos virtual: las NACLs filtran el tráfico en el perímetro de toda la subred (sin estado) y los Security Groups protegen cada servidor individual (con estado).',
+                useCase: 'Permitir tráfico público únicamente por el puerto 443 hacia el balanceador web y restringir la base de datos para que solo acepte conexiones provenientes de los servidores de aplicación.',
+                cli: 'aws ec2 authorize-security-group-ingress --group-id sg-903004f8 --protocol tcp --port 443 --cidr 0.0.0.0/0'
+            },
+
+            // 6. MONITORIZACIÓN, GOBERNANZA Y COSTES
+            console: {
+                id: 'console',
+                name: 'AWS Management Console',
+                sigla: 'Console',
+                fullName: 'AWS Management Console',
+                category: 'mgmt',
+                icon: 'console',
+                desc: 'Interfaz web gráfica e intuitiva desde la que puedes configurar recursos, supervisar paneles operativos, gestionar la facturación y administrar toda tu cuenta de AWS.',
+                useCase: 'Realizar despliegues guiados al aprender un servicio nuevo, diagnosticar incidencias visualmente o acceder a CloudShell directamente desde el navegador.',
+                cli: '# Acceso web directo en https://console.aws.amazon.com'
+            },
+            cloudwatch: {
+                id: 'cloudwatch',
+                name: 'Amazon CloudWatch',
+                sigla: 'CloudWatch',
+                fullName: 'Amazon CloudWatch Observability',
+                category: 'mgmt',
+                icon: 'cloudwatch',
+                desc: 'Plataforma central de observabilidad que recopila métricas de rendimiento, centraliza logs de todas tus aplicaciones y dispara alarmas o acciones automáticas en tiempo real.',
+                useCase: 'Visualizar en un único panel el uso de CPU y latencia de tus servicios, analizar errores de ejecución y lanzar más servidores si la carga supera el umbral definido.',
+                cli: 'aws cloudwatch put-metric-alarm --alarm-name AltaCPU --metric-name CPUUtilization --threshold 80'
+            },
+            cloudtrail: {
+                id: 'cloudtrail',
+                name: 'AWS CloudTrail',
+                sigla: 'CloudTrail',
+                fullName: 'AWS CloudTrail Auditing',
+                category: 'mgmt',
+                icon: 'cloudtrail',
+                desc: 'Caja negra y registro de auditoría de tu cuenta. Graba absolutamente todas las acciones y llamadas a la API realizadas desde la consola, la línea de comandos o el código.',
+                useCase: 'Investigar incidentes de seguridad respondiendo con exactitud qué usuario o rol modificó un permiso, desde qué dirección IP y en qué segundo exacto.',
+                cli: 'aws cloudtrail lookup-events --lookup-attributes AttributeKey=EventName,AttributeValue=RunInstances'
+            },
+            config: {
+                id: 'config',
+                name: 'AWS Config',
+                sigla: 'Config',
+                fullName: 'AWS Config Compliance & Inventory',
+                category: 'mgmt',
+                icon: 'config',
+                desc: 'Mantiene un inventario histórico de cómo están configurados tus recursos de AWS y evalúa automáticamente si cumplen las políticas de seguridad y gobernanza de tu empresa.',
+                useCase: 'Detectar al instante si alguien desactiva el cifrado de un disco o abre un puerto no permitido, pudiendo incluso corregirlo de manera automática.',
+                cli: 'aws configservice describe-compliance-by-config-rule'
+            },
+            xray: {
+                id: 'xray',
+                name: 'AWS X-Ray',
+                sigla: 'X-Ray',
+                fullName: 'AWS X-Ray Distributed Tracing',
+                category: 'mgmt',
+                icon: 'xray',
+                desc: 'Herramienta de trazabilidad distribuida que sigue el recorrido completo de cada petición a través de tus microservicios, bases de datos y colas para detectar cuellos de botella.',
+                useCase: 'Generar un mapa visual de dependencias en tiempo real para descubrir exactamente cuál de tus diez microservicios está provocando retrasos o errores 500.',
+                cli: 'aws xray get-service-graph --start-time 1710000000 --end-time 1710003600'
+            },
+            costexplorer: {
+                id: 'costexplorer',
+                name: 'Cost Explorer & Budgets',
+                sigla: 'Cost / Budgets',
+                fullName: 'AWS Cost Explorer, Budgets & Cost and Usage Report',
+                category: 'mgmt',
+                icon: 'cost',
+                desc: 'Conjunto de herramientas FinOps para analizar al detalle tu gasto en la nube, proyectar costes futuros, recibir recomendaciones de ahorro (Savings Plans) y fijar alertas de presupuesto.',
+                useCase: 'Identificar qué proyecto o etiqueta (Tag) consume más presupuesto y recibir un aviso automático por correo o Slack si el gasto mensual supera el límite previsto.',
+                cli: 'aws ce get-cost-and-usage --time-period Start=2026-10-01,End=2026-10-15 --granularity MONTHLY --metrics BlendedCost'
+            },
+
+            // 7. DEVOPS, INTEGRACIÓN Y MENSAJERÍA
+            codesuite: {
+                id: 'codesuite',
+                name: 'AWS CodePipeline & CodeBuild',
+                sigla: 'CI/CD Suite',
+                fullName: 'CodeCommit, CodeBuild, CodeDeploy & CodePipeline',
+                category: 'devops',
+                icon: 'devops',
+                desc: 'Familia de herramientas de Integración y Entrega Continua (CI/CD) que automatiza la compilación, las pruebas de calidad y el despliegue seguro de tu código en producción.',
+                useCase: 'Crear una tubería automática para que cada vez que un desarrollador suba cambios a Git, se ejecuten los tests unitarios y se actualice la aplicación sin interrupciones.',
+                cli: 'aws codepipeline start-pipeline-execution --name PipelineDespliegueWeb'
+            },
+            stepfunctions: {
+                id: 'stepfunctions',
+                name: 'AWS Step Functions',
+                sigla: 'Step Fn',
+                fullName: 'AWS Step Functions Workflow Orchestration',
+                category: 'devops',
+                icon: 'stepfunctions',
+                desc: 'Orquestador visual de flujos de trabajo sin servidor. Conecta múltiples funciones Lambda y servicios de AWS en procesos paso a paso, gestionando fallos, reintentos y tareas en paralelo.',
+                useCase: 'Automatizar procesos de negocio complejos como el alta de un cliente o un pedido: verificar identidad, procesar cobro, reservar stock y revertir pasos si algo falla.',
+                cli: 'aws stepfunctions start-execution --state-machine-arn arn:aws:states:...:FlujoPedido'
+            },
+            sns: {
+                id: 'sns',
+                name: 'Amazon SNS',
+                sigla: 'SNS',
+                fullName: 'Amazon Simple Notification Service (Pub/Sub)',
+                category: 'devops',
+                icon: 'sns',
+                desc: 'Servicio de mensajería de publicación/suscripción (Pub/Sub) de alto rendimiento. Permite emitir un evento a un tema central y entregarlo simultáneamente a múltiples destinos.',
+                useCase: 'Enviar alertas críticas por SMS y correo al equipo de soporte o distribuir un mismo evento de negocio a varias colas SQS y funciones Lambda en paralelo (patrón Fan-out).',
+                cli: 'aws sns publish --topic-arn arn:aws:sns:...:AlertasCriticas --message "Servidor al 95%"'
+            },
+            sqs: {
+                id: 'sqs',
+                name: 'Amazon SQS',
+                sigla: 'SQS',
+                fullName: 'Amazon Simple Queue Service',
+                category: 'devops',
+                icon: 'sqs',
+                desc: 'Cola de mensajes totalmente gestionada para desacoplar microservicios. Almacena de forma segura las tareas pendientes para que los servidores las procesen a su propio ritmo.',
+                useCase: 'Amortiguar picos repentinos de miles de compras por segundo en una tienda online, garantizando que ningún pedido se pierda aunque el sistema de facturación vaya más lento.',
+                cli: 'aws sqs send-message --queue-url https://sqs.../ColaPedidos --message-body "Pedido #9482"'
+            },
+            mq: {
+                id: 'mq',
+                name: 'Amazon MQ',
+                sigla: 'MQ',
+                fullName: 'Amazon MQ (Managed ActiveMQ & RabbitMQ)',
+                category: 'devops',
+                icon: 'sqs',
+                desc: 'Servicio de bróker de mensajes gestionado para Apache ActiveMQ y RabbitMQ que facilita llevar aplicaciones empresariales existentes a la nube sin modificar su código.',
+                useCase: 'Migrar sistemas heredados que dependen de protocolos estándar de mensajería (AMQP, MQTT, STOMP o JMS) delegando en AWS la alta disponibilidad y el mantenimiento.',
+                cli: 'aws mq list-brokers'
+            },
+
+            // 8. MIGRACIÓN E INTELIGENCIA ARTIFICIAL
+            migration: {
+                id: 'migration',
+                name: 'AWS DMS, DataSync & Snowball',
+                sigla: 'Migración',
+                fullName: 'Application Migration (MGN), Database Migration (DMS), Snowball & DataSync',
+                category: 'ml_mig',
+                icon: 'migration',
+                desc: 'Conjunto de servicios especializados para trasladar servidores físicos o virtuales (MGN), bases de datos en caliente sin corte de servicio (DMS) y grandes volúmenes de archivos (DataSync/Snowball).',
+                useCase: 'Migrar una base de datos local hacia Amazon RDS manteniendo ambos sistemas sincronizados en tiempo real hasta el momento exacto del cambio definitivo.',
+                cli: 'aws dms describe-replication-tasks'
+            },
+            sagemaker: {
+                id: 'sagemaker',
+                name: 'Amazon SageMaker',
+                sigla: 'SageMaker',
+                fullName: 'Amazon SageMaker AI Platform',
+                category: 'ml_mig',
+                icon: 'ml',
+                desc: 'Entorno integral para científicos de datos e ingenieros de ML que permite preparar datos, entrenar modelos predictivos o de IA generativa y desplegarlos en producción a escala.',
+                useCase: 'Construir y entrenar modelos personalizados de detección de fraude, motores de recomendación o predicción de demanda con infraestructura GPU bajo demanda.',
+                cli: 'aws sagemaker list-notebook-instances'
+            },
+            aiservices: {
+                id: 'aiservices',
+                name: 'Rekognition, Comprehend & Lex',
+                sigla: 'IA Lista',
+                fullName: 'Amazon Rekognition (Visión), Comprehend (PLN) & Lex (Agentes Conversacionales)',
+                category: 'ml_mig',
+                icon: 'ml',
+                desc: 'Servicios de Inteligencia Artificial preentrenados listos para integrar mediante una simple llamada API: visión artificial en fotos y vídeo, análisis de sentimiento en textos y chatbots.',
+                useCase: 'Añadir verificación de identidad por rostro, moderación automática de imágenes o asistentes virtuales de atención al cliente sin necesidad de entrenar modelos desde cero.',
+                cli: 'aws rekognition detect-labels --image \'{"S3Object":{"Bucket":"fotos","Name":"coche.jpg"}}\''
+            }
+        };
+
+        const POSTER_CATEGORIES = [
+            {
+                id: 'compute',
+                placement: 'top',
+                title: 'CÓMPUTO Y CONTENEDORES',
+                subtitle: 'Servidores virtuales, Serverless y Contenedores',
+                headerBg: 'bg-gradient-to-r from-[#EA580C] to-[#F59E0B]',
+                borderCol: 'border-orange-300 dark:border-orange-800/70',
+                iconBg: 'bg-[#ED7100]',
+                badgeText: 'text-orange-700 bg-orange-100 dark:bg-orange-950 dark:text-orange-300',
+                services: ['ec2', 'lambda', 'ecs', 'eks', 'ecr', 'fargate']
+            },
+            {
+                id: 'database',
+                placement: 'top',
+                title: 'BASES DE DATOS',
+                subtitle: 'Relacionales (SQL), NoSQL y Caché en Memoria',
+                headerBg: 'bg-gradient-to-r from-[#D97706] to-[#FBBF24]',
+                headerTextDark: true,
+                borderCol: 'border-amber-300 dark:border-amber-800/70',
+                iconBg: 'bg-[#2563EB]',
+                customServiceColors: {
+                    rds: 'bg-[#2563EB]',
+                    aurora: 'bg-[#F59E0B]',
+                    dynamodb: 'bg-[#3B82F6]',
+                    elasticache: 'bg-[#D97706]'
+                },
+                badgeText: 'text-amber-800 bg-amber-100 dark:bg-amber-950 dark:text-amber-300',
+                services: ['rds', 'aurora', 'dynamodb', 'elasticache']
+            },
+            {
+                id: 'storage',
+                placement: 'top',
+                title: 'ALMACENAMIENTO DE DATOS',
+                subtitle: 'Objetos, Bloques, Archivos Compartidos y Archivo Frío',
+                headerBg: 'bg-gradient-to-r from-[#2563EB] to-[#1E293B]',
+                borderCol: 'border-blue-300 dark:border-blue-800/70',
+                iconBg: 'bg-[#4B83B8]',
+                badgeText: 'text-blue-700 bg-blue-100 dark:bg-blue-950 dark:text-blue-300',
+                services: ['s3', 'ebs', 'efs', 'glacier', 'fsx']
+            },
+            {
+                id: 'network',
+                placement: 'middle',
+                title: 'REDES Y ENTREGA DE CONTENIDO',
+                subtitle: 'Aislamiento de Red, DNS, Balanceo, CDN y Conectividad Híbrida',
+                headerBg: 'bg-gradient-to-r from-[#60A5FA] to-[#3B82F6]',
+                borderCol: 'border-sky-300 dark:border-sky-800/70',
+                iconBg: 'bg-[#7C3AED]',
+                customServiceColors: {
+                    vpc: 'bg-[#60A5FA]',
+                    route53: 'bg-[#7C3AED]',
+                    cloudfront: 'bg-[#60A5FA]',
+                    apigateway: 'bg-[#8B5CF6]',
+                    transitgateway: 'bg-[#7C3AED]',
+                    elb: 'bg-[#6366F1]'
+                },
+                badgeText: 'text-purple-700 bg-purple-100 dark:bg-purple-950 dark:text-purple-300',
+                services: ['vpc', 'route53', 'cloudfront', 'transitgateway', 'apigateway', 'elb']
+            },
+            {
+                id: 'security',
+                placement: 'middle',
+                title: 'SEGURIDAD, IDENTIDAD Y CUMPLIMIENTO',
+                subtitle: 'Control de Accesos, Cifrado, Cortafuegos Web y Detección de Amenazas',
+                headerBg: 'bg-gradient-to-r from-[#1E293B] to-[#334155]',
+                borderCol: 'border-slate-300 dark:border-slate-700',
+                iconBg: 'bg-[#1E293B]',
+                badgeText: 'text-rose-700 bg-rose-100 dark:bg-rose-950 dark:text-rose-300',
+                services: ['iam', 'kms', 'waf', 'shield', 'acm', 'guardduty']
+            },
+            {
+                id: 'mgmt',
+                placement: 'bottom',
+                title: 'OBSERVABILIDAD, AUDITORÍA Y COSTES',
+                subtitle: 'Métricas, Logs, Trazabilidad y Gestión Financiera (FinOps)',
+                headerBg: 'bg-gradient-to-r from-[#DB2777] to-[#9D174D]',
+                borderCol: 'border-pink-300 dark:border-pink-800/70',
+                iconBg: 'bg-[#E7157B]',
+                badgeText: 'text-pink-700 bg-pink-100 dark:bg-pink-950 dark:text-pink-300',
+                services: ['cloudwatch', 'cloudtrail', 'config', 'costexplorer']
+            },
+            {
+                id: 'devops',
+                placement: 'bottom',
+                title: 'DEVOPS, ORQUESTACIÓN Y MENSAJERÍA',
+                subtitle: 'Pipelines CI/CD, Flujos de Trabajo y Colas Asíncronas',
+                headerBg: 'bg-gradient-to-r from-[#9333EA] to-[#6B21A8]',
+                borderCol: 'border-purple-300 dark:border-purple-800/70',
+                iconBg: 'bg-[#C925D1]',
+                badgeText: 'text-fuchsia-700 bg-fuchsia-100 dark:bg-fuchsia-950 dark:text-fuchsia-300',
+                services: ['codesuite', 'stepfunctions', 'sns', 'sqs']
+            },
+            {
+                id: 'ml_mig',
+                placement: 'bottom',
+                title: 'MIGRACIÓN E INTELIGENCIA ARTIFICIAL',
+                subtitle: 'Traslado a la Nube, Machine Learning e IA Aplicada',
+                headerBg: 'bg-gradient-to-r from-[#0D9488] to-[#115E59]',
+                borderCol: 'border-teal-300 dark:border-teal-800/70',
+                iconBg: 'bg-[#01A88D]',
+                badgeText: 'text-teal-700 bg-teal-100 dark:bg-teal-950 dark:text-teal-300',
+                services: ['migration', 'sagemaker', 'aiservices', 'secrets']
+            }
+        ];
+
+        // Ruta progresiva de aprendizaje en 16 etapas
+        const LEARNING_ROADMAP = [
+            {
+                step: 1,
+                titleEn: 'Cloud Computing Essentials',
+                titleEs: 'Cimientos de la Computación en la Nube',
+                summary: 'Los dos pilares fundamentales con los que nace casi cualquier proyecto en AWS: almacenar archivos de forma duradera y lanzar servidores virtuales.',
+                items: [
+                    { serviceId: 's3', color: 'bg-[#699E3C]' },
+                    { serviceId: 'ec2', color: 'bg-[#ED7100]' }
+                ]
+            },
+            {
+                step: 2,
+                titleEn: 'Cloud First Steps',
+                titleEs: 'Primeros Pasos de Gestión y Seguridad',
+                summary: 'Aprender a moverte por el panel de control, blindar quién tiene acceso a tu cuenta con permisos mínimos y supervisar el estado de tus recursos.',
+                items: [
+                    { serviceId: 'console', color: 'bg-[#E7157B]' },
+                    { serviceId: 'iam', color: 'bg-[#DD344C]' },
+                    { serviceId: 'cloudwatch', color: 'bg-[#E7157B]' }
+                ]
+            },
+            {
+                step: 3,
+                titleEn: 'Computing Solutions',
+                titleEs: 'Modelos de Ejecución y Cómputo',
+                summary: 'Comprender las distintas formas de ejecutar aplicaciones: desde servidores completos hasta funciones sin servidor y contenedores ligeros.',
+                items: [
+                    { serviceId: 'ec2', color: 'bg-[#ED7100]' },
+                    { serviceId: 'lambda', color: 'bg-[#ED7100]' },
+                    { serviceId: 'fargate', color: 'bg-[#ED7100]' },
+                    { serviceId: 'ecs', color: 'bg-[#ED7100]' }
+                ]
+            },
+            {
+                step: 4,
+                titleEn: 'Cloud Economics',
+                titleEs: 'Economía de la Nube y Control de Costes',
+                summary: 'Dominar la visibilidad financiera desde el primer día: analizar el gasto por servicio, crear presupuestos y configurar alertas para evitar sorpresas en la factura.',
+                items: [
+                    { serviceId: 'costexplorer', customLabel: 'Cost Explorer, Budgets & Usage Report', color: 'bg-[#699E3C]' }
+                ]
+            },
+            {
+                step: 5,
+                titleEn: 'Networking Concepts',
+                titleEs: 'Diseño de Redes y Puntos de Entrada',
+                summary: 'Aislar tu infraestructura en una red privada virtual, configurar dominios DNS y gestionar las puertas de entrada para tus APIs.',
+                items: [
+                    { serviceId: 'vpc', color: 'bg-[#8C4FFF]' },
+                    { serviceId: 'route53', color: 'bg-[#8C4FFF]' },
+                    { serviceId: 'apigateway', color: 'bg-[#E7157B]' }
+                ]
+            },
+            {
+                step: 6,
+                titleEn: 'Connecting VPCs',
+                titleEs: 'Interconexión de Redes y Entornos Híbridos',
+                summary: 'Comunicar múltiples redes privadas entre sí o enlazar de forma segura tu oficina y centro de datos local con la nube de AWS.',
+                items: [
+                    { serviceId: 'vpcpeering', color: 'bg-[#8C4FFF]' },
+                    { serviceId: 'transitgateway', color: 'bg-[#8C4FFF]' },
+                    { serviceId: 'directconnect', color: 'bg-[#8C4FFF]' },
+                    { serviceId: 'vpn', color: 'bg-[#8C4FFF]' }
+                ]
+            },
+            {
+                step: 7,
+                titleEn: 'First NoSQL Database',
+                titleEs: 'Bases de Datos NoSQL de Alta Velocidad',
+                summary: 'Adoptar almacenamiento clave-valor sin servidor capaz de escalar automáticamente y responder en milisegundos bajo cualquier volumen de tráfico.',
+                items: [
+                    { serviceId: 'dynamodb', color: 'bg-[#C925D1]' }
+                ]
+            },
+            {
+                step: 8,
+                titleEn: 'Storage and File Systems',
+                titleEs: 'Estrategias de Almacenamiento de Datos',
+                summary: 'Elegir el soporte ideal para cada necesidad: objetos (S3), discos acoplados a servidores (EBS) o carpetas compartidas en red (EFS y FSx).',
+                items: [
+                    { serviceId: 's3', color: 'bg-[#699E3C]' },
+                    { serviceId: 'ebs', color: 'bg-[#699E3C]' },
+                    { serviceId: 'efs', color: 'bg-[#699E3C]' },
+                    { serviceId: 'fsx', color: 'bg-[#699E3C]' }
+                ]
+            },
+            {
+                step: 9,
+                titleEn: 'Auto-healing and Scaling Applications',
+                titleEs: 'Escalado Elástico y Alta Disponibilidad',
+                summary: 'Lograr arquitecturas resilientes que se autorreparen ante caídas, repartan el tráfico entre varios nodos y aceleren la entrega en todo el mundo.',
+                items: [
+                    { serviceId: 'autoscaling', color: 'bg-[#ED7100]' },
+                    { serviceId: 'elb', color: 'bg-[#8C4FFF]' },
+                    { serviceId: 'cloudfront', color: 'bg-[#8C4FFF]' }
+                ]
+            },
+            {
+                step: 10,
+                titleEn: 'Serverless Architectures',
+                titleEs: 'Arquitecturas 100% Serverless',
+                summary: 'Combinar almacenamiento, lógica basada en eventos, pasarelas API y orquestación visual sin tener que administrar ni un solo servidor.',
+                items: [
+                    { serviceId: 's3', color: 'bg-[#699E3C]' },
+                    { serviceId: 'lambda', color: 'bg-[#ED7100]' },
+                    { serviceId: 'apigateway', color: 'bg-[#E7157B]' },
+                    { serviceId: 'stepfunctions', color: 'bg-[#E7157B]' }
+                ]
+            },
+            {
+                step: 11,
+                titleEn: 'DevOps and Continuous Delivery',
+                titleEs: 'Automatización DevOps y Entrega Continua (CI/CD)',
+                summary: 'Estandarizar el ciclo de vida del software para compilar, probar y desplegar nuevas versiones en producción de forma rápida y reversible.',
+                items: [
+                    { serviceId: 'codesuite', customLabel: 'CodeCommit, CodeBuild, CodeDeploy & CodePipeline', color: 'bg-[#C925D1]' }
+                ]
+            },
+            {
+                step: 12,
+                titleEn: 'Relational Database Solutions',
+                titleEs: 'Bases de Datos Relacionales Gestionadas (SQL)',
+                summary: 'Operar motores SQL empresariales con copias de seguridad automáticas, réplicas de lectura y conmutación por error en múltiples zonas.',
+                items: [
+                    { serviceId: 'rds', color: 'bg-[#C925D1]' },
+                    { serviceId: 'aurora', color: 'bg-[#C925D1]' }
+                ]
+            },
+            {
+                step: 13,
+                titleEn: 'Monitoring and Observability',
+                titleEs: 'Observabilidad Profunda y Auditoría',
+                summary: 'Tener visibilidad total de lo que ocurre en tu infraestructura mediante métricas, registros de auditoría, reglas de cumplimiento y trazas de red.',
+                items: [
+                    { serviceId: 'cloudwatch', color: 'bg-[#E7157B]' },
+                    { serviceId: 'cloudtrail', color: 'bg-[#E7157B]' },
+                    { serviceId: 'config', color: 'bg-[#E7157B]' },
+                    { serviceId: 'xray', color: 'bg-[#E7157B]' }
+                ]
+            },
+            {
+                step: 14,
+                titleEn: 'Messaging and Queuing',
+                titleEs: 'Mensajería Asíncrona y Desacoplamiento',
+                summary: 'Comunicar microservicios de forma fiable mediante colas de mensajes y buses de notificaciones para evitar que un fallo puntual detenga todo el sistema.',
+                items: [
+                    { serviceId: 'sns', color: 'bg-[#E7157B]' },
+                    { serviceId: 'sqs', color: 'bg-[#E7157B]' },
+                    { serviceId: 'mq', color: 'bg-[#E7157B]' }
+                ]
+            },
+            {
+                step: 15,
+                titleEn: 'Security and Compliance',
+                titleEs: 'Defensa en Profundidad y Protección de Datos',
+                summary: 'Proteger tu arquitectura en todas las capas: permisos de identidad, cortafuegos web, mitigación DDoS, custodia de secretos y cifrado de datos.',
+                items: [
+                    { serviceId: 'iam', color: 'bg-[#DD344C]' },
+                    { serviceId: 'waf', color: 'bg-[#DD344C]' },
+                    { serviceId: 'shield', color: 'bg-[#DD344C]' },
+                    { serviceId: 'guardduty', color: 'bg-[#DD344C]' },
+                    { serviceId: 'secrets', color: 'bg-[#DD344C]' },
+                    { serviceId: 'kms', color: 'bg-[#DD344C]' },
+                    { serviceId: 'nacl', color: 'bg-[#8C4FFF]' }
+                ]
+            },
+            {
+                step: 16,
+                titleEn: 'Migration & Machine Learning / AI',
+                titleEs: 'Migración a la Nube e Inteligencia Artificial',
+                summary: 'Trasladar cargas de trabajo existentes hacia AWS sin tiempo de inactividad y potenciar tus aplicaciones con modelos de Machine Learning e IA.',
+                items: [
+                    { serviceId: 'migration', color: 'bg-[#01A88D]' },
+                    { serviceId: 'sagemaker', color: 'bg-[#01A88D]' },
+                    { serviceId: 'aiservices', color: 'bg-[#01A88D]' }
+                ]
+            }
+        ];
+
+        let activeCategoryFilter = 'all';
+        let currentSearchQuery = '';
+
+        function matchesSearch(service) {
+            if (!currentSearchQuery) return true;
+            const q = currentSearchQuery.toLowerCase();
+            return (
+                service.name.toLowerCase().includes(q) ||
+                service.sigla.toLowerCase().includes(q) ||
+                service.fullName.toLowerCase().includes(q) ||
+                service.desc.toLowerCase().includes(q) ||
+                service.useCase.toLowerCase().includes(q)
+            );
+        }
+
+        function createServiceItemHTML(serviceId, categoryConfig) {
+            const s = SERVICES_DB[serviceId];
+            if (!s || !matchesSearch(s)) return '';
+
+            const iconBgColor = (categoryConfig.customServiceColors && categoryConfig.customServiceColors[serviceId])
+                ? categoryConfig.customServiceColors[serviceId]
+                : categoryConfig.iconBg;
+
+            return `
+                <div onclick="openServiceModal('${s.id}')"
+                     class="service-card group cursor-pointer p-3 rounded-2xl bg-slate-50/70 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 hover:shadow-md flex items-start gap-3.5">
+                    <!-- Service icon tile -->
+                    <div class="w-12 h-12 rounded-xl ${iconBgColor} text-white p-2 shrink-0 shadow-sm group-hover:scale-105 transition-transform flex items-center justify-center">
+                        ${AWS_ICONS[s.icon] || AWS_ICONS.ec2}
+                    </div>
+                    <!-- Text Content -->
+                    <div class="min-w-0 flex-1">
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <h4 class="font-extrabold text-slate-900 dark:text-white text-sm sm:text-[15px] leading-snug group-hover:text-[#FF9900] transition-colors">
+                                ${s.name}
+                            </h4>
+                            <span class="px-2 py-0.5 text-[11px] font-black rounded-md ${categoryConfig.badgeText}">
+                                (${s.sigla})
+                            </span>
+                        </div>
+                        <p class="text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
+                            ${s.desc}
+                        </p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function createCategoryBoxHTML(cat) {
+            const filteredServicesHTML = cat.services
+                .map(id => createServiceItemHTML(id, cat))
+                .filter(Boolean)
+                .join('');
+
+            if (!filteredServicesHTML) return '';
+
+            const isTwoColInternal = cat.placement === 'middle';
+            const headerTextColor = cat.headerTextDark ? 'text-slate-950' : 'text-white';
+
+            return `
+                <article class="bg-white dark:bg-slate-900 rounded-3xl shadow-md border-2 ${cat.borderCol} overflow-hidden flex flex-col">
+                    <!-- Category Header Banner -->
+                    <div class="${cat.headerBg} ${headerTextColor} px-5 py-3.5 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-white/20 backdrop-blur-sm p-1.5 flex items-center justify-center">
+                                ${AWS_ICONS[SERVICES_DB[cat.services[0]].icon]}
+                            </div>
+                            <div>
+                                <h3 class="font-black text-sm sm:text-base tracking-wide uppercase leading-tight">${cat.title}</h3>
+                                <p class="text-[11px] opacity-85 font-medium">${cat.subtitle}</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-black/15">
+                            ${cat.services.length} servicios
+                        </span>
+                    </div>
+                    <!-- Services List -->
+                    <div class="p-4 flex-1 ${isTwoColInternal ? 'grid grid-cols-1 sm:grid-cols-2 gap-3' : 'space-y-2.5'}">
+                        ${filteredServicesHTML}
+                    </div>
+                </article>
+            `;
+        }
+
+        function renderPosterView() {
+            const topContainer = document.getElementById('posterGridTop');
+            const middleContainer = document.getElementById('posterGridMiddle');
+            const bottomContainer = document.getElementById('posterGridBottom');
+
+            const catsToRender = POSTER_CATEGORIES.filter(c => activeCategoryFilter === 'all' || c.id === activeCategoryFilter);
+
+            topContainer.innerHTML = catsToRender.filter(c => c.placement === 'top').map(createCategoryBoxHTML).join('');
+            middleContainer.innerHTML = catsToRender.filter(c => c.placement === 'middle').map(createCategoryBoxHTML).join('');
+
+            bottomContainer.className = 'grid grid-cols-1 lg:grid-cols-3 gap-6';
+            bottomContainer.innerHTML = catsToRender.filter(c => c.placement === 'bottom').map(createCategoryBoxHTML).join('');
+        }
+
+        function renderRoadmapView() {
+            const container = document.getElementById('roadmapContainer');
+            let html = '';
+
+            LEARNING_ROADMAP.forEach(row => {
+                const visibleItems = row.items.filter(item => {
+                    const s = SERVICES_DB[item.serviceId];
+                    return s && matchesSearch(s);
+                });
+
+                if (visibleItems.length === 0) return;
+
+                const cardsHTML = visibleItems.map(item => {
+                    const s = SERVICES_DB[item.serviceId];
+                    return `
+                        <div onclick="openServiceModal('${s.id}')"
+                             class="service-card cursor-pointer group flex items-start gap-3 p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/70 hover:bg-white dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-700 hover:border-[#FF9900] hover:shadow-md transition">
+                            <div class="w-11 h-11 rounded-xl ${item.color} text-white p-2 shrink-0 shadow-sm group-hover:scale-105 transition">
+                                ${AWS_ICONS[s.icon]}
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <div class="flex items-center gap-1.5 flex-wrap">
+                                    <span class="font-extrabold text-xs sm:text-sm text-slate-900 dark:text-white group-hover:text-[#FF9900]">
+                                        ${item.customLabel || s.name}
+                                    </span>
+                                    <span class="text-[11px] font-bold px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">
+                                        ${s.sigla}
+                                    </span>
+                                </div>
+                                <p class="text-xs text-slate-600 dark:text-slate-300 mt-1 line-clamp-2">
+                                    ${s.desc}
+                                </p>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                html += `
+                    <div class="grid grid-cols-1 lg:grid-cols-12 p-4 sm:p-6 gap-4 items-center hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition">
+                        <!-- Left Column: Step & Category Name -->
+                        <div class="lg:col-span-4 flex items-start gap-3.5">
+                            <span class="w-8 h-8 rounded-xl bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 font-black text-xs flex items-center justify-center shrink-0 mt-0.5 border border-emerald-500/30">
+                                ${row.step}
+                            </span>
+                            <div>
+                                <div class="text-[11px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                                    ${row.titleEn}
+                                </div>
+                                <h3 class="text-base sm:text-lg font-black text-slate-900 dark:text-white leading-snug">
+                                    ${row.titleEs}
+                                </h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    ${row.summary}
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Right Column: Services with Icons + Explanations -->
+                        <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">
+                            ${cardsHTML}
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html || `<div class="p-12 text-center text-slate-500">No se encontraron servicios que coincidan con tu búsqueda.</div>`;
+        }
+
+        function renderFilterButtons() {
+            const bar = document.getElementById('categoryFilterBar');
+            const buttons = [
+                { id: 'all', label: 'Todas' },
+                { id: 'compute', label: 'Cómputo' },
+                { id: 'database', label: 'Bases de Datos' },
+                { id: 'storage', label: 'Almacenamiento' },
+                { id: 'network', label: 'Redes' },
+                { id: 'security', label: 'Seguridad' },
+                { id: 'mgmt', label: 'Observabilidad y Costes' },
+                { id: 'devops', label: 'DevOps y Mensajería' },
+                { id: 'ml_mig', label: 'IA y Migración' }
+            ];
+
+            bar.innerHTML = buttons.map(b => {
+                const active = activeCategoryFilter === b.id;
+                return `
+                    <button onclick="setCategoryFilter('${b.id}')"
+                            class="px-3 py-1 rounded-full text-xs font-bold transition ${
+                                active
+                                ? 'bg-[#232F3E] text-[#FF9900] shadow-sm ring-2 ring-[#FF9900]/40'
+                                : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 border border-slate-200 dark:border-slate-700'
+                            }">
+                        ${b.label}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function setCategoryFilter(catId) {
+            activeCategoryFilter = catId;
+            renderFilterButtons();
+            renderPosterView();
+        }
+
+        function switchView(mode) {
+            const poster = document.getElementById('sectionPoster');
+            const roadmap = document.getElementById('sectionRoadmap');
+            const btnPoster = document.getElementById('btnViewPoster');
+            const btnRoadmap = document.getElementById('btnViewRoadmap');
+            const btnBoth = document.getElementById('btnViewBoth');
+
+            const activeClasses = ['bg-white', 'dark:bg-slate-900', 'text-slate-900', 'dark:text-white', 'shadow-sm'];
+            const inactiveClasses = ['text-slate-600', 'dark:text-slate-400'];
+
+            [btnPoster, btnRoadmap, btnBoth].forEach(btn => {
+                btn.classList.remove(...activeClasses);
+                btn.classList.add(...inactiveClasses);
+            });
+
+            if (mode === 'poster') {
+                poster.classList.remove('hidden');
+                roadmap.classList.add('hidden');
+                btnPoster.classList.add(...activeClasses);
+                btnPoster.classList.remove(...inactiveClasses);
+            } else if (mode === 'roadmap') {
+                poster.classList.add('hidden');
+                roadmap.classList.remove('hidden');
+                btnRoadmap.classList.add(...activeClasses);
+                btnRoadmap.classList.remove(...inactiveClasses);
+            } else {
+                poster.classList.remove('hidden');
+                roadmap.classList.remove('hidden');
+                btnBoth.classList.add(...activeClasses);
+                btnBoth.classList.remove(...inactiveClasses);
+            }
+        }
+
+        function openServiceModal(serviceId) {
+            const s = SERVICES_DB[serviceId];
+            if (!s) return;
+
+            const cat = POSTER_CATEGORIES.find(c => c.id === s.category) || POSTER_CATEGORIES[0];
+            const modal = document.getElementById('serviceModal');
+            const header = document.getElementById('modalHeader');
+
+            header.className = `p-6 text-white flex items-center justify-between ${cat.headerBg}`;
+            document.getElementById('modalIcon').innerHTML = AWS_ICONS[s.icon];
+            document.getElementById('modalCategoryBadge').textContent = cat.title;
+            document.getElementById('modalTitle').textContent = `${s.name} (${s.sigla})`;
+            document.getElementById('modalFullName').textContent = s.fullName;
+            document.getElementById('modalFriendlyDesc').textContent = s.desc;
+            document.getElementById('modalUseCase').textContent = s.useCase;
+            document.getElementById('modalCli').textContent = s.cli;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('serviceModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function copyCliCommand() {
+            const text = document.getElementById('modalCli').textContent;
+            const tempInput = document.createElement('textarea');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            const btn = document.getElementById('copyBtn');
+            btn.innerHTML = '<span>¡Copiado!</span>';
+            setTimeout(() => {
+                btn.innerHTML = '<span>Copiar</span>';
+            }, 1800);
+        }
+
+        // Event Listeners Initialization
+        window.onload = function() {
+            renderFilterButtons();
+            renderPosterView();
+            renderRoadmapView();
+
+            const searchInput = document.getElementById('searchInput');
+            const clearBtn = document.getElementById('clearSearch');
+            const stats = document.getElementById('searchStats');
+
+            searchInput.addEventListener('input', (e) => {
+                currentSearchQuery = e.target.value.trim();
+                clearBtn.classList.toggle('hidden', !currentSearchQuery);
+                renderPosterView();
+                renderRoadmapView();
+
+                if (currentSearchQuery) {
+                    const totalMatches = Object.values(SERVICES_DB).filter(matchesSearch).length;
+                    stats.textContent = `${totalMatches} servicio(s) encontrado(s)`;
+                } else {
+                    stats.textContent = '';
+                }
+            });
+
+            clearBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                currentSearchQuery = '';
+                clearBtn.classList.add('hidden');
+                stats.textContent = '';
+                renderPosterView();
+                renderRoadmapView();
+            });
+
+            // Close modal on backdrop click or Escape key
+            document.getElementById('serviceModal').addEventListener('click', (e) => {
+                if (e.target.id === 'serviceModal') closeModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeModal();
+            });
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "biblioteca-aws-servicios",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -c tailwind.config.cjs -i input.css -o styles.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.16"
+  }
+}
