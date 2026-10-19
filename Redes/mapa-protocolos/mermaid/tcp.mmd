@@ -12,10 +12,12 @@ flowchart TB
  UDP --> IP
  IP --> ETH["Ethernet / Wi-Fi"]
  ETH --> PHY["Capa física"]
- OSPF["OSPF / BGP / RIP"] --> IP
+ OSPF["OSPF"] --> IP
+ BGP["BGP"] --> TCP
+ RIP["RIP"] --> UDP
  classDef app fill:#b65b24,color:#fff,stroke:#85401a
  classDef transport fill:#c7793e,color:#fff,stroke:#85401a
  classDef network fill:#d29a58,color:#1f2024,stroke:#85401a
- class HTTP,FTP,SMTP,SSH,DNS,DHCP,SNMP,HTTP3 app
+ class HTTP,FTP,SMTP,SSH,DNS,DHCP,SNMP,HTTP3,BGP,RIP app
  class TCP,UDP,QUIC transport
  class IP,ETH,PHY,OSPF network

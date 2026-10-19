@@ -1,4 +1,6 @@
 flowchart TB
  ISCSI["iSCSI"] --> TCP["TCP"] --> IP["IP"] --> ETH["Ethernet"]
  FCP["FCP · Fibre Channel Protocol"] --> FC2["FC-2"] --> FC1["FC-1"] --> FC0["Fibra óptica"]
- NVME["NVMe-oF"] --> ISCSI
+ NVME["NVMe-oF"] --> NVMETCP["NVMe/TCP"] --> TCP
+ NVME --> NVMERDMA["NVMe/RDMA"] --> RDMA["RDMA fabric"]
+ NVME --> NVMEFC["NVMe/FC"] --> FC2
