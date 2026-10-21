@@ -66,6 +66,10 @@ La [guía de fundamentos y conexión básica](../../../Sistemas%20Operativos/gui
 
 La [práctica de claves y agente](../../../Sistemas%20Operativos/guias/ssh/04-claves-y-agente.md) continúa con generación protegida, despliegue de pública, firma mediante agente, cambio de frase, rotación y retirada. Su [referencia](../../../Sistemas%20Operativos/guias/ssh/05-referencia-claves.md) desarrolla 21 opciones y tres directivas en los modos delimitados, con enlaces recíprocos y pruebas funcionales pendientes. Los modos restantes de cada herramienta conservan su estado abierto.
 
+## Tercer bloque desarrollado
+
+La [práctica de servidor Linux](../../../Sistemas%20Operativos/guias/ssh/06-servidor-linux.md) desarrolla instalación, servicio/socket, validación, política de acceso y restauración. La [referencia de servidor](../../../Sistemas%20Operativos/guias/ssh/07-referencia-servidor.md) añade cinco opciones y 16 directivas con enlaces recíprocos, contexto y pruebas pendientes. La cobertura de plataformas y el resto de directivas siguen abiertos.
+
 ## Estado de verificación
 
 - **Inventariado y contrastado:** nombres/sinopsis de las opciones públicas, directivas principales, compatibilidad del parser, órdenes/alias SFTP y solicitudes de protocolo incluidas.
