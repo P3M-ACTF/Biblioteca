@@ -2,7 +2,7 @@
 
 [Volver a Biblioteca](../../../README.md) · [Guion completo de SSH](../../../Documentaciones/guiones/ssh.md) · [Inventario versionado](../../../Documentaciones/guiones/ssh/README.md)
 
-Entregas desarrolladas a partir del guion: comprender la confianza y autenticación en SSH, realizar una conexión controlada e interpretar opciones y errores; después, gestionar el ciclo básico de claves de usuario. La documentación utiliza como base **OpenSSH Portable 10.6p1**, sin afirmar que esa sea la versión instalada en todos los equipos.
+Entregas desarrolladas a partir del guion: comprender la confianza y autenticación en SSH, realizar una conexión controlada e interpretar opciones y errores; después, gestionar el ciclo básico de claves de usuario y aplicar cambios controlados en el servidor Linux. La documentación utiliza como base **OpenSSH Portable 10.6p1**, sin afirmar que esa sea la versión instalada en todos los equipos.
 
 ## Ruta de lectura
 
@@ -13,6 +13,8 @@ Entregas desarrolladas a partir del guion: comprender la confianza y autenticaci
 | [3. Referencia de conexión](03-referencia-conexion.md) | Argumentos, defaults upstream, repetición, efectos y casos de 16 opciones de ssh y seis directivas. |
 | [4. Claves de usuario y agente](04-claves-y-agente.md) | Generación protegida, instalación de pública, prueba de identidad, agente, cambio de frase, rotación y retirada. |
 | [5. Referencia de claves](05-referencia-claves.md) | 21 opciones de ssh-keygen/ssh-add/ssh-agent/ssh-copy-id y tres directivas, limitadas a los modos descritos. |
+| [6. Servidor Linux](06-servidor-linux.md) | Instalación, servicio/socket, candidato, política de acceso, validación contextual, recarga y restauración. |
+| [7. Referencia de servidor](07-referencia-servidor.md) | Cinco opciones de sshd y 16 directivas de configuración, con defaults, contexto y casos. |
 
 Los comandos de ejemplo usan datos ficticios y requieren sustitución. Las salidas esquemáticas explican qué buscar; no se presentan como capturas de pruebas ejecutadas.
 
@@ -24,7 +26,7 @@ Los comandos de ejemplo usan datos ficticios y requieren sustitución. Las salid
 - Diagnóstico por fases y conservación deliberada de evidencias.
 - Casos de error y diferencias entre el contrato del manual y ciertos estados del parser versionado.
 
-Quedan para otros bloques la instalación/administración del servidor, la gestión completa de claves/agentes, bastionado, transferencias, túneles, certificados/CA, revocación y automatización avanzada. Las herramientas auxiliares citadas aquí se utilizan con un propósito limitado; no se declara cubierto todo su catálogo.
+Quedan para otros bloques la administración completa del servidor, la gestión completa de claves/agentes, bastionado avanzado, transferencias, túneles, certificados/CA, revocación y automatización avanzada. Las herramientas auxiliares citadas aquí se utilizan con un propósito limitado; no se declara cubierto todo su catálogo.
 
 ## Cobertura y estado
 
@@ -46,6 +48,12 @@ Quedan para otros bloques la instalación/administración del servidor, la gesti
 La [práctica de claves y agente](04-claves-y-agente.md) desarrolla generación, correspondencia de pública/privada, despliegue, selección de una sola identidad, agente POSIX dedicado y comprobaciones de cliente Windows. Distingue cambio de frase, retirada del agente y revocación de autorizaciones, con prueba positiva de la clave nueva y negativa de la anterior.
 
 La [referencia de claves](05-referencia-claves.md) enlaza 24 fichas con el inventario: 21 opciones y tres directivas. Contiene 48 casos de referencia y la práctica añade ocho criterios de aceptación, todos **pendientes de ensayo**. La cobertura es parcial en SSH-T04, SSH-C007/C012/C013/C016/C017/C018/C023/C026 y SSH-P01/P02/P09; no cierra esas familias ni los modos de CA, KRL, FIDO, conversión y restricciones avanzadas.
+
+### Tercer bloque: servidor Linux
+
+La [práctica de servidor](06-servidor-linux.md) recorre instalación por familia de paquetes, identificación de servicio/socket, configuración candidata, política de acceso y recuperación por consola. Distingue sintaxis, configuración efectiva por contexto y pruebas de conexiones nuevas. No cambia puerto, algoritmos, política PAM ni unidades de activación; el perfil de clave simple exige precondiciones y no sustituye MFA.
+
+La [referencia de servidor](07-referencia-servidor.md) añade 21 fichas: cinco opciones y 16 directivas, con 42 casos de referencia y ocho criterios de aceptación en la práctica, todos **pendientes de ensayo**. Desarrollo parcial de SSH-T02/T05/T08 y SSH-C020…C025, relacionado con SSH-P09; no acredita cobertura completa por distribución ni bastionado terminado.
 
 Las tablas siguientes corresponden al primer bloque de conexión.
 
@@ -102,7 +110,7 @@ Una casilla del guion general permanece abierta mientras falten otras unidades d
 
 - [Chuleta de administración SSH](../../chuletas/ssh-admin.md): consulta rápida existente; tiene un alcance más amplio que esta entrega.
 - [Nota de claves la primera vez](../../notas/ssh-claves-primer-uso.md): introducción a creación/despliegue de claves.
-- [Plantilla sshd_config](../../plantillas/sshd_config.ejemplo): recurso para futuros cambios de servidor; esta práctica no lo modifica.
+- [Plantilla sshd_config](../../plantillas/sshd_config.ejemplo): ejemplo existente con rutas/opciones que deben revisarse por paquete; seguir la práctica de servidor antes de aplicar cambios.
 - [Catálogo de contenidos de SSH](../../../Documentaciones/guiones/ssh/README.md): temas restantes e IDs para ampliar materiales.
 
 ## Fuentes y mantenimiento

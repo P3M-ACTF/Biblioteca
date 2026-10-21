@@ -145,6 +145,10 @@ Los materiales nuevos siguen pendientes. Registrar sus enlaces reales y los IDs 
 
 [Ciclo básico de claves y agente](../../Sistemas%20Operativos/guias/ssh/04-claves-y-agente.md) y [referencia de 21 opciones y tres directivas](../../Sistemas%20Operativos/guias/ssh/05-referencia-claves.md): generación, protección, despliegue, selección, retirada del agente y rotación/revocación de autorizaciones. Alcance parcial de las familias; pruebas funcionales pendientes. Certificados/CA, KRL, dispositivos, conversión y restricciones avanzadas siguen abiertos.
 
+### Tercera entrega desarrollada
+
+[Servidor Linux: instalación y cambio controlado](../../Sistemas%20Operativos/guias/ssh/06-servidor-linux.md) y [referencia de cinco opciones y 16 directivas](../../Sistemas%20Operativos/guias/ssh/07-referencia-servidor.md): servicio/socket, candidato, contexto Match, política de acceso, nuevas conexiones y restauración por consola. Alcance parcial de SSH-T02/T05/T08 y SSH-C020…C025; pruebas funcionales pendientes. No se declara cerrado el bastionado ni la compatibilidad por distribución.
+
 ### Recursos existentes o guiones relacionados
 
 - [Guion GNU/Linux](gnu-linux.md) y [guion Windows](windows.md).
