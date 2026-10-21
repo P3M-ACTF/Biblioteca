@@ -153,6 +153,10 @@ Los materiales nuevos siguen pendientes. Registrar sus enlaces reales y los IDs 
 
 [Transferencias SFTP/SCP](../../Sistemas%20Operativos/guias/ssh/08-transferencias.md), [referencia de opciones y órdenes](../../Sistemas%20Operativos/guias/ssh/09-referencia-transferencias.md) e [introducción rsync sobre SSH](../../Sistemas%20Operativos/guias/ssh/10-rsync-sobre-ssh.md): copias, árboles, metadatos, hashes, reanudación, lotes y sincronización con dry-run. Cobertura parcial de SSH-T06, SSH-C027/C028/C029/C033 y SSH-P04; pruebas funcionales pendientes. El catálogo completo de rsync permanece en el alcance GNU/Linux.
 
+### Quinta entrega desarrollada
+
+[Túneles TCP y bastiones](../../Sistemas%20Operativos/guias/ssh/11-tuneles-y-bastiones.md) y [referencia de opciones y directivas](../../Sistemas%20Operativos/guias/ssh/12-referencia-tuneles.md): dirección de -L/-R/-D, ProxyJump con identidades en el cliente, permisos de canal/escucha, fallos y restauración. Cobertura parcial de SSH-T07, SSH-C002/C003/C004/C010/C024 y SSH-P05/P06; 19 fichas, 38 casos y diez criterios de aceptación pendientes. Los demás modos y variantes por plataforma permanecen abiertos.
+
 ### Recursos existentes o guiones relacionados
 
 - [Guion GNU/Linux](gnu-linux.md) y [guion Windows](windows.md).
