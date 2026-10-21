@@ -149,6 +149,10 @@ Los materiales nuevos siguen pendientes. Registrar sus enlaces reales y los IDs 
 
 [Servidor Linux: instalación y cambio controlado](../../Sistemas%20Operativos/guias/ssh/06-servidor-linux.md) y [referencia de cinco opciones y 16 directivas](../../Sistemas%20Operativos/guias/ssh/07-referencia-servidor.md): servicio/socket, candidato, contexto Match, política de acceso, nuevas conexiones y restauración por consola. Alcance parcial de SSH-T02/T05/T08 y SSH-C020…C025; pruebas funcionales pendientes. No se declara cerrado el bastionado ni la compatibilidad por distribución.
 
+### Cuarta entrega desarrollada
+
+[Transferencias SFTP/SCP](../../Sistemas%20Operativos/guias/ssh/08-transferencias.md), [referencia de opciones y órdenes](../../Sistemas%20Operativos/guias/ssh/09-referencia-transferencias.md) e [introducción rsync sobre SSH](../../Sistemas%20Operativos/guias/ssh/10-rsync-sobre-ssh.md): copias, árboles, metadatos, hashes, reanudación, lotes y sincronización con dry-run. Cobertura parcial de SSH-T06, SSH-C027/C028/C029/C033 y SSH-P04; pruebas funcionales pendientes. El catálogo completo de rsync permanece en el alcance GNU/Linux.
+
 ### Recursos existentes o guiones relacionados
 
 - [Guion GNU/Linux](gnu-linux.md) y [guion Windows](windows.md).
