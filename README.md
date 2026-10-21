@@ -45,6 +45,7 @@ Los índices de cada área reúnen el catálogo completo de chuletas. Estos son 
 | [Servicios AWS](https://p3m-actf.github.io/Biblioteca/Nube/aws-servicios/) ([fuente](Nube/aws-servicios/README.md)) | Explorar servicios por categorías y seguir una ruta de aprendizaje interactiva. |
 | [Chuletas de Ciberseguridad](Ciberseguridad/chuletas/README.md) | Consultar autenticación, TLS, bastionado, auditoría, parches, copias de seguridad y respuesta a incidentes. |
 | [Preferencias para agentes de IA](Inteligencia%20Artificial/AI-PREFERENCES.es.md) | Reutilizar criterios de comunicación, código, seguridad y verificación. También disponibles [en inglés](Inteligencia%20Artificial/AI-PREFERENCES.en.md), con [guía de uso](Inteligencia%20Artificial/GUIA-DE-USO-AI-PREFERENCES.md). |
+| [Guía de SSH](Sistemas%20Operativos/guias/ssh/README.md) | Comprender los fundamentos, preparar la primera conexión y consultar opciones con interpretación de resultados. |
 | [Guiones de contenidos](Documentaciones/guiones/README.md) | Planificar temarios, inventariar comandos y opciones, y relacionar guías y cheatsheets. |
 | [Plantilla de README](Documentaciones/plantillas/readme/README.md) | Preparar la presentación y documentación inicial de un proyecto con secciones adaptables. |
 
@@ -64,7 +65,7 @@ cd Biblioteca
 > [!NOTE]
 > Antes de utilizar comandos, aliases o configuraciones, revisa las indicaciones del documento y adapta los ejemplos a tu sistema y versión.
 
-Las guías narrativas enlazadas desde el proyecto se encuentran en la [Wiki de Biblioteca](https://github.com/P3M-ACTF/Biblioteca/wiki).
+La [guía de SSH](Sistemas%20Operativos/guias/ssh/README.md) se desarrolla en este repositorio. Otras guías narrativas están disponibles en la [Wiki de Biblioteca](https://github.com/P3M-ACTF/Biblioteca/wiki).
 
 ## Licencia
 
