@@ -141,6 +141,10 @@ Los materiales nuevos siguen pendientes. Registrar sus enlaces reales y los IDs 
 
 [Fundamentos, conexión básica y referencia de opciones](../../Sistemas%20Operativos/guias/ssh/README.md): 16 opciones y seis directivas documentadas para la referencia Portable 10.6p1, con pruebas funcionales pendientes. Los demás elementos de cada familia mantienen su estado; no se marcan bloques completos por disponer de una introducción.
 
+### Segunda entrega desarrollada
+
+[Ciclo básico de claves y agente](../../Sistemas%20Operativos/guias/ssh/04-claves-y-agente.md) y [referencia de 21 opciones y tres directivas](../../Sistemas%20Operativos/guias/ssh/05-referencia-claves.md): generación, protección, despliegue, selección, retirada del agente y rotación/revocación de autorizaciones. Alcance parcial de las familias; pruebas funcionales pendientes. Certificados/CA, KRL, dispositivos, conversión y restricciones avanzadas siguen abiertos.
+
 ### Recursos existentes o guiones relacionados
 
 - [Guion GNU/Linux](gnu-linux.md) y [guion Windows](windows.md).

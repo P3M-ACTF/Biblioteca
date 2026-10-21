@@ -62,6 +62,10 @@ En configuración se registran **104 directivas cliente**, **107 servidor** y **
 
 La [guía de fundamentos y conexión básica](../../../Sistemas%20Operativos/guias/ssh/README.md) desarrolla los conceptos iniciales, 16 opciones de ssh y seis directivas de cliente. Incluye práctica, interpretación de salida y casos pendientes de ensayo. La matriz de esa guía distingue cobertura documental de verificación funcional; las casillas del guion general no se cierran por esta entrega parcial.
 
+## Segundo bloque desarrollado
+
+La [práctica de claves y agente](../../../Sistemas%20Operativos/guias/ssh/04-claves-y-agente.md) continúa con generación protegida, despliegue de pública, firma mediante agente, cambio de frase, rotación y retirada. Su [referencia](../../../Sistemas%20Operativos/guias/ssh/05-referencia-claves.md) desarrolla 21 opciones y tres directivas en los modos delimitados, con enlaces recíprocos y pruebas funcionales pendientes. Los modos restantes de cada herramienta conservan su estado abierto.
+
 ## Estado de verificación
 
 - **Inventariado y contrastado:** nombres/sinopsis de las opciones públicas, directivas principales, compatibilidad del parser, órdenes/alias SFTP y solicitudes de protocolo incluidas.
