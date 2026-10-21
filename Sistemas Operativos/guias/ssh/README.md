@@ -2,7 +2,7 @@
 
 [Volver a Biblioteca](../../../README.md) · [Guion completo de SSH](../../../Documentaciones/guiones/ssh.md) · [Inventario versionado](../../../Documentaciones/guiones/ssh/README.md)
 
-Entregas desarrolladas a partir del guion: comprender la confianza y autenticación en SSH, realizar una conexión controlada e interpretar opciones y errores; después, gestionar el ciclo básico de claves de usuario y aplicar cambios controlados en el servidor Linux. La documentación utiliza como base **OpenSSH Portable 10.6p1**, sin afirmar que esa sea la versión instalada en todos los equipos.
+Entregas desarrolladas a partir del guion: comprender la confianza y autenticación en SSH, realizar una conexión controlada e interpretar opciones y errores; después, gestionar el ciclo básico de claves de usuario, aplicar cambios controlados en el servidor Linux y transferir datos comprobando el resultado. La documentación utiliza como base **OpenSSH Portable 10.6p1**, sin afirmar que esa sea la versión instalada en todos los equipos.
 
 ## Ruta de lectura
 
@@ -15,6 +15,9 @@ Entregas desarrolladas a partir del guion: comprender la confianza y autenticaci
 | [5. Referencia de claves](05-referencia-claves.md) | 21 opciones de ssh-keygen/ssh-add/ssh-agent/ssh-copy-id y tres directivas, limitadas a los modos descritos. |
 | [6. Servidor Linux](06-servidor-linux.md) | Instalación, servicio/socket, candidato, política de acceso, validación contextual, recarga y restauración. |
 | [7. Referencia de servidor](07-referencia-servidor.md) | Cinco opciones de sshd y 16 directivas de configuración, con defaults, contexto y casos. |
+| [8. SFTP y SCP](08-transferencias.md) | Subida/descarga, nombres con espacios, hashes, lotes y reanudación sobre prefijo conocido. |
+| [9. Referencia de transferencias](09-referencia-transferencias.md) | 11 opciones, nueve órdenes SFTP y nueve flags de ls. |
+| [10. rsync sobre SSH](10-rsync-sobre-ssh.md) | Introducción con dry-run, barra final, parciales, contenido y revisión de borrados. |
 
 Los comandos de ejemplo usan datos ficticios y requieren sustitución. Las salidas esquemáticas explican qué buscar; no se presentan como capturas de pruebas ejecutadas.
 
@@ -26,7 +29,7 @@ Los comandos de ejemplo usan datos ficticios y requieren sustitución. Las salid
 - Diagnóstico por fases y conservación deliberada de evidencias.
 - Casos de error y diferencias entre el contrato del manual y ciertos estados del parser versionado.
 
-Quedan para otros bloques la administración completa del servidor, la gestión completa de claves/agentes, bastionado avanzado, transferencias, túneles, certificados/CA, revocación y automatización avanzada. Las herramientas auxiliares citadas aquí se utilizan con un propósito limitado; no se declara cubierto todo su catálogo.
+Quedan para otros bloques la administración completa del servidor, la gestión completa de claves/agentes, bastionado avanzado, transferencias avanzadas, túneles, certificados/CA, revocación y automatización avanzada. Las herramientas auxiliares citadas aquí se utilizan con un propósito limitado; no se declara cubierto todo su catálogo.
 
 ## Cobertura y estado
 
@@ -54,6 +57,12 @@ La [referencia de claves](05-referencia-claves.md) enlaza 24 fichas con el inven
 La [práctica de servidor](06-servidor-linux.md) recorre instalación por familia de paquetes, identificación de servicio/socket, configuración candidata, política de acceso y recuperación por consola. Distingue sintaxis, configuración efectiva por contexto y pruebas de conexiones nuevas. No cambia puerto, algoritmos, política PAM ni unidades de activación; el perfil de clave simple exige precondiciones y no sustituye MFA.
 
 La [referencia de servidor](07-referencia-servidor.md) añade 21 fichas: cinco opciones y 16 directivas, con 42 casos de referencia y ocho criterios de aceptación en la práctica, todos **pendientes de ensayo**. Desarrollo parcial de SSH-T02/T05/T08 y SSH-C020…C025, relacionado con SSH-P09; no acredita cobertura completa por distribución ni bastionado terminado.
+
+### Cuarto bloque: transferencias
+
+La [práctica SFTP/SCP](08-transferencias.md) distingue sus protocolos, copias/árboles, metadatos, hashes, reanudación y ejecución por lotes. La [referencia](09-referencia-transferencias.md) añade 20 fichas —11 opciones y nueve órdenes— y una tabla de nueve flags de ls: 29 unidades inventariadas enlazadas en ambos sentidos, con 40 casos de referencia y ocho criterios de aceptación pendientes.
+
+La [introducción rsync sobre SSH](10-rsync-sobre-ssh.md) fija su propia referencia, rsync 3.5.1, e incluye cuatro criterios pendientes. Es un desarrollo introductorio de SSH-C033; el catálogo completo corresponde a GNU/Linux. Cobertura parcial de SSH-T06, SSH-C027/C028/C029/C033 y SSH-P04; no cierra las familias, el protocolo legacy ni las diferencias por plataforma.
 
 Las tablas siguientes corresponden al primer bloque de conexión.
 
