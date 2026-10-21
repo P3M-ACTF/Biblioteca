@@ -7,7 +7,7 @@ Estos documentos definen **qué debemos cubrir** antes de redactar guías, manua
 | Guion | Alcance |
 | --- | --- |
 | [GitHub](github.md) | Plataforma, Git como base, GitHub CLI, APIs, colaboración, automatización, seguridad y administración. |
-| [SSH](ssh.md) | Protocolo, herramientas OpenSSH, autenticación, configuración, certificados, transferencias y túneles en Linux y Windows. |
+| [SSH](ssh.md) | Protocolo, autenticación, configuración, transferencias y túneles. Incluye [inventario detallado de OpenSSH Portable 10.6p1](ssh/README.md). |
 | [MySQL](mysql.md) | Modelo relacional, SQL, funciones, herramientas cliente y servidor, administración, seguridad y recuperación. |
 | [Stack XAMPP](xampp.md) | Paquete local en Windows/Linux y reproducción funcional por componentes con Docker Compose. |
 | [Stack LAMPP / LAMP](lampp.md) | Instalación nativa Linux de Apache, base de datos y PHP; variantes y despliegue con Compose. |
@@ -75,7 +75,7 @@ Las casillas del temario y de los casos se mantienen vacías hasta que el bloque
 - [ ] Revisar diferencias de versión, edición, distribución, shell y arquitectura. No atribuir a todas las variantes una prueba realizada en una sola.
 - [ ] Enlazar los materiales derivados con los IDs que cubren y revisar enlaces y formato.
 
-El estado actual es **primera versión de los guiones y de sus inventarios**, no una referencia exhaustiva ya cerrada. Las opciones indicadas dan una base de desarrollo; el contraste completo con versiones concretas sigue pendiente. No se han ejecutado las operaciones de administración incluidas.
+El estado actual es **primera versión de los guiones**, con el [inventario de SSH ampliado y contrastado para OpenSSH Portable 10.6p1](ssh/README.md). Los demás inventarios mantienen su cobertura inicial. Ninguno es todavía una referencia técnica desarrollada y verificada por completo: faltan fichas, defaults por entorno y pruebas funcionales. No se han ejecutado las operaciones de administración incluidas.
 
 ## Flujo de mantenimiento
 

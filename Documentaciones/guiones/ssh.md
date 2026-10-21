@@ -6,7 +6,7 @@
 
 Secure Shell (SSH): fundamentos del protocolo y referencia de OpenSSH cliente/servidor, incluyendo implementación portable y Windows OpenSSH. Distinguir versión del protocolo, versión del producto y modificaciones del distribuidor. Cubrir Linux, Windows y diferencias con clientes opcionales como PuTTY; el catálogo completo de PuTTY se mantiene como extensión separada si se incorpora.
 
-**Estado:** guion inicial; desarrollo, contraste exhaustivo de opciones y pruebas pendientes. Las variantes de las tablas son puntos de trabajo, no instrucciones listas para ejecutar. No se afirma cobertura exhaustiva de todas las versiones. Aplicar el [criterio de cierre](README.md#cuándo-se-puede-decir-completo) antes de marcar una familia como completa.
+**Estado:** temario e inventario de familias definidos. El [inventario versionado de OpenSSH Portable 10.6p1](ssh/README.md) desglosa las opciones y directivas de su referencia upstream y registra el contraste con los parsers. El desarrollo completo por unidad, los defaults de cada compilación, las variantes Linux/Windows y las pruebas funcionales siguen pendientes. Las tablas son puntos de trabajo; aplicar el [criterio de cierre](README.md#cuándo-se-puede-decir-completo) antes de declarar la referencia completa.
 
 ## Temario
 
@@ -62,6 +62,16 @@ Secure Shell (SSH): fundamentos del protocolo y referencia de OpenSSH cliente/se
 - [ ] Logs cliente/servidor, negociación, permisos, políticas, conectividad y errores de autenticación.
 - [ ] Auditoría de sesiones y límites de lo que registra OpenSSH sin instrumentación adicional.
 
+## Inventario versionado
+
+El [desglose de OpenSSH Portable 10.6p1](ssh/README.md) añade una unidad por opción/directiva y referencias a las líneas de una versión fijada:
+
+- [Opciones CLI y argumentos por modo](ssh/cli.md).
+- [Configuración cliente y servidor](ssh/configuracion.md).
+- [Modos, formatos, órdenes SFTP y casos](ssh/formatos-y-casos.md).
+
+Las unidades SSH-C001…SSH-C033 de este documento se conservan como familias padre. Los nuevos IDs permiten enlazar cada elemento desde guías y cheatsheets sin renumerar el guion.
+
 ## Inventario de comandos, opciones y configuración
 
 Cada fila identifica una unidad estable para enlazarla desde guías y chuletas. Desglosar **cada** subcomando, opción, argumento, directiva, valor admitido y caso en la ficha de la plantilla; conservar el ID de esta unidad como padre. Las opciones aquí recogidas son el inventario inicial, pendiente de reconciliar con el manual de la versión elegida. No trasladar opciones entre comandos de una misma fila sin consultar su sintaxis.
@@ -96,7 +106,7 @@ Cada fila identifica una unidad estable para enlazarla desde guías y chuletas. 
 | <a id="ssh-c026"></a>SSH-C026 | `authorized_keys`, `known_hosts`, `allowed_signers` | Formato, marcadores, patrones, `@cert-authority`, `@revoked`; `command`, `from`, `restrict`, `no-pty`, `no-agent-forwarding`, `permitopen`, `expiry-time` y catálogo completo | Restricciones por clave y rol de cada archivo; no intercambiar formatos. |
 | <a id="ssh-c027"></a>SSH-C027 | `scp` | `-3`, `-4`, `-6`, `-A`, `-B`, `-C`, `-D`, `-F`, `-i`, `-J`, `-l`, `-O`, `-o`, `-P`, `-p`, `-q`, `-r`, `-R`, `-S`, `-T`, `-v`, `-X` según versión | Local/remoto/remoto-remoto, puerto mayúscula, metadatos y modo legacy. |
 | <a id="ssh-c028"></a>SSH-C028 | `sftp` CLI | `-4`, `-6`, `-A`, `-a`, `-B`, `-b`, `-C`, `-c`, `-D`, `-F`, `-f`, `-i`, `-J`, `-l`, `-N`, `-o`, `-P`, `-p`, `-q`, `-R`, `-r`, `-S`, `-s`, `-v`, `-X` según versión | Lotes, reanudación, subsistema, buffers, concurrencia y opciones de transporte. |
-| <a id="ssh-c029"></a>SSH-C029 | `sftp` interactivo | `help`, `bye`, `exit`, `quit`, `cd`, `lcd`, `pwd`, `lpwd`, `ls`, `lls`, `mkdir`, `lmkdir`, `rmdir`, `rm`, `rename`, `get`, `put`, `reget`, `reput`, `chmod`, `chown`, `chgrp`, `ln`, `symlink`, `df`, `du`, `version`, `progress`, `lumask`, `!` según versión | Inventariar argumentos y flags de cada orden; enlaces, globbing y operaciones locales/remotas. |
+| <a id="ssh-c029"></a>SSH-C029 | `sftp` interactivo | `help`, `bye`, `exit`, `quit`, `cd`, `lcd`, `pwd`, `lpwd`, `ls`, `lls`, `mkdir`, `lmkdir`, `rmdir`, `rm`, `rename`, `get`, `put`, `reget`, `reput`, `chmod`, `chown`, `chgrp`, `ln`, `symlink`, `copy`, `cp`, `df`, `version`, `progress`, `lumask`, `!` según versión | Inventariar argumentos y flags de cada orden; enlaces, globbing y operaciones locales/remotas. |
 | <a id="ssh-c030"></a>SSH-C030 | `sftp-server`, `internal-sftp` | `-d`, `-e`, `-f`, `-l`, `-P`, `-p`, `-Q`, `-R`, `-u` según versión | Directorio, umask, logs, operaciones permitidas/denegadas y solo lectura. |
 | <a id="ssh-c031"></a>SSH-C031 | Herramientas auxiliares OpenSSH | `ssh-keysign`, `ssh-pkcs11-helper`, `ssh-sk-helper`, `sshd-session`, `sshd-auth` si el paquete los incluye | Inventario de ejecutables internos; no tratarlos como interfaces de usuario estables. |
 | <a id="ssh-c032"></a>SSH-C032 | Windows OpenSSH | Capacidades OpenSSH.Client/Server, servicios sshd/ssh-agent, reglas de firewall, `administrators_authorized_keys`, ACL y rutas | Diferencias con POSIX, cuenta Administrators, shell predeterminada y registros de eventos. |
