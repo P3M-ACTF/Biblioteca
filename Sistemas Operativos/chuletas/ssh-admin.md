@@ -2,6 +2,8 @@
 
 Referencia de configuración de cliente (`~/.ssh/config`), claves, `ssh-agent` y opciones seguras habituales. Enfoque **admin / endurecimiento**, no ofensivo.
 
+Para desarrollar los conceptos y practicar la conexión, consultar la [guía de fundamentos y conexión básica](../guias/ssh/README.md).
+
 ---
 
 ## 1. Ficheros del cliente

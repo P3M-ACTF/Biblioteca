@@ -131,11 +131,15 @@ Los materiales nuevos siguen pendientes. Registrar sus enlaces reales y los IDs 
 
 | Formato | Contenido que debe extraerse | Estado |
 | --- | --- | --- |
-| Guía divulgativa | Modelo mental, conceptos y decisiones de uso. | Pendiente |
-| Guía técnica | Sintaxis completa por versión, configuración y laboratorios. | Pendiente |
+| Guía divulgativa | [Fundamentos de SSH](../../Sistemas%20Operativos/guias/ssh/01-fundamentos.md). | Documentación inicial disponible. |
+| Guía técnica | [Conexión básica](../../Sistemas%20Operativos/guias/ssh/02-conexion-basica.md). | Primer bloque documentado; pruebas pendientes. |
 | Cheatsheet Markdown | Consultas y operaciones con interpretación de salida. | Pendiente |
 | Cheatsheet visual | Relaciones, flujos y decisiones; enlazar al detalle técnico. | Pendiente |
-| Referencia | Fichas de todas las opciones, argumentos y casos inventariados. | Pendiente |
+| Referencia | [16 opciones y seis directivas](../../Sistemas%20Operativos/guias/ssh/03-referencia-conexion.md). | Desarrollo parcial; resto del catálogo pendiente. |
+
+### Primera entrega desarrollada
+
+[Fundamentos, conexión básica y referencia de opciones](../../Sistemas%20Operativos/guias/ssh/README.md): 16 opciones y seis directivas documentadas para la referencia Portable 10.6p1, con pruebas funcionales pendientes. Los demás elementos de cada familia mantienen su estado; no se marcan bloques completos por disponer de una introducción.
 
 ### Recursos existentes o guiones relacionados
 

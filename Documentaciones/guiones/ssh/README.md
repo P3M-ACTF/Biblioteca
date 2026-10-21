@@ -58,10 +58,14 @@ En configuración se registran **104 directivas cliente**, **107 servidor** y **
 | SSH-C032 | Diferencias Windows, pendientes de inventario y pruebas con build concreto. |
 | SSH-C033 | rsync es externo a OpenSSH; su catálogo se desarrolla en GNU/Linux. |
 
+## Primer bloque desarrollado
+
+La [guía de fundamentos y conexión básica](../../../Sistemas%20Operativos/guias/ssh/README.md) desarrolla los conceptos iniciales, 16 opciones de ssh y seis directivas de cliente. Incluye práctica, interpretación de salida y casos pendientes de ensayo. La matriz de esa guía distingue cobertura documental de verificación funcional; las casillas del guion general no se cierran por esta entrega parcial.
+
 ## Estado de verificación
 
 - **Inventariado y contrastado:** nombres/sinopsis de las opciones públicas, directivas principales, compatibilidad del parser, órdenes/alias SFTP y solicitudes de protocolo incluidas.
-- **Pendiente de desarrollo:** explicación por unidad, todos los rangos/defaults, restricciones, combinaciones e interpretación de salidas según la [plantilla común](../PLANTILLA.md).
+- **Desarrollo parcial disponible:** las 16 opciones y seis directivas de la guía anterior tienen fichas documentadas. Queda desarrollar el resto de unidades y ampliar diferencias de entorno según la [plantilla común](../PLANTILLA.md).
 - **Pendiente de prueba funcional:** todos los casos administrativos, conexiones reales, claves/dispositivos y laboratorios. No se ha instalado ni ejecutado OpenSSH 10.6p1 para producir este inventario.
 - **Pendiente por plataforma:** paquetes Linux, cambios del distribuidor, Windows OpenSSH, nombres de servicio, rutas y permisos/ACL. No extrapolar defaults de upstream a esos paquetes.
 - **Fuera del catálogo público:** protocolo y flags internos de helpers, API de código, opciones de configure/build y herramientas externas. Su función y disponibilidad sí deben explicarse en el guion.
