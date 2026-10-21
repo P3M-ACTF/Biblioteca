@@ -1,8 +1,8 @@
-# SSH · Fundamentos y conexión básica
+# SSH · Guías y referencias
 
 [Volver a Biblioteca](../../../README.md) · [Guion completo de SSH](../../../Documentaciones/guiones/ssh.md) · [Inventario versionado](../../../Documentaciones/guiones/ssh/README.md)
 
-Primera entrega desarrollada a partir del guion: comprender la confianza y autenticación en SSH, realizar una conexión controlada e interpretar opciones y errores. La documentación utiliza como base **OpenSSH Portable 10.6p1**, sin afirmar que esa sea la versión instalada en todos los equipos.
+Entregas desarrolladas a partir del guion: comprender la confianza y autenticación en SSH, realizar una conexión controlada e interpretar opciones y errores; después, gestionar el ciclo básico de claves de usuario. La documentación utiliza como base **OpenSSH Portable 10.6p1**, sin afirmar que esa sea la versión instalada en todos los equipos.
 
 ## Ruta de lectura
 
@@ -11,10 +11,12 @@ Primera entrega desarrollada a partir del guion: comprender la confianza y auten
 | [1. Fundamentos](01-fundamentos.md) | Cliente/servidor, cifrado, claves de host/usuario, fingerprints, confianza, autenticación, autorización y sesiones. |
 | [2. Conexión básica](02-conexion-basica.md) | Procedimiento para cliente Linux o Windows y servidor Linux ya preparado; configuración propia, verificación de host, comandos y diagnóstico. |
 | [3. Referencia de conexión](03-referencia-conexion.md) | Argumentos, defaults upstream, repetición, efectos y casos de 16 opciones de ssh y seis directivas. |
+| [4. Claves de usuario y agente](04-claves-y-agente.md) | Generación protegida, instalación de pública, prueba de identidad, agente, cambio de frase, rotación y retirada. |
+| [5. Referencia de claves](05-referencia-claves.md) | 21 opciones de ssh-keygen/ssh-add/ssh-agent/ssh-copy-id y tres directivas, limitadas a los modos descritos. |
 
 Los comandos de ejemplo usan datos ficticios y requieren sustitución. Las salidas esquemáticas explican qué buscar; no se presentan como capturas de pruebas ejecutadas.
 
-## Alcance de esta entrega
+## Alcance del primer bloque
 
 - Fundamentos para distinguir identidad del servidor, identidad del usuario y permisos de la cuenta.
 - Destino, usuario, puerto, IPv4/IPv6, archivo de configuración y configuración efectiva.
@@ -38,6 +40,14 @@ Quedan para otros bloques la instalación/administración del servidor, la gesti
 | SSH-C007/C008/C009 | Seis directivas concretas de identidad, confianza y establecimiento. | Desarrollo parcial documentado. |
 | SSH-C013 | Inspección de una fingerprint de host con ssh-keygen. | Uso introductorio; referencia completa pendiente. |
 | SSH-P01/P02/P03/P09 | Escenarios de conexión, configuración, comando y diagnóstico. | Casos descritos parcialmente; ejecución pendiente. |
+
+### Segundo bloque: ciclo básico de claves
+
+La [práctica de claves y agente](04-claves-y-agente.md) desarrolla generación, correspondencia de pública/privada, despliegue, selección de una sola identidad, agente POSIX dedicado y comprobaciones de cliente Windows. Distingue cambio de frase, retirada del agente y revocación de autorizaciones, con prueba positiva de la clave nueva y negativa de la anterior.
+
+La [referencia de claves](05-referencia-claves.md) enlaza 24 fichas con el inventario: 21 opciones y tres directivas. Contiene 48 casos de referencia y la práctica añade ocho criterios de aceptación, todos **pendientes de ensayo**. La cobertura es parcial en SSH-T04, SSH-C007/C012/C013/C016/C017/C018/C023/C026 y SSH-P01/P02/P09; no cierra esas familias ni los modos de CA, KRL, FIDO, conversión y restricciones avanzadas.
+
+Las tablas siguientes corresponden al primer bloque de conexión.
 
 ### Opciones desarrolladas
 
