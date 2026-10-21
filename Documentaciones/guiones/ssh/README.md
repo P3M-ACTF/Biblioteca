@@ -70,6 +70,10 @@ La [práctica de claves y agente](../../../Sistemas%20Operativos/guias/ssh/04-cl
 
 La [práctica de servidor Linux](../../../Sistemas%20Operativos/guias/ssh/06-servidor-linux.md) desarrolla instalación, servicio/socket, validación, política de acceso y restauración. La [referencia de servidor](../../../Sistemas%20Operativos/guias/ssh/07-referencia-servidor.md) añade cinco opciones y 16 directivas con enlaces recíprocos, contexto y pruebas pendientes. La cobertura de plataformas y el resto de directivas siguen abiertos.
 
+## Cuarto bloque desarrollado
+
+La [práctica SFTP/SCP](../../../Sistemas%20Operativos/guias/ssh/08-transferencias.md) y su [referencia](../../../Sistemas%20Operativos/guias/ssh/09-referencia-transferencias.md) desarrollan 20 fichas y las nueve flags de ls: 29 unidades inventariadas con enlaces recíprocos, copias, integridad, reanudación y lotes. La [introducción rsync](../../../Sistemas%20Operativos/guias/ssh/10-rsync-sobre-ssh.md) corresponde a la herramienta externa de SSH-C033/GNU/Linux. Todos los ensayos siguen pendientes; las demás opciones, órdenes y plataformas permanecen abiertas.
+
 ## Estado de verificación
 
 - **Inventariado y contrastado:** nombres/sinopsis de las opciones públicas, directivas principales, compatibilidad del parser, órdenes/alias SFTP y solicitudes de protocolo incluidas.
