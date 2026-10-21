@@ -2,7 +2,7 @@
 
 [Volver a Biblioteca](../../../README.md) · [Guion completo de SSH](../../../Documentaciones/guiones/ssh.md) · [Inventario versionado](../../../Documentaciones/guiones/ssh/README.md)
 
-Entregas desarrolladas a partir del guion: comprender la confianza y autenticación en SSH, realizar una conexión controlada e interpretar opciones y errores; después, gestionar el ciclo básico de claves de usuario, aplicar cambios controlados en el servidor Linux y transferir datos comprobando el resultado. La documentación utiliza como base **OpenSSH Portable 10.6p1**, sin afirmar que esa sea la versión instalada en todos los equipos.
+Entregas desarrolladas a partir del guion: comprender la confianza y autenticación en SSH, realizar una conexión controlada e interpretar opciones y errores; después, gestionar el ciclo básico de claves de usuario, aplicar cambios controlados en el servidor Linux, transferir datos comprobando el resultado y utilizar túneles TCP/bastiones con política limitada. La documentación utiliza como base **OpenSSH Portable 10.6p1**, sin afirmar que esa sea la versión instalada en todos los equipos.
 
 ## Ruta de lectura
 
@@ -18,6 +18,8 @@ Entregas desarrolladas a partir del guion: comprender la confianza y autenticaci
 | [8. SFTP y SCP](08-transferencias.md) | Subida/descarga, nombres con espacios, hashes, lotes y reanudación sobre prefijo conocido. |
 | [9. Referencia de transferencias](09-referencia-transferencias.md) | 11 opciones, nueve órdenes SFTP y nueve flags de ls. |
 | [10. rsync sobre SSH](10-rsync-sobre-ssh.md) | Introducción con dry-run, barra final, parciales, contenido y revisión de borrados. |
+| [11. Túneles y bastiones](11-tuneles-y-bastiones.md) | Recorrido -L/-R/-D, ProxyJump, excepción limitada, fallos y cierre de listeners. |
+| [12. Referencia de túneles](12-referencia-tuneles.md) | Ocho opciones, seis directivas cliente y cinco servidor; argumentos, defaults, precedencia y casos. |
 
 Los comandos de ejemplo usan datos ficticios y requieren sustitución. Las salidas esquemáticas explican qué buscar; no se presentan como capturas de pruebas ejecutadas.
 
@@ -63,6 +65,12 @@ La [referencia de servidor](07-referencia-servidor.md) añade 21 fichas: cinco o
 La [práctica SFTP/SCP](08-transferencias.md) distingue sus protocolos, copias/árboles, metadatos, hashes, reanudación y ejecución por lotes. La [referencia](09-referencia-transferencias.md) añade 20 fichas —11 opciones y nueve órdenes— y una tabla de nueve flags de ls: 29 unidades inventariadas enlazadas en ambos sentidos, con 40 casos de referencia y ocho criterios de aceptación pendientes.
 
 La [introducción rsync sobre SSH](10-rsync-sobre-ssh.md) fija su propia referencia, rsync 3.5.1, e incluye cuatro criterios pendientes. Es un desarrollo introductorio de SSH-C033; el catálogo completo corresponde a GNU/Linux. Cobertura parcial de SSH-T06, SSH-C027/C028/C029/C033 y SSH-P04; no cierra las familias, el protocolo legacy ni las diferencias por plataforma.
+
+### Quinto bloque: túneles TCP y bastiones
+
+La [práctica de túneles](11-tuneles-y-bastiones.md) comprueba direcciones de -L/-R/-D, SOCKS local, acceso a T mediante ProxyJump, confianza separada y cierre/restauración. Parte de una excepción deliberada al DisableForwarding del bloque de servidor, limitada a cuenta, origen y destinos propios; mantiene agente sin reenviar y listeners en loopback.
+
+La [referencia](12-referencia-tuneles.md) contiene 19 fichas —ocho opciones y 11 directivas— con enlaces recíprocos al inventario y 38 casos pendientes. La práctica añade diez criterios de aceptación pendientes. Cobertura parcial de SSH-T07, SSH-C002/C003/C004/C010/C024 y SSH-P05/P06: sockets Unix, SOCKS remoto, TUN/TAP, X11, multihop avanzado y diferencias por plataforma siguen abiertos.
 
 Las tablas siguientes corresponden al primer bloque de conexión.
 
