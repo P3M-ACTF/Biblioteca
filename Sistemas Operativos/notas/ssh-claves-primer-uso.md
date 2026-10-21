@@ -10,7 +10,7 @@ En tu equipo, no en el servidor:
 ssh-keygen -t ed25519 -C "ana@empresa"
 ```
 
-Ed25519 es el tipo que se usa hoy: claves cortas y rápidas. El comentario `-C` solo sirve para reconocerla dentro de un fichero lleno de claves. Te pide una ruta (entra vale la de por defecto, `~/.ssh/id_ed25519`) y una **frase de paso**. Ponla. Es lo que protege la clave si alguien copia el fichero de tu portátil; sin ella, el fichero basta para entrar.
+Ed25519 es una opción habitual cuando cliente, servidor y política del entorno la admiten. El comentario `-C` solo sirve para reconocerla dentro de un fichero lleno de claves. Te pide una ruta (entra vale la de por defecto, `~/.ssh/id_ed25519`) y una **frase de paso**. Ponla. Es lo que protege la clave si alguien copia el fichero de tu portátil; sin ella, el fichero basta para entrar.
 
 Se crean dos ficheros. El que acaba en `.pub` es el público y se puede enseñar. El otro es el privado: permisos `600` y en tu home.
 
@@ -20,7 +20,7 @@ Se crean dos ficheros. El que acaba en `.pub` es el público y se puede enseñar
 ssh-copy-id -i ~/.ssh/id_ed25519.pub ana@servidor
 ```
 
-Esto añade tu clave pública a `~/.ssh/authorized_keys` de ana en el servidor, y deja los permisos bien puestos. Esa será la última vez que te pida la contraseña de la cuenta.
+Esto instala tu pública en el archivo de claves autorizadas de esa cuenta. Si el servidor permite y acepta la autenticación con esa clave, podrás utilizarla en conexiones posteriores; todavía puede pedir la frase de paso o un factor adicional. Verifica el acceso antes de cambiar otros métodos de autenticación.
 
 ### Qué estás viendo
 
@@ -31,7 +31,11 @@ debug1: Server accepts key: ED25519 SHA256:abCd...
 debug1: Authentication succeeded (publickey).
 ```
 
-`Server accepts key` confirma que el servidor encontró tu clave pública y tu equipo demostró tener la privada. Si dice `Offering public key` y luego `we did not send a packet`, la rechazó: casi siempre son los permisos de `~/.ssh` o de `authorized_keys` en el servidor, que tienen que ser legibles solo por la cuenta (el directorio `700`, el fichero `600`). SSH se niega a usarlos si otros usuarios pueden escribir en ellos, y el mensaje no lo explica.
+`Offering public key` indica qué pública se ofrece. `Server accepts key` confirma que el servidor la considera aceptable en la consulta, pero todavía falta que se complete la firma y la autenticación. Si después no se envía un paquete, hay que investigar por qué no se realizó esa firma o cómo continúa el método; no demuestra por sí solo un rechazo por permisos. Busca la confirmación final de autenticación y contrasta el intento con el servidor.
+
+Como valores habituales se utilizan `700` para `~/.ssh` y `600` para `authorized_keys`, con propietario correcto y sin escritura por otros usuarios. El diagnóstico también debe contemplar cuenta, archivo efectivo, algoritmo y política. Los archivos públicos no necesitan ser legibles exclusivamente por el titular para que esa sea, por sí sola, una condición universal de aceptación.
+
+Esta distinción aparece en el [código de autenticación de OpenSSH Portable 10.6p1](https://github.com/openssh/openssh-portable/blob/a8c72b842423f0774f542d3c2197247c3dd28d74/sshconnect2.c), donde el mensaje de aceptación de pública precede a la firma.
 
 ## El agente, para no escribir la frase cada vez
 
@@ -45,6 +49,8 @@ El agente guarda la clave descifrada en memoria durante la sesión, así que la 
 ## Qué no hacer
 
 No reutilices la misma clave privada para todo sin pensarlo: una clave por equipo (portátil, sobremesa) permite revocar uno sin quedarte fuera de todos. Para revocar, se borra la línea correspondiente de `authorized_keys`; la frase de paso no hace falta para eso, porque lo que el servidor guarda es la pública.
+
+Guía: [fundamentos y conexión básica](../guias/ssh/README.md).
 
 Chuleta: [ssh-admin](../chuletas/ssh-admin.md). Plantilla: [sshd_config.ejemplo](../plantillas/sshd_config.ejemplo).
 
