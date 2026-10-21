@@ -74,10 +74,14 @@ La [práctica de servidor Linux](../../../Sistemas%20Operativos/guias/ssh/06-ser
 
 La [práctica SFTP/SCP](../../../Sistemas%20Operativos/guias/ssh/08-transferencias.md) y su [referencia](../../../Sistemas%20Operativos/guias/ssh/09-referencia-transferencias.md) desarrollan 20 fichas y las nueve flags de ls: 29 unidades inventariadas con enlaces recíprocos, copias, integridad, reanudación y lotes. La [introducción rsync](../../../Sistemas%20Operativos/guias/ssh/10-rsync-sobre-ssh.md) corresponde a la herramienta externa de SSH-C033/GNU/Linux. Todos los ensayos siguen pendientes; las demás opciones, órdenes y plataformas permanecen abiertas.
 
+## Quinto bloque desarrollado
+
+La [práctica de túneles TCP y bastiones](../../../Sistemas%20Operativos/guias/ssh/11-tuneles-y-bastiones.md) desarrolla -L/-R/-D, ProxyJump, excepción de forwarding limitada y recuperación. Su [referencia](../../../Sistemas%20Operativos/guias/ssh/12-referencia-tuneles.md) enlaza 19 fichas con el inventario: ocho opciones, seis directivas cliente y cinco servidor. Incluye 38 casos, más diez criterios de la práctica, todos pendientes de ensayo. No cierra las familias ni declara desarrollados sockets Unix, SOCKS remoto, TUN/TAP, X11 o cadenas avanzadas.
+
 ## Estado de verificación
 
 - **Inventariado y contrastado:** nombres/sinopsis de las opciones públicas, directivas principales, compatibilidad del parser, órdenes/alias SFTP y solicitudes de protocolo incluidas.
-- **Desarrollo parcial disponible:** las 16 opciones y seis directivas de la guía anterior tienen fichas documentadas. Queda desarrollar el resto de unidades y ampliar diferencias de entorno según la [plantilla común](../PLANTILLA.md).
+- **Desarrollo parcial disponible:** los cinco bloques anteriores desarrollan fundamentos/conexión, claves/agente, servidor Linux, transferencias y túneles/bastiones, con fichas enlazadas al inventario. El resto de unidades, los modos avanzados y las diferencias de entorno siguen pendientes según la [plantilla común](../PLANTILLA.md).
 - **Pendiente de prueba funcional:** todos los casos administrativos, conexiones reales, claves/dispositivos y laboratorios. No se ha instalado ni ejecutado OpenSSH 10.6p1 para producir este inventario.
 - **Pendiente por plataforma:** paquetes Linux, cambios del distribuidor, Windows OpenSSH, nombres de servicio, rutas y permisos/ACL. No extrapolar defaults de upstream a esos paquetes.
 - **Fuera del catálogo público:** protocolo y flags internos de helpers, API de código, opciones de configure/build y herramientas externas. Su función y disponibilidad sí deben explicarse en el guion.
