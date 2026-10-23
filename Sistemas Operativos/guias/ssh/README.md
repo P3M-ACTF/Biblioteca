@@ -2,7 +2,7 @@
 
 [Volver a Biblioteca](../../../README.md) · [Guion completo de SSH](../../../Documentaciones/guiones/ssh.md) · [Inventario versionado](../../../Documentaciones/guiones/ssh/README.md)
 
-Entregas desarrolladas a partir del guion: comprender la confianza y autenticación en SSH, realizar una conexión controlada e interpretar opciones y errores; después, gestionar el ciclo básico de claves de usuario, aplicar cambios controlados en el servidor Linux, transferir datos comprobando el resultado y utilizar túneles TCP/bastiones con política limitada. La documentación utiliza como base **OpenSSH Portable 10.6p1**, sin afirmar que esa sea la versión instalada en todos los equipos.
+Entregas desarrolladas a partir del guion: comprender la confianza y autenticación en SSH, realizar una conexión controlada e interpretar opciones y errores; después, gestionar el ciclo básico de claves de usuario, aplicar cambios controlados en el servidor Linux, transferir datos comprobando el resultado, utilizar túneles TCP/bastiones con política limitada y gestionar certificados/CA/revocación. La documentación utiliza como base **OpenSSH Portable 10.6p1**, sin afirmar que esa sea la versión instalada en todos los equipos.
 
 ## Ruta de lectura
 
@@ -20,6 +20,9 @@ Entregas desarrolladas a partir del guion: comprender la confianza y autenticaci
 | [10. rsync sobre SSH](10-rsync-sobre-ssh.md) | Introducción con dry-run, barra final, parciales, contenido y revisión de borrados. |
 | [11. Túneles y bastiones](11-tuneles-y-bastiones.md) | Recorrido -L/-R/-D, ProxyJump, excepción limitada, fallos y cierre de listeners. |
 | [12. Referencia de túneles](12-referencia-tuneles.md) | Ocho opciones, seis directivas cliente y cinco servidor; argumentos, defaults, precedencia y casos. |
+| [13. Certificados, CA y KRL](13-certificados-ca-krl.md) | Emisión de usuario/host, principals, confianza, revocación candidata y recuperación. |
+| [14. Referencia de certificados](14-referencia-certificados.md) | 18 fichas, 17 subopciones de certificado y seis directivas KRL; gramáticas y diferencias de parser. |
+| [15. Evidencia local de certificados](15-verificacion-certificados-windows.md) | Resultados offline en Windows 9.5p2; distingue lo probado de los ensayos de conexión pendientes. |
 
 Los comandos de ejemplo usan datos ficticios y requieren sustitución. Las salidas esquemáticas explican qué buscar; no se presentan como capturas de pruebas ejecutadas.
 
@@ -71,6 +74,12 @@ La [introducción rsync sobre SSH](10-rsync-sobre-ssh.md) fija su propia referen
 La [práctica de túneles](11-tuneles-y-bastiones.md) comprueba direcciones de -L/-R/-D, SOCKS local, acceso a T mediante ProxyJump, confianza separada y cierre/restauración. Parte de una excepción deliberada al DisableForwarding del bloque de servidor, limitada a cuenta, origen y destinos propios; mantiene agente sin reenviar y listeners en loopback.
 
 La [referencia](12-referencia-tuneles.md) contiene 19 fichas —ocho opciones y 11 directivas— con enlaces recíprocos al inventario y 38 casos pendientes. La práctica añade diez criterios de aceptación pendientes. Cobertura parcial de SSH-T07, SSH-C002/C003/C004/C010/C024 y SSH-P05/P06: sockets Unix, SOCKS remoto, TUN/TAP, X11, multihop avanzado y diferencias por plataforma siguen abiertos.
+
+### Sexto bloque: certificados y revocación
+
+La [práctica de certificados](13-certificados-ca-krl.md) separa CA de usuario/host, limita principals y tiempos, prepara confianza y perfiles que exigen certificados, y desarrolla KRL candidata, sustitución atómica y restauración. La [referencia](14-referencia-certificados.md) añade 18 fichas (11 opciones y siete directivas), 17 subopciones de certificado y seis directivas KRL: 41 unidades inventariadas con enlaces recíprocos.
+
+Las 36 casillas integradoras y los diez criterios del laboratorio permanecen pendientes. La [evidencia local](15-verificacion-certificados-windows.md) registra 71 operaciones/comprobaciones offline con claves efímeras en Windows OpenSSH 9.5p2; no acredita conexiones Linux ni ejecución de Portable 10.6p1. Cobertura parcial de SSH-T04/T08, SSH-C007/C009/C014/C015/C023/C026 y SSH-P08; siguen abiertas firmas de datos, FIDO, PKCS#11 y automatización avanzada.
 
 Las tablas siguientes corresponden al primer bloque de conexión.
 
