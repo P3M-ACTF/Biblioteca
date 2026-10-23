@@ -78,11 +78,15 @@ La [práctica SFTP/SCP](../../../Sistemas%20Operativos/guias/ssh/08-transferenci
 
 La [práctica de túneles TCP y bastiones](../../../Sistemas%20Operativos/guias/ssh/11-tuneles-y-bastiones.md) desarrolla -L/-R/-D, ProxyJump, excepción de forwarding limitada y recuperación. Su [referencia](../../../Sistemas%20Operativos/guias/ssh/12-referencia-tuneles.md) enlaza 19 fichas con el inventario: ocho opciones, seis directivas cliente y cinco servidor. Incluye 38 casos, más diez criterios de la práctica, todos pendientes de ensayo. No cierra las familias ni declara desarrollados sockets Unix, SOCKS remoto, TUN/TAP, X11 o cadenas avanzadas.
 
+## Sexto bloque desarrollado
+
+La [práctica de certificados/CA/KRL](../../../Sistemas%20Operativos/guias/ssh/13-certificados-ca-krl.md) desarrolla emisión de usuario/host, principals, validez y revocación candidata. La [referencia](../../../Sistemas%20Operativos/guias/ssh/14-referencia-certificados.md) enlaza 18 fichas y 23 subopciones/directivas de formato: 41 unidades del inventario, con 36 casillas integradoras y diez criterios de laboratorio pendientes. La [evidencia Windows 9.5p2](../../../Sistemas%20Operativos/guias/ssh/15-verificacion-certificados-windows.md) registra 71 operaciones/comprobaciones offline; no cierra autenticación, despliegue ni compatibilidad con Portable 10.6p1.
+
 ## Estado de verificación
 
 - **Inventariado y contrastado:** nombres/sinopsis de las opciones públicas, directivas principales, compatibilidad del parser, órdenes/alias SFTP y solicitudes de protocolo incluidas.
-- **Desarrollo parcial disponible:** los cinco bloques anteriores desarrollan fundamentos/conexión, claves/agente, servidor Linux, transferencias y túneles/bastiones, con fichas enlazadas al inventario. El resto de unidades, los modos avanzados y las diferencias de entorno siguen pendientes según la [plantilla común](../PLANTILLA.md).
-- **Pendiente de prueba funcional:** todos los casos administrativos, conexiones reales, claves/dispositivos y laboratorios. No se ha instalado ni ejecutado OpenSSH 10.6p1 para producir este inventario.
+- **Desarrollo parcial disponible:** los seis bloques anteriores desarrollan fundamentos/conexión, claves/agente, servidor Linux, transferencias, túneles/bastiones y certificados/CA/KRL, con fichas enlazadas al inventario. El resto de unidades, los modos avanzados y las diferencias de entorno siguen pendientes según la [plantilla común](../PLANTILLA.md).
+- **Pendiente de prueba funcional:** los casos administrativos, conexiones reales y laboratorios integradores. El sexto bloque aporta evidencia offline de subcasos concretos en Windows OpenSSH 9.5p2; dispositivos y diferencias de plataforma siguen pendientes. No se ha instalado ni ejecutado OpenSSH 10.6p1 para producir este inventario.
 - **Pendiente por plataforma:** paquetes Linux, cambios del distribuidor, Windows OpenSSH, nombres de servicio, rutas y permisos/ACL. No extrapolar defaults de upstream a esos paquetes.
 - **Fuera del catálogo público:** protocolo y flags internos de helpers, API de código, opciones de configure/build y herramientas externas. Su función y disponibilidad sí deben explicarse en el guion.
 

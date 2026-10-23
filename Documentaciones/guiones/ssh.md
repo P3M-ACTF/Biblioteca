@@ -157,6 +157,10 @@ Los materiales nuevos siguen pendientes. Registrar sus enlaces reales y los IDs 
 
 [Túneles TCP y bastiones](../../Sistemas%20Operativos/guias/ssh/11-tuneles-y-bastiones.md) y [referencia de opciones y directivas](../../Sistemas%20Operativos/guias/ssh/12-referencia-tuneles.md): dirección de -L/-R/-D, ProxyJump con identidades en el cliente, permisos de canal/escucha, fallos y restauración. Cobertura parcial de SSH-T07, SSH-C002/C003/C004/C010/C024 y SSH-P05/P06; 19 fichas, 38 casos y diez criterios de aceptación pendientes. Los demás modos y variantes por plataforma permanecen abiertos.
 
+### Sexta entrega desarrollada
+
+[Certificados, CA y KRL](../../Sistemas%20Operativos/guias/ssh/13-certificados-ca-krl.md), [referencia](../../Sistemas%20Operativos/guias/ssh/14-referencia-certificados.md) y [evidencia local](../../Sistemas%20Operativos/guias/ssh/15-verificacion-certificados-windows.md): identidad de usuario/host, principals, intervalos, confianza y revocación candidata. Cobertura parcial de SSH-T04/T08, SSH-C007/C009/C014/C015/C023/C026 y SSH-P08. Se documentan 41 unidades; las pruebas offline de Windows 9.5p2 no cierran los ensayos integradores ni acreditan Portable 10.6p1.
+
 ### Recursos existentes o guiones relacionados
 
 - [Guion GNU/Linux](gnu-linux.md) y [guion Windows](windows.md).
