@@ -2,7 +2,7 @@
 
 [Volver a Biblioteca](../../../README.md) · [Guion completo de SSH](../../../Documentaciones/guiones/ssh.md) · [Inventario versionado](../../../Documentaciones/guiones/ssh/README.md)
 
-Entregas desarrolladas a partir del guion: comprender la confianza y autenticación en SSH, realizar una conexión controlada e interpretar opciones y errores; después, gestionar el ciclo básico de claves de usuario, aplicar cambios controlados en el servidor Linux, transferir datos comprobando el resultado, utilizar túneles TCP/bastiones con política limitada y gestionar certificados/CA/revocación. La documentación utiliza como base **OpenSSH Portable 10.6p1**, sin afirmar que esa sea la versión instalada en todos los equipos.
+Entregas desarrolladas a partir del guion: comprender la confianza y autenticación en SSH, realizar una conexión controlada e interpretar opciones y errores; después, gestionar el ciclo básico de claves de usuario, aplicar cambios controlados en el servidor Linux, transferir datos comprobando el resultado, utilizar túneles TCP/bastiones con política limitada, gestionar certificados/CA/revocación y confinar una cuenta SFTP. La documentación utiliza como base **OpenSSH Portable 10.6p1**, sin afirmar que esa sea la versión instalada en todos los equipos.
 
 ## Ruta de lectura
 
@@ -23,6 +23,8 @@ Entregas desarrolladas a partir del guion: comprender la confianza y autenticaci
 | [13. Certificados, CA y KRL](13-certificados-ca-krl.md) | Emisión de usuario/host, principals, confianza, revocación candidata y recuperación. |
 | [14. Referencia de certificados](14-referencia-certificados.md) | 18 fichas, 17 subopciones de certificado y seis directivas KRL; gramáticas y diferencias de parser. |
 | [15. Evidencia local de certificados](15-verificacion-certificados-windows.md) | Resultados offline en Windows 9.5p2; distingue lo probado de los ensayos de conexión pendientes. |
+| [16. SFTP confinado](16-sftp-confinado.md) | Cuenta dedicada, raíz/datos, autenticación, restricciones, ensayos negativos, filtros y retirada. |
+| [17. Referencia de SFTP confinado](17-referencia-sftp-confinado.md) | Diez opciones de servidor, cinco directivas y 29 solicitudes de protocolo; efectos y límites. |
 
 Los comandos de ejemplo usan datos ficticios y requieren sustitución. Las salidas esquemáticas explican qué buscar; no se presentan como capturas de pruebas ejecutadas.
 
@@ -34,7 +36,7 @@ Los comandos de ejemplo usan datos ficticios y requieren sustitución. Las salid
 - Diagnóstico por fases y conservación deliberada de evidencias.
 - Casos de error y diferencias entre el contrato del manual y ciertos estados del parser versionado.
 
-Quedan para otros bloques la administración completa del servidor, la gestión completa de claves/agentes, bastionado avanzado, transferencias avanzadas, túneles, certificados/CA, revocación y automatización avanzada. Las herramientas auxiliares citadas aquí se utilizan con un propósito limitado; no se declara cubierto todo su catálogo.
+Los bloques siguientes amplían servidor, claves/agentes, bastionado, transferencias, túneles, certificados/CA y revocación; su cobertura exhaustiva y la automatización avanzada siguen abiertas. Las herramientas auxiliares citadas aquí se utilizan con un propósito limitado; no se declara cubierto todo su catálogo.
 
 ## Cobertura y estado
 
@@ -80,6 +82,12 @@ La [referencia](12-referencia-tuneles.md) contiene 19 fichas —ocho opciones y 
 La [práctica de certificados](13-certificados-ca-krl.md) separa CA de usuario/host, limita principals y tiempos, prepara confianza y perfiles que exigen certificados, y desarrolla KRL candidata, sustitución atómica y restauración. La [referencia](14-referencia-certificados.md) añade 18 fichas (11 opciones y siete directivas), 17 subopciones de certificado y seis directivas KRL: 41 unidades inventariadas con enlaces recíprocos.
 
 Las 36 casillas integradoras y los diez criterios del laboratorio permanecen pendientes. La [evidencia local](15-verificacion-certificados-windows.md) registra 71 operaciones/comprobaciones offline con claves efímeras en Windows OpenSSH 9.5p2; no acredita conexiones Linux ni ejecución de Portable 10.6p1. Cobertura parcial de SSH-T04/T08, SSH-C007/C009/C014/C015/C023/C026 y SSH-P08; siguen abiertas firmas de datos, FIDO, PKCS#11 y automatización avanzada.
+
+### Séptimo bloque: SFTP confinado
+
+La [práctica de cuenta confinada](16-sftp-confinado.md) separa raíz de root y datos del usuario, pública fuera de la zona de subida, servicio forzado, PTY/rc y bloqueo de forwarding. Compara transferencias permitidas, marcador exterior inaccesible, modo de solo lectura y filtros con transportes nuevos, y retira la cuenta antes de quitar el confinamiento.
+
+La [referencia](17-referencia-sftp-confinado.md) enlaza 44 unidades: 15 fichas —diez opciones y cinco directivas— y las 29 solicitudes del dispatcher. Contiene 30 casos de ficha y 58 variantes por solicitud, más diez criterios de práctica, todos pendientes de laboratorio. La inspección local del perfil con ssh -G no acredita el servidor Linux. Cobertura parcial de SSH-T05/T06, SSH-C024/C028/C029/C030 y SSH-P07.
 
 Las tablas siguientes corresponden al primer bloque de conexión.
 
