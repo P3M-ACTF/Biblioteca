@@ -161,6 +161,10 @@ Los materiales nuevos siguen pendientes. Registrar sus enlaces reales y los IDs 
 
 [Certificados, CA y KRL](../../Sistemas%20Operativos/guias/ssh/13-certificados-ca-krl.md), [referencia](../../Sistemas%20Operativos/guias/ssh/14-referencia-certificados.md) y [evidencia local](../../Sistemas%20Operativos/guias/ssh/15-verificacion-certificados-windows.md): identidad de usuario/host, principals, intervalos, confianza y revocación candidata. Cobertura parcial de SSH-T04/T08, SSH-C007/C009/C014/C015/C023/C026 y SSH-P08. Se documentan 41 unidades; las pruebas offline de Windows 9.5p2 no cierran los ensayos integradores ni acreditan Portable 10.6p1.
 
+### Séptima entrega desarrollada
+
+[Cuenta SFTP confinada](../../Sistemas%20Operativos/guias/ssh/16-sftp-confinado.md) y [referencia de servidor/solicitudes](../../Sistemas%20Operativos/guias/ssh/17-referencia-sftp-confinado.md): raíz y datos separados, cuenta dedicada, ForceCommand, bloqueo de canales, solo lectura, filtros y retirada antes de restaurar. Se enlazan 44 unidades del inventario; cobertura parcial de SSH-T05/T06, SSH-C024/C028/C029/C030 y SSH-P07. Ensayos de servidor/chroot pendientes; la configuración cliente inspeccionada no los sustituye.
+
 ### Recursos existentes o guiones relacionados
 
 - [Guion GNU/Linux](gnu-linux.md) y [guion Windows](windows.md).
